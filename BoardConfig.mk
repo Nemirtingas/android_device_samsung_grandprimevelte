@@ -31,8 +31,8 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/grandprimevelte
-#TARGET_KERNEL_CONFIG := cm_grandprimevelte_defconfig
-TARGET_KERNEL_CONFIG := pxa1908_grandprimevelte_eur_defconfig
+TARGET_KERNEL_CONFIG := cm_grandprimevelte_defconfig
+#TARGET_KERNEL_CONFIG := pxa1908_grandprimevelte_eur_defconfig
 TARGET_KERNEL_ARCH := arm64
 #TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
@@ -61,10 +61,7 @@ BOARD_FLASH_BLOCK_SIZE             := 131072
 TARGET_USERIMAGES_USE_EXT4         := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE  := ext4
 
-# Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.pxa1908
-
 # TWRP Recovery
 RECOVERY_VARIANT := twrp
-TW_THEME := portrait_mdpi
-PRODUCT_COPY_FILES += $(DEVICE_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
+TW_THEME := portrait_hdpi
+PRODUCT_COPY_FILES += device/samsung/grandprimevelte/twrp.fstab:recovery/root/etc/twrp.fstab
