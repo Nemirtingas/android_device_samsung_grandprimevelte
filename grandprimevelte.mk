@@ -18,5 +18,37 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # Proprietary files
 $(call inherit-product, vendor/samsung/grandprimevelte/grandprimevelte-vendor.mk)
 
+
+ifneq ($(TARGET_BUILD_VARIANT),user) 
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.secure=0 \
+    ro.adb.secure=0 \
+    ro.debuggable=1 \
+    persist.service.adb.enable=1 \
+    persist.sys.usb.config=mtp,adb \
+    service.adb.root=1
+endif
+
+# Ramdisk
+PRODUCT_PACKAGES += \
+    fstab.pxa1908 \
+    fstab_lpm.pxa1908 \
+    init.target.rc \
+    init.trace.rc \
+    init.tel.rc \
+    init.pxa1908.tel.rc \
+    init.pxa1908.security.rc \
+    init.wifi.rc \
+    init_bsp.pxa1908.tel.rc \
+    init.usb.rc \
+    init_bsp.pxa1908.rc \
+    init_bsp.rc \
+    init.pxa1908.usb.rc \
+    init.container.rc \
+    init.pxa1908.sensor.rc \
+    init.pxa1908.rc \
+    ueventd.pxa1908.rc \
+    ueventd.rc	
+
 # Inherit from 
 $(call inherit-product, device/samsung/pxa1908-common/pxa1908-common.mk)
