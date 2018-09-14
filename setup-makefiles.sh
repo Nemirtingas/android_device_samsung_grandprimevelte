@@ -25,17 +25,14 @@ PRODUCT_COPY_FILES += \\
 EOF
 
 LINEEND=" \\"
-COUNT=`cat proprietary-files.txt | grep -v ^# | grep -v ^$ | wc -l | awk {'print $1'}`
-for FILE in `cat proprietary-files.txt | grep -v ^# | grep -v ^$ | sed -e 's#^/system/##g'`; do
-    COUNT=`expr $COUNT - 1`
-    if [ $COUNT = "0" ]; then
-        LINEEND=""
-    fi
-    if [[ ! "$FILE" =~ ^-.* ]]; then
+while read FILE; do
+    if [[ "$FILE" =~ ^# || "$FILE" =~ ^$ ]]; then
+	echo "$FILE" >> $MAKEFILE
+    elif [[ ! "$FILE" =~ ^-.* ]]; then
         FILE=`echo $FILE | sed -e "s/^-//g"`
-        echo "    $OUTDIR/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
+	echo "    \$(LOCAL_PATH)/proprietary/$FILE:system/$FILE$LINEEND" >> $MAKEFILE
     fi
-done
+done < proprietary-files.txt
 
 (cat << EOF) > ../../../$OUTDIR/$DEVICE-vendor.mk
 # Copyright (C) 2014 The CyanogenMod Project

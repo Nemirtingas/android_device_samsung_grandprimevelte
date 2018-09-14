@@ -23,6 +23,7 @@ DEVICE_PATH := device/samsung/grandprimevelte
 TARGET_OTA_ASSERT_DEVICE := grandprimevelte
 
 # Init
+TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_LIBINIT_PXA1908_DEFINES_FILE := $(DEVICE_PATH)/init/init_grandprimevelte.cpp
 TARGET_UNIFIED_DEVICE := true
 
@@ -31,12 +32,13 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/grandprimevelte
-#TARGET_KERNEL_CONFIG := cm_grandprimevelte_defconfig
-TARGET_KERNEL_CONFIG := pxa1908_grandprimevelte_eur_defconfig
+TARGET_KERNEL_CONFIG := cm_grandprimevelte_defconfig
+#TARGET_KERNEL_CONFIG := pxa1908_grandprimevelte_eur_defconfig
 TARGET_KERNEL_ARCH := arm64
-#TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/
+#TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/uKernel
 
 BOARD_KERNEL_BASE         := 0x10000000
 BOARD_KERNEL_CMDLINE      :=
@@ -44,10 +46,9 @@ BOARD_KERNEL_PAGESIZE     := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_IMAGE_NAME   := Image.gz
 BOARD_DTBTOOL_ARGS        :=
-BOARD_MKBOOTIMG_ARGS      := --signature device/samsung/grandprimevelte/boot.img-signature --unknown 0x3000000 --tags_offset 0x00000100
-BOARD_MKRECOVERYIMG_ARGS  := --signature device/samsung/grandprimevelte/recovery.img-signature --unknown 0x3000000 --tags_offset 0x00000100
+BOARD_MKBOOTIMG_ARGS      := --signature device/samsung/grandprimevelte/boot/boot.img-signature --unknown 0x3000000 --tags_offset 0x00000100
+BOARD_MKRECOVERYIMG_ARGS  := --signature device/samsung/grandprimevelte/recovery/recovery.img-signature --unknown 0x3000000 --tags_offset 0x00000100
 BOARD_UBOOT_ARGS          := -A arm64 -O linux -T kernel -C gzip -a 01000000 -e 01000000 -n "pxa1928dkb linux"
-INSTALLED_UBOOT_TARGET    := uKernel
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE     := 16777216
@@ -62,9 +63,25 @@ TARGET_USERIMAGES_USE_EXT4         := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE  := ext4
 
 # Recovery
-TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.pxa1908
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
 
 # TWRP Recovery
 RECOVERY_VARIANT := twrp
 TW_THEME := portrait_mdpi
-PRODUCT_COPY_FILES += $(DEVICE_PATH)/twrp.fstab:recovery/root/etc/twrp.fstab
+PRODUCT_COPY_FILES += $(DEVICE_PATH)/recovery/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab
+RECOVERY_FSTAB_VERSION := 2
+HAVE_SELINUX := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+
+#TW_EXCLUDE_SUPERSU := true
+#TW_EXCLUDE_MTP := true
+#TW_MTP_DEVICE := /dev/usb_mtp_gadget
+#TW_EXCLUDE_DEFAULT_USB_INIT := true
+#TW_NO_REBOOT_BOOTLOADER := true
+#TW_HAS_DOWNLOAD_MODE := true
+#TW_INCLUDE_CRYPTO := true
+#TW_BRIGHTNESS_PATH := "/sys/devices/platform/ktd3102-bl.24/backlight/panel/brightness"
+#TW_MAX_BRIGHTNESS := 255
+#TW_DEFAULT_BRIGHTNESS := 137
+#TW_EXTRA_LANGUAGES := true
