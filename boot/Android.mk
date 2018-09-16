@@ -26,13 +26,13 @@ LOCAL_SRC_FILES    := root/init.target.rc
 LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 include $(BUILD_PREBUILT)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE       := init.trace.rc
-LOCAL_MODULE_TAGS  := optional eng
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := root/init.trace.rc
-LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
-include $(BUILD_PREBUILT)
+#include $(CLEAR_VARS)
+#LOCAL_MODULE       := init.trace.rc
+#LOCAL_MODULE_TAGS  := optional eng
+#LOCAL_MODULE_CLASS := ETC
+#LOCAL_SRC_FILES    := root/init.trace.rc
+#LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
+#include $(BUILD_PREBUILT)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE       := init.tel.rc
@@ -74,13 +74,13 @@ include $(BUILD_PREBUILT)
 #LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
 #include $(BUILD_PREBUILT)
 
-include $(CLEAR_VARS)
-LOCAL_MODULE       := init.usb.rc
-LOCAL_MODULE_TAGS  := optional eng
-LOCAL_MODULE_CLASS := ETC
-LOCAL_SRC_FILES    := root/init.usb.rc
-LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
-include $(BUILD_PREBUILT)
+#include $(CLEAR_VARS)
+#LOCAL_MODULE       := init.usb.rc
+#LOCAL_MODULE_TAGS  := optional eng
+#LOCAL_MODULE_CLASS := ETC
+#LOCAL_SRC_FILES    := root/init.usb.rc
+#LOCAL_MODULE_PATH  := $(TARGET_ROOT_OUT)
+#include $(BUILD_PREBUILT)
 
 #include $(CLEAR_VARS)
 #LOCAL_MODULE       := init_bsp.pxa1908.rc

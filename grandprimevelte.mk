@@ -27,7 +27,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/usr/idc/synaptics_dsx_i2c.idc:system/usr/idc/synaptics_dsx_i2c.idc
 
 # Keylayouts
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/usr/keylayout/AVRCP.kl:system/usr/keylayout/AVRCP.kl \
     $(LOCAL_PATH)/usr/keylayout/Generic.kl:system/usr/keylayout/Generic.kl \
     $(LOCAL_PATH)/usr/keylayout/Vendor_0079_Product_0011.kl:system/usr/keylayout/Vendor_0079_Product_0011.kl \
