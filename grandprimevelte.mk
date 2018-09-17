@@ -129,6 +129,28 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     service.adb.root=1
 endif
 
+ADDITIONAL_DEFAULT_PROPERTIES += \
+    ro.sf.lcd_density=240 \
+    keyguard.no_require_sim=1 \
+    ro.wifi.active_roaming.enable=true \
+    ro.tel.config.path=/system/etc/tel/ \
+    ro.config.max_starting_bg=10 \
+    persist.service.camera.isptype=1 \
+    ro.kernel.qemu=0 \
+    ro.cmd.DUAL_SIMCARD=true \
+    ril.stk.sim.profile=FFFFFFFF7F0F009F7F00001FE200000003 \
+    ril.stk.usim.profile=FFFFFFFF7F9F00DFFF00001FE2000000C3E00000000148005100000000080000 \
+    ro.cmd.ssipc_enable=true \
+    ro.security.mode=tz \
+    ro.cmd.WORLD_PHONE=true \
+    ro.telephony.default_network=9 \
+    ro.atm.manufacturer.id=Marvell \
+    ro.atm.model.id=LINUX \
+    ro.atm.id=Marvell \
+    ro.config.ringtone_2=Basic_Bell.ogg \
+    ro.config.notification_sound_2=S_Charming_Bell.ogg \
+    ro.config.ringtone=Over_the_horizon.ogg
+
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.pxa1908 \

@@ -1,0 +1,27 @@
+#
+# from device/samsung/grandprimevelte/system.prop
+#
+#
+# system.prop
+#
+
+rild.libpath=/system/lib/libsec-ril.so
+
+# System property for storage_preload
+persist.sys.storage_preload=1
+
+# set lcd density
+ro.sf.lcd_density=240
+
+# Multimedia property for Camcorder Recording
+media.sfrec.adj_frames=2
+
+# System property for low memory
+ro.config.low_ram=true
+
+# SAMP_SPCM
+sys.config.samp_spcm_enable=true
+sys.config.spcm_db_enable=true
+sys.config.spcm_db_launcher=true
+sys.config.spcm_preload_enable=true
+

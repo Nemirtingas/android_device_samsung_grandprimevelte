@@ -3,14 +3,13 @@ lib/hw/audio.a2dp.default.so
 lib/hw/audio_policy.default.so
 lib/hw/audio.primary.default.so
 lib/hw/audio.primary.mrvl.so
-lib/libSamsungPostProcess.so
 lib/libsamsungSoundbooster.so
 lib/lib_Samsung_SB_AM_for_ICS_v03008.so
 lib/libSamsungPreProcess.so
+lib/libSamsungPostProcess.so
 lib/libsamsungRecord.so
 lib/lib_SamsungRec_V04012.so
 lib/libacm.so
-lib/libxml2.so
 lib/libacoustic.so
 lib/libippsp.so
 lib/libmiscgen.so
@@ -36,21 +35,14 @@ lib/hw/camera.mrvl.so
 lib/libcameraengine.so
 lib/libFaceDetect.so
 lib/libFlickerDetect.so
-lib/libGAL.so
-lib/libgputex.so
-lib/libVSC.so
-lib/libGLSLC.so
-lib/libLENCMerge.so
 lib/libb52sensorhal.so
 lib/libcodeccoda7542enc.so
+lib/libLENCMerge.so
 lib/libcoda7542.so
 lib/libmvmem.so
-lib/libion.so
 lib/libcoda7542hal.so
 lib/libcodecjpegdec.so
 lib/libcodecjpegenc.so
-lib/libgcu.so
-lib/libgpucsc.so
 lib/libmedialib.so
 lib/libovdns.so
 lib/libPyramidUVDNS.so
@@ -72,6 +64,13 @@ lib/libHWComposerGC.so
 lib/egl/libEGL_MRVL.so
 lib/egl/libGLESv1_CM_MRVL.so
 lib/egl/libGLESv2_MRVL.so
+lib/libion.so
+lib/libgcu.so
+lib/libgpucsc.so
+lib/libGAL.so
+lib/libgputex.so
+lib/libVSC.so
+lib/libGLSLC.so
 
 # Keystore
 lib/hw/keystore.default.so
@@ -97,8 +96,8 @@ lib/hw/memtrack.mrvl.so
 lib/hw/nfc_nci.mrvl.so
 
 # Power
-lib/hw/power.default.so
-lib/hw/power.mrvl.so
+#lib/hw/power.default.so
+#lib/hw/power.mrvl.so
 
 # Sensors
 lib/hw/sensors.mrvl.so
@@ -107,4 +106,17 @@ lib/libyasalgo.so
 # Vibrator
 lib/hw/vibrator.default.so
 
+lib/libwvm.so
 
+# Vendor libs
+vendor/Khronos/OpenCL/vendors/ocl32_mrvl.icd
+vendor/firmware/sec_s3fwrn7_firmware.bin
+vendor/lib/libWVStreamControlAPI_L3.so
+vendor/lib/libwvdrm_L3.so
+vendor/lib/mediadrm/libdrmclearkeyplugin.so
+vendor/lib/mediadrm/libwvdrmengine.so
+vendor/media/LMspeed_508.emd
+vendor/media/PFFprec_600.emd
+
+# Extras
+#lib/libxml2.so
