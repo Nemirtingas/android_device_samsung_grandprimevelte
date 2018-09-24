@@ -1,4 +1,9 @@
+# WiFi & Bluetooth: Work In Progress...
+
 # Disable WiFi & Bth Modem :
 echo 0 >/sys/devices/platform/sd8x-rfkill/pwr_ctrl
 # Enable WiFi & Bth Modem :
 echo 1 >/sys/devices/platform/sd8x-rfkill/pwr_ctrl
+
+bin/mfgloader             -> Init modem
+bin/MarvellWirelessDaemon -> Modem control Daemon
