@@ -6,4 +6,7 @@ echo 0 >/sys/devices/platform/sd8x-rfkill/pwr_ctrl
 echo 1 >/sys/devices/platform/sd8x-rfkill/pwr_ctrl
 
 bin/mfgloader             -> Init modem
+  |-- -l|--load (normal|debug) : enable Modem in normal or debug mode (debug mode needs /system/etc/firmware/mrvl/SDIO8777_SDIO_SDIO.bin).
+  \-- -u : unload modem.
+
 bin/MarvellWirelessDaemon -> Modem control Daemon
