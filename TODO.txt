@@ -10,3 +10,7 @@ bin/mfgloader             -> Init modem
   \-- -u : unload modem.
 
 bin/MarvellWirelessDaemon -> Modem control Daemon
+
+
+# Backlight
+/sys/devices/platform/soc.2/d4000000.apb/d4037000.i2c/i2c-2/2-0030/88pm88x-leds.1/leds/torch/brightness
