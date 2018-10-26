@@ -64,7 +64,6 @@ lib/libHWComposerGC.so
 lib/egl/libEGL_MRVL.so
 lib/egl/libGLESv1_CM_MRVL.so
 lib/egl/libGLESv2_MRVL.so
-lib/libion.so
 lib/libgcu.so
 lib/libgpucsc.so
 lib/libGAL.so

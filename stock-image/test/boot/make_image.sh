@@ -11,7 +11,7 @@ SIGNATURE="${IMAGE}-signature"
 ARGS=()
 
 echo "Making uBoot..."
-mkimage -A arm64 -O linux -T kernel -C gzip -a 01000000 -e 01000000 -n "pxa1928dkb linux" -d "${KERNEL}" "${UBOOT}"
+mkimage_arm64 -A arm64 -O linux -T kernel -C gzip -a 01000000 -e 01000000 -n "pxa1928dkb linux" -d "${KERNEL}" "${UBOOT}"
 echo "Uboot done !"
 
 echo "Making ramdisk..."
