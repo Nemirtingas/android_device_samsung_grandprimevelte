@@ -1,0 +1,16 @@
+# WiFi & Bluetooth: Work In Progress...
+
+# Disable WiFi & Bth Modem :
+echo 0 >/sys/devices/platform/sd8x-rfkill/pwr_ctrl
+# Enable WiFi & Bth Modem :
+echo 1 >/sys/devices/platform/sd8x-rfkill/pwr_ctrl
+
+bin/mfgloader             -> Init modem
+  |-- -l|--load (normal|debug) : enable Modem in normal or debug mode (debug mode needs /system/etc/firmware/mrvl/SDIO8777_SDIO_SDIO.bin).
+  \-- -u : unload modem.
+
+bin/MarvellWirelessDaemon -> Modem control Daemon
+
+
+# Backlight
+/sys/devices/platform/soc.2/d4000000.apb/d4037000.i2c/i2c-2/2-0030/88pm88x-leds.1/leds/torch/brightness
