@@ -330,6 +330,8 @@ on post-fs-data
     # won't work.
     # Set indication (checked by vold) that we have finished this action
     #setprop vold.post_fs_data_done 1
+# Marvell/Samsung stuff
+    mkdir /dev/socket/cs_socket 0770 system system
 
 on boot
     # basic network init
@@ -569,12 +571,13 @@ service surfaceflinger /system/bin/surfaceflinger
 service drm /system/bin/drmserver
     class main
     user drm
-    group drm system inet drmrpc
+    group drm system inet drmrpc radio
 
 service media /system/bin/mediaserver
     class main
     user media
-    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm qcom_diag
+#    group audio camera inet net_bt net_bt_admin net_bw_acct drmrpc mediadrm qcom_diag
+    group system audio camera inet net_bt net_bt_admin net_raw net_bw_acct drmrpc mediadrm sdcard_rw sdcard_r media_rw shell radio
     ioprio rt 4
 
 # One shot invocation to deal with encrypted volume.
@@ -651,3 +654,73 @@ service pre-recovery /system/bin/uncrypt
     class main
     disabled
     oneshot
+
+# Marvell/Samsung Specific services
+service drsd /system/bin/drsd
+    class main
+    socket drsd stream 600 system system
+
+service prepare_param /system/bin/prepare_param.sh /dev/block/platform/soc.2/by-name/PARAM
+    class core
+    user root
+    group root
+    seclabel u:r:p
+
+service scs /system/bin/scs
+    class main
+    user system
+    group system
+    oneshot
+
+service powersnd /system/bin/samsungpowersoundplay
+    class main
+    user media
+    group system
+    disabled
+    oneshot
+
+service DR-daemon /system/xbin/strace -o /sdcard/Download/ddexe.log /system/bin/ddexe 
+    class main
+    user root
+    group system radio inet net_raw
+
+service SMD-daemon /system/bin/smdexe
+    class main
+    user root
+    group system radio inet net_raw
+
+service BCS-daemon /system/bin/connfwexe
+    class main
+    user root
+    group system radio inet net_raw
+
+# otp
+service otp /system/bin/otp_server
+  user system
+  group system
+  disabled
+
+on property:persist.security.tlc.otp=1
+  start otp
+  setprop persist.security.tlc.otp 0
+
+# ccm
+service ccm /system/bin/tlc_server
+    user system
+    group system
+    disabled
+
+# CS_SERVICE
+service cs_service /system/bin/cs
+    class main
+    user system
+    group system
+    disabled
+
+on property:init.svc.teecsstdca=running
+    start cs_service
+
+# Activate Background Compaction
+on property:sys.sysctl.compact_memory=1
+    write /proc/sys/vm/compact_memory 1
+    setprop sys.sysctl.compact_memory=0

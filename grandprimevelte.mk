@@ -149,7 +149,13 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.atm.id=Marvell \
     ro.config.ringtone_2=Basic_Bell.ogg \
     ro.config.notification_sound_2=S_Charming_Bell.ogg \
-    ro.config.ringtone=Over_the_horizon.ogg
+    ro.config.ringtone=Over_the_horizon.ogg \
+    dalvik.vm.heapstartsize=8m \
+    dalvik.vm.heapgrowthlimit=96m \
+    dalvik.vm.heapsize=256m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=2m \
+    dalvik.vm.heapmaxfree=8m
 
 # Ramdisk
 PRODUCT_PACKAGES += \

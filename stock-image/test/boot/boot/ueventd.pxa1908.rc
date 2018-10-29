@@ -34,7 +34,7 @@
 /dev/alarm-poweroff 0440 system system
 # telephony
 /dev/cctdev* 0660 system system
-/dev/umts_* 0660 system system
+/dev/umts_* 0777 system system
 /dev/msocket 0660 system system
 /dev/msocket_dump 0660 system system
 /dev/diag_dump 0660 system system
