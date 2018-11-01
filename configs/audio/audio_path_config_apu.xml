@@ -1,0 +1,657 @@
+<?xml version="1.0"?>
+<MarvellAudioPathConfiguration>
+    <AudioPath identifier="HiFi1Playback">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x100 0x1000 -->
+                <Register field="DSP1_DAC_D1IN4_MIX_ENABLE" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x194 0x00 -->
+                <Register field="D1IN4_2INMIX[7:0]" value="0"/>
+                <!-- Register 0x100 0x000 -->
+                <Register field="DSP1_DAC_D1IN4_MIX_ENABLE" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackST">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x100 0x3000 -->
+                <Register field="DSP1_DAC_D1IN4_MIX_ENABLE" value="1"/>
+                <Register field="DSP1_DAC_TXRX_MIX_ENABLE" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x194 0x00 -->
+                <Register field="D1IN4_2INMIX[7:0]" value="0"/>
+                <!-- Register 0x100 0x0000 -->
+                <Register field="DSP1_DAC_D1IN4_MIX_ENABLE" value="0"/>
+                <Register field="DSP1_DAC_TXRX_MIX_ENABLE" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="VoicePlayback">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x34 0x0808 -->
+                <Register field="D1IN2_RIGHT_MUXSEL" value="1"/>
+                <!-- Register 0x100 0x400 -->
+                <Register field="DSP1_DAC_D1IN2_MIX_ENABLE" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x194 0x00 -->
+                <Register field="D1IN2_2INMIX[7:0]" value="0"/>
+                <!-- Register 0x34 0x0000 -->
+                <Register field="D1IN2_RIGHT_MUXSEL" value="0"/>
+                <!-- Register 0x100 0x000 -->
+                <Register field="DSP1_DAC_D1IN2_MIX_ENABLE" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackST">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x34 0x0808 -->
+                <Register field="D1IN2_RIGHT_MUXSEL" value="1"/>
+                <!-- Register 0x100 0x2400 -->
+                <Register field="DSP1_DAC_D1IN2_MIX_ENABLE" value="1"/>
+                <Register field="DSP1_DAC_TXRX_MIX_ENABLE" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x194 0x00 -->
+                <Register field="D1IN2_2INMIX[7:0]" value="0"/>
+                <!-- Register 0x34 0x0000 -->
+                <Register field="D1IN2_RIGHT_MUXSEL" value="0"/>
+                <!-- Register 0x100 0x000 -->
+                <Register field="DSP1_DAC_D1IN2_MIX_ENABLE" value="0"/>
+                <Register field="DSP1_DAC_TXRX_MIX_ENABLE" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HfpPlayback">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x34 0x0808 -->
+                <Register field="D1IN3_RIGHT_MUXSEL" value="1"/>
+                <!-- Register 0x100 0x0800 -->
+                <Register field="DSP1_DAC_D1IN3_MIX_ENABLE" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x194 0x00 -->
+                <Register field="D1IN3_2INMIX[7:0]" value="0"/>
+                <!-- Register 0x34 0x0000 -->
+                <Register field="D1IN2_RIGHT_MUXSEL" value="0"/>
+                <!-- Register 0x100 0x000 -->
+                <Register field="DSP1_DAC_D1IN3_MIX_ENABLE" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HfpRecord">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x304 0x03 -->
+                <Register field="EN_ADC_LEFT" value="1"/>
+                <Register field="EN_ADC_RIGHT" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x304 0x00 -->
+                <Register field="EN_ADC_LEFT" value="0"/>
+                <Register field="EN_ADC_RIGHT" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="FMPlaybackI2S">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x100 0x0800 -->
+                <Register field="DSP1_DAC_D1IN3_MIX_ENABLE" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x194 0x00 -->
+                <Register field="D1IN3_2INMIX[7:0]" value="0"/>
+                <!-- Register 0x100 0x000 -->
+                <Register field="DSP1_DAC_D1IN3_MIX_ENABLE" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="FMI2SRecord">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x3 -->
+                <Register field="AIN4_SEL[3:0]" value="11"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x0 -->
+                <Register field="AIN4_SEL[3:0]" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+
+    <AudioPath identifier="ToSpeaker">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x100 0x100 -->
+                <Register field="DSP1_DAC_OUT_MIX_ENABLE" value="1"/>
+                <!-- Register 0x104 0x03 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="1"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="1"/>
+                <!-- Register 0x2c 0x000000 -->
+                <Register field="OUT1_SEL[2:0]" value="0"/>
+                <!-- Register 0x420 0x01 -->
+                <Register field="DOUT_SPKR_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x100 0x00 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="0"/>
+                <!-- Register 0x108 0x000000 -->
+                <Register field="DSP1_DAC_LEFT_VOL[7:0]" value="0"/>
+                <Register field="DSP1_DAC_RIGHT_VOL[7:0]" value="0"/>
+                <!-- Register 0x100 0x10 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="1"/>
+                <!-- Register 0x2c 0x380000 -->
+                <Register field="OUT1_SEL[2:0]" value="111"/>
+                <!-- Register 0x104 0x00 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="0"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="0"/>
+                <!-- Register 0x420 0x00 -->
+                <Register field="DOUT_SPKR_EN" value="0"/>
+                <!-- Register 0x100 0x000 -->
+                <Register field="DSP1_DAC_OUT_MIX_ENABLE" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="ToStereoSpeaker">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x104 0x03 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="1"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="1"/>
+                <!-- Register 0x2c 0x000000 -->
+                <Register field="OUT1_SEL[2:0]" value="0"/>
+                <!-- Register 0x420 0x01 -->
+                <Register field="DOUT_SPKR_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x100 0x00 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="0"/>
+                <!-- Register 0x108 0x000000 -->
+                <Register field="DSP1_DAC_LEFT_VOL[7:0]" value="0"/>
+                <Register field="DSP1_DAC_RIGHT_VOL[7:0]" value="0"/>
+                <!-- Register 0x100 0x10 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="1"/>
+                <!-- Register 0x2c 0x380000 -->
+                <Register field="OUT1_SEL[2:0]" value="111"/>
+                <!-- Register 0x104 0x00 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="0"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="0"/>
+                <!-- Register 0x420 0x00 -->
+                <Register field="DOUT_SPKR_EN" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="ToHeadphone">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x104 0x03 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="1"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="1"/>
+                <!-- Register 0x2c 0x000000 -->
+                <Register field="OUT1_SEL[2:0]" value="0"/>
+                <!-- Register 0x420 0x02 -->
+                <Register field="DOUT_HS_EP_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x100 0x00 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="0"/>
+                <!-- Register 0x108 0x000000 -->
+                <Register field="DSP1_DAC_LEFT_VOL[7:0]" value="0"/>
+                <Register field="DSP1_DAC_RIGHT_VOL[7:0]" value="0"/>
+                <!-- Register 0x100 0x10 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="1"/>
+                <!-- Register 0x2c 0x380000 -->
+                <Register field="OUT1_SEL[2:0]" value="111"/>
+                <!-- Register 0x104 0x00 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="0"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="0"/>
+                <!-- Register 0x420 0x00 -->
+                <Register field="DOUT_HS_EP_EN" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="ToEarpiece">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x104 0x03 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="1"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="1"/>
+                <!-- Register 0x2c 0x000000 -->
+                <Register field="OUT1_SEL[2:0]" value="0"/>
+                <!-- Register 0x420 0x02 -->
+                <Register field="DOUT_HS_EP_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x100 0x00 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="0"/>
+                <!-- Register 0x108 0x000000 -->
+                <Register field="DSP1_DAC_LEFT_VOL[7:0]" value="0"/>
+                <Register field="DSP1_DAC_RIGHT_VOL[7:0]" value="0"/>
+                <!-- Register 0x100 0x10 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="1"/>
+                <!-- Register 0x2c 0x380000 -->
+                <Register field="OUT1_SEL[2:0]" value="111"/>
+                <!-- Register 0x104 0x00 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="0"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="0"/>
+                <!-- Register 0x420 0x00 -->
+                <Register field="DOUT_HS_EP_EN" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="ToBTNB">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x70 -->
+                <Register field="AIN3_SEL[3:0]" value="0111"/>
+                <!-- Register 0x104 0x03 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="1"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x100 0x00 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="0"/>
+                <!-- Register 0x108 0x000000 -->
+                <Register field="DSP1_DAC_LEFT_VOL[7:0]" value="0"/>
+                <Register field="DSP1_DAC_RIGHT_VOL[7:0]" value="0"/>
+                <!-- Register 0x100 0x10 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="1"/>
+                <!-- Register 0x2c 0x00 -->
+                <Register field="AIN3_SEL[3:0]" value="0"/>
+                <!-- Register 0x104 0x00 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="0"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="ToBTWB">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x70 -->
+                <Register field="AIN3_SEL[3:0]" value="0111"/>
+                <!-- Register 0x41c 0x01 -->
+                <Register field="MAP_BT_WORK_MODE" value="1"/>
+                <!-- Register 0x104 0x03 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="1"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x100 0x00 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="0"/>
+                <!-- Register 0x108 0x000000 -->
+                <Register field="DSP1_DAC_LEFT_VOL[7:0]" value="0"/>
+                <Register field="DSP1_DAC_RIGHT_VOL[7:0]" value="0"/>
+                <!-- Register 0x100 0x10 -->
+                <Register field="DSP1_DAC_VOLUME_UPDATE" value="1"/>
+                <!-- Register 0x2c 0x00 -->
+                <Register field="AIN3_SEL[3:0]" value="0"/>
+                <!-- Register 0x41c 0x00 -->
+                <Register field="MAP_BT_WORK_MODE" value="0"/>
+                <!-- Register 0x104 0x00 -->
+                <Register field="DSP1_EN_DAC_LEFT" value="0"/>
+                <Register field="DSP1_EN_DAC_RIGHT" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="FromMicIn1">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x300 0x400 -->
+                <Register field="ADC_IN1_MIX_ENABLE" value="1"/>
+                <!-- Register 0x304 0x0C -->
+                <Register field="ADC_RIGHT_MUXSEL" value="1"/>
+                <Register field="ADC_LEFT_MUXSEL" value="1"/>
+                <!-- Register 0x340 0x73 -->
+                <Register field="WNR_LAM[7:0]" value="01110011"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x300 0x00 -->
+                <Register field="ADC_VOLUME_UPDATE" value="0"/>
+                <!-- Register 0x308 0x000000 -->
+                <Register field="ADC_LEFT_VOL[7:0]" value="0"/>
+                <Register field="ADC_RIGHT_VOL[7:0]" value="0"/>
+                <!-- Register 0x300 0x10 -->
+                <Register field="ADC_VOLUME_UPDATE" value="1"/>
+                <!-- Register 0x348 0x0000 -->
+                <Register field="D1AIN1_2INMIX[7:0]" value="0"/>
+                <!-- Register 0x304 0x00 -->
+                <Register field="ADC_RIGHT_MUXSEL" value="0"/>
+                <Register field="ADC_LEFT_MUXSEL" value="0"/>
+                <!-- Register 0x300 0x000 -->
+                <Register field="ADC_IN1_MIX_ENABLE" value="0"/>
+                <!-- Register 0x340 0x70 -->
+                <Register field="WNR_LAM[7:0]" value="01110000"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="FromMicIn2">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x300 0x2000 -->
+                <Register field="ADC_IN2_MIX_ENABLE" value="1"/>
+                <!-- Register 0x304 0x0C -->
+                <Register field="ADC_RIGHT_MUXSEL" value="1"/>
+                <Register field="ADC_LEFT_MUXSEL" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x300 0x00 -->
+                <Register field="ADC_VOLUME_UPDATE" value="0"/>
+                <!-- Register 0x308 0x000000 -->
+                <Register field="ADC_LEFT_VOL[7:0]" value="0"/>
+                <Register field="ADC_RIGHT_VOL[7:0]" value="0"/>
+                <!-- Register 0x300 0x10 -->
+                <Register field="ADC_VOLUME_UPDATE" value="1"/>
+                <!-- Register 0x348 0x00 -->
+                <Register field="D1AIN2_2INMIX[7:0]" value="0"/>
+                <!-- Register 0x304 0x00 -->
+                <Register field="ADC_RIGHT_MUXSEL" value="0"/>
+                <Register field="ADC_LEFT_MUXSEL" value="0"/>
+                <!-- Register 0x300 0x000 -->
+                <Register field="ADC_IN2_MIX_ENABLE" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="FromBTMicNB">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x70 -->
+                <Register field="AIN3_SEL[3:0]" value="0111"/>
+                <!-- Register 0x30 0x180000 -->
+                <Register field="D1AIN1_SEL[2:0]" value="11"/>
+                <!-- Register 0x300 0x400 -->
+                <Register field="ADC_IN1_MIX_ENABLE" value="1"/>
+                <!-- Register 0x304 0x04 -->
+                <Register field="ADC_RIGHT_MUXSEL" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x300 0x00 -->
+                <Register field="ADC_VOLUME_UPDATE" value="0"/>
+                <!-- Register 0x308 0x000000 -->
+                <Register field="ADC_LEFT_VOL[7:0]" value="0"/>
+                <Register field="ADC_RIGHT_VOL[7:0]" value="0"/>
+                <!-- Register 0x300 0x10 -->
+                <Register field="ADC_VOLUME_UPDATE" value="1"/>
+                <!-- Register 0x348 0x0000 -->
+                <Register field="D1AIN1_2INMIX[7:0]" value="0"/>
+                <!-- Register 0x30 0x000000 -->
+                <Register field="D1AIN1_SEL[2:0]" value="000"/>
+                <!-- Register 0x2c 0x00 -->
+                <Register field="AIN3_SEL[3:0]" value="0000"/>
+                <!-- Register 0x300 0x000 -->
+                <Register field="ADC_IN1_MIX_ENABLE" value="0"/>
+                <!-- Register 0x304 0x00 -->
+                <Register field="ADC_RIGHT_MUXSEL" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="FromBTMicWB">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x30 0x180000 -->
+                <Register field="D1AIN1_SEL[2:0]" value="11"/>
+                <!-- Register 0x41c 0x01 -->
+                <Register field="MAP_BT_WORK_MODE" value="1"/>
+                <!-- Register 0x2c 0x70 -->
+                <Register field="AIN3_SEL[3:0]" value="0111"/>
+                <!-- Register 0x300 0x400 -->
+                <Register field="ADC_IN1_MIX_ENABLE" value="1"/>
+                <!-- Register 0x304 0x04 -->
+                <Register field="ADC_RIGHT_MUXSEL" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x300 0x00 -->
+                <Register field="ADC_VOLUME_UPDATE" value="0"/>
+                <!-- Register 0x308 0x000000 -->
+                <Register field="ADC_LEFT_VOL[7:0]" value="0"/>
+                <Register field="ADC_RIGHT_VOL[7:0]" value="0"/>
+                <!-- Register 0x300 0x10 -->
+                <Register field="ADC_VOLUME_UPDATE" value="1"/>
+                <!-- Register 0x348 0x0000 -->
+                <Register field="D1AIN1_2INMIX[7:0]" value="0"/>
+                <!-- Register 0x30 0x000000 -->
+                <Register field="D1AIN1_SEL[2:0]" value="000"/>
+                <!-- Register 0x41c 0x00 -->
+                <Register field="MAP_BT_WORK_MODE" value="0"/>
+                <!-- Register 0x2c 0x00 -->
+                <Register field="AIN3_SEL[3:0]" value="0000"/>
+                <!-- Register 0x300 0x000 -->
+                <Register field="ADC_IN1_MIX_ENABLE" value="0"/>
+                <!-- Register 0x304 0x00 -->
+                <Register field="ADC_RIGHT_MUXSEL" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HiFi1Record">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x304 0x03 -->
+                <Register field="EN_ADC_LEFT" value="1"/>
+                <Register field="EN_ADC_RIGHT" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x304 0x00 -->
+                <Register field="EN_ADC_LEFT" value="0"/>
+                <Register field="EN_ADC_RIGHT" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+
+    <AudioPath identifier="VoiceRecord">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x304 0x03 -->
+                <Register field="EN_ADC_LEFT" value="1"/>
+                <Register field="EN_ADC_RIGHT" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x304 0x00 -->
+                <Register field="EN_ADC_LEFT" value="0"/>
+                <Register field="EN_ADC_RIGHT" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HiFi1LoopBackRecordAout2">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x2 -->
+                <Register field="AIN4_SEL[3:0]" value="10"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x0 -->
+                <Register field="AIN4_SEL[3:0]" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HiFi1LoopBackRecordAout3">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x3 -->
+                <Register field="AIN4_SEL[3:0]" value="11"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x0 -->
+                <Register field="AIN4_SEL[3:0]" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HiFi1LoopBackRecordAout4">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x4 -->
+                <Register field="AIN4_SEL[3:0]" value="100"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x0 -->
+                <Register field="AIN4_SEL[3:0]" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HiFi1LoopBackRecordD1out">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x7 -->
+                <Register field="AIN4_SEL[3:0]" value="111"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x0 -->
+                <Register field="AIN4_SEL[3:0]" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HiFi1LoopBackRecordMicIn1">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x5 -->
+                <Register field="AIN4_SEL[3:0]" value="101"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x0 -->
+                <Register field="AIN4_SEL[3:0]" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HiFi1LoopBackRecordMicIn2">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x6 -->
+                <Register field="AIN4_SEL[3:0]" value="110"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="APB" identifier="APU">
+                <!-- Register 0x2c 0x0 -->
+                <Register field="AIN4_SEL[3:0]" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath alias="FromMicIn1" identifier="FromAMic1"/>
+    <AudioPath alias="FromMicIn1" identifier="FromAMic1(Speaker Mode)"/>
+    <AudioPath alias="FromMicIn1" identifier="FromAMic2"/>
+    <AudioPath alias="FromMicIn1" identifier="FromAMic2(Speaker Mode)"/>
+    <AudioPath alias="FromMicIn1" identifier="FromHsMic"/>
+    <AudioPath alias="FromMicIn1" identifier="FromDMic1"/>
+    <AudioPath alias="FromMicIn1" identifier="FromDMic2"/>
+    <AudioPath alias="FromMicIn1" identifier="FromDualDMic1"/>
+    <AudioPath alias="FromMicIn1" identifier="FromDualAMic"/>
+    <AudioPath alias="FromMicIn1" identifier="FromLoopbackSDM"/>
+    <AudioPath alias="FromMicIn1" identifier="FromLoopbackPDM"/>
+    <AudioPath alias="HiFi1Playback" identifier="VoipPlayback"/>
+    <AudioPath alias="HiFi1Record" identifier="VoipRecord"/>
+    <AudioPath alias="HiFi1Playback" identifier="VTPlayback"/>
+    <AudioPath alias="HiFi1Record" identifier="VTRecord"/>
+    <AudioPath alias="ToBTNB" identifier="ToBTNB(NREC Mode)"/>
+    <AudioPath alias="ToBTWB" identifier="ToBTWB(NREC Mode)"/>
+    <AudioPath alias="FromBTMicNB" identifier="FromBTMicNB(NREC Mode)"/>
+    <AudioPath alias="FromBTMicWB" identifier="FromBTMicWB(NREC Mode)"/>
+
+</MarvellAudioPathConfiguration>

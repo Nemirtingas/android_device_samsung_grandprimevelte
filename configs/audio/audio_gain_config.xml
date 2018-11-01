@@ -1,0 +1,1297 @@
+<?xml version="1.0"?>
+<MarvellAudioGainConfiguration>
+    <AudioPath identifier="HiFi1PlaybackToSpeaker" component="PMIC">
+        <Gain name="DIG_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+        <Gain name="ANA_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToSpeaker" component="CODEC">
+        <Gain name="VOL_SEL_3">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToSpeaker" component="APU">
+        <Gain name="D1IN4_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToStereoSpeaker" component="PMIC">
+        <Gain name="DIG_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+        <Gain name="ANA_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToStereoSpeaker" component="CODEC">
+        <Gain name="VOL_SEL_4">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_3">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToStereoSpeaker" component="APU">
+        <Gain name="D1IN4_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToHeadphone" component="CODEC">
+        <Gain name="VOL_SEL_2">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_1">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToHeadphone" component="APU">
+        <Gain name="D1IN4_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToSpeakerAndHeadphone" component="PMIC">
+        <Gain name="DIG_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+        <Gain name="ANA_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToSpeakerAndHeadphone" component="CODEC">
+        <Gain name="VOL_SEL_3">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_2">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_1">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToSpeakerAndHeadphone" component="APU">
+        <Gain name="D1IN4_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToStereoSpeakerAndHeadphone" component="PMIC">
+        <Gain name="DIG_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+        <Gain name="ANA_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToStereoSpeakerAndHeadphone" component="CODEC">
+        <Gain name="VOL_SEL_4">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_3">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_2">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_1">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToStereoSpeakerAndHeadphone" component="APU">
+        <Gain name="D1IN4_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToEarpiece" component="CODEC">
+        <Gain name="VOL_SEL_1">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToEarpiece" component="APU">
+        <Gain name="D1IN4_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1PlaybackToBTNB" component="APU">
+        <Gain name="D1IN4_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromAMic1" component="CODEC">
+        <Gain name="MIC1_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromAMic1" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromAMic2" component="CODEC">
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromAMic2" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromDualAMic" component="CODEC">
+        <Gain name="MIC1_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromDualAMic" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromHsMic" component="CODEC">
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromHsMic" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromBTMicNB" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromLoopbackSDM" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecordFromLoopbackPDM" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToSpeaker" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="0">0x23</Value>
+            <Value volume="20">0x25</Value>
+            <Value volume="40">0x27</Value>
+            <Value volume="60">0x29</Value>
+            <Value volume="80">0x2b</Value>
+            <Value volume="100">0x2d</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="0">0x23</Value>
+            <Value volume="20">0x25</Value>
+            <Value volume="40">0x27</Value>
+            <Value volume="60">0x29</Value>
+            <Value volume="80">0x2b</Value>
+            <Value volume="100">0x2d</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToSpeaker" component="PMIC">
+        <Gain name="DIG_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+        <Gain name="ANA_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToSpeaker" component="CODEC">
+        <Gain name="VOL_SEL_3">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToSpeaker" component="APU">
+        <Gain name="D1IN2_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToStereoSpeaker" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="0">0x23</Value>
+            <Value volume="20">0x25</Value>
+            <Value volume="40">0x27</Value>
+            <Value volume="60">0x29</Value>
+            <Value volume="80">0x2b</Value>
+            <Value volume="100">0x2d</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="0">0x23</Value>
+            <Value volume="20">0x25</Value>
+            <Value volume="40">0x27</Value>
+            <Value volume="60">0x29</Value>
+            <Value volume="80">0x2b</Value>
+            <Value volume="100">0x2d</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToStereoSpeaker" component="PMIC">
+        <Gain name="DIG_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+        <Gain name="ANA_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToStereoSpeaker" component="CODEC">
+        <Gain name="VOL_SEL_4">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_3">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToStereoSpeaker" component="APU">
+        <Gain name="D1IN2_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToHeadphone" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToHeadphone" component="CODEC">
+        <Gain name="VOL_SEL_2">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_1">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToHeadphone" component="APU">
+        <Gain name="D1IN2_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToTty" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToTty" component="CODEC">
+        <Gain name="VOL_SEL_2">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_1">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToTty" component="APU">
+        <Gain name="D1IN2_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToEarpiece" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="0">0x23</Value>
+            <Value volume="20">0x25</Value>
+            <Value volume="40">0x27</Value>
+            <Value volume="60">0x29</Value>
+            <Value volume="80">0x2b</Value>
+            <Value volume="100">0x2d</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="0">0x23</Value>
+            <Value volume="20">0x25</Value>
+            <Value volume="40">0x27</Value>
+            <Value volume="60">0x29</Value>
+            <Value volume="80">0x2b</Value>
+            <Value volume="100">0x2d</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToEarpiece" component="CODEC">
+        <Gain name="VOL_SEL_1">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToEarpiece" component="APU">
+        <Gain name="D1IN2_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToBTNB" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoicePlaybackToBTNB" component="APU">
+        <Gain name="D1IN2_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromAMic1" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromAMic1" component="CODEC">
+        <Gain name="MIC1_ANA_GAIN">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromAMic1" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromAMic2" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromAMic2" component="CODEC">
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromAMic2" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromDualAMic" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromDualAMic" component="CODEC">
+        <Gain name="MIC1_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromDualAMic" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromHsMic" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromHsMic" component="CODEC">
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromHsMic" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromTty" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromTty" component="CODEC">
+        <Gain name="MIC1_ANA_GAIN">
+            <Value volume="100">0x10</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromTty" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromBTMicNB" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceRecordFromBTMicNB" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HfpPlaybackToSpeaker" component="PMIC">
+        <Gain name="DIG_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+        <Gain name="ANA_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HfpPlaybackToSpeaker" component="CODEC">
+        <Gain name="VOL_SEL_3">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HfpPlaybackToSpeaker" component="APU">
+        <Gain name="D1IN3_2INMIX[7:0]">
+            <Value volume="0">0x00</Value>
+            <Value volume="6">0x01</Value>
+            <Value volume="13">0x02</Value>
+            <Value volume="20">0x03</Value>
+            <Value volume="26">0x04</Value>
+            <Value volume="33">0x06</Value>
+            <Value volume="40">0x09</Value>
+            <Value volume="46">0x0d</Value>
+            <Value volume="53">0x12</Value>
+            <Value volume="60">0x19</Value>
+            <Value volume="66">0x24</Value>
+            <Value volume="73">0x32</Value>
+            <Value volume="80">0x48</Value>
+            <Value volume="86">0x5a</Value>
+            <Value volume="93">0x72</Value>
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HfpRecordFromAMic2" component="CODEC">
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HfpRecordFromAMic2" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HfpRecordFromAMic1" component="CODEC">
+        <Gain name="MIC1_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HfpRecordFromAMic1" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="FMPlaybackI2SToSpeaker" component="PMIC">
+        <Gain name="DIG_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+        <Gain name="ANA_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="FMPlaybackI2SToSpeaker" component="CODEC">
+        <Gain name="VOL_SEL_3">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="FMPlaybackI2SToSpeaker" component="APU">
+        <Gain name="D1IN3_2INMIX[7:0]">
+            <Value volume="0">0x00</Value>
+            <Value volume="6">0x01</Value>
+            <Value volume="13">0x02</Value>
+            <Value volume="20">0x03</Value>
+            <Value volume="26">0x04</Value>
+            <Value volume="33">0x06</Value>
+            <Value volume="40">0x09</Value>
+            <Value volume="46">0x0d</Value>
+            <Value volume="53">0x12</Value>
+            <Value volume="60">0x19</Value>
+            <Value volume="66">0x24</Value>
+            <Value volume="73">0x32</Value>
+            <Value volume="80">0x48</Value>
+            <Value volume="86">0x5a</Value>
+            <Value volume="93">0x72</Value>
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="FMPlaybackI2SToStereoSpeaker" component="PMIC">
+        <Gain name="DIG_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+        <Gain name="ANA_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="FMPlaybackI2SToStereoSpeaker" component="CODEC">
+        <Gain name="VOL_SEL_4">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_3">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="FMPlaybackI2SToStereoSpeaker" component="APU">
+        <Gain name="D1IN3_2INMIX[7:0]">
+            <Value volume="0">0x00</Value>
+            <Value volume="6">0x01</Value>
+            <Value volume="13">0x02</Value>
+            <Value volume="20">0x03</Value>
+            <Value volume="26">0x04</Value>
+            <Value volume="33">0x06</Value>
+            <Value volume="40">0x09</Value>
+            <Value volume="46">0x0d</Value>
+            <Value volume="53">0x12</Value>
+            <Value volume="60">0x19</Value>
+            <Value volume="66">0x24</Value>
+            <Value volume="73">0x32</Value>
+            <Value volume="80">0x48</Value>
+            <Value volume="86">0x5a</Value>
+            <Value volume="93">0x72</Value>
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="FMPlaybackI2SToHeadphone" component="CODEC">
+        <Gain name="VOL_SEL_2">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_1">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="FMPlaybackI2SToHeadphone" component="APU">
+        <Gain name="D1IN3_2INMIX[7:0]">
+            <Value volume="0">0x00</Value>
+            <Value volume="6">0x01</Value>
+            <Value volume="13">0x02</Value>
+            <Value volume="20">0x03</Value>
+            <Value volume="26">0x04</Value>
+            <Value volume="33">0x06</Value>
+            <Value volume="40">0x09</Value>
+            <Value volume="46">0x0d</Value>
+            <Value volume="53">0x12</Value>
+            <Value volume="60">0x19</Value>
+            <Value volume="66">0x24</Value>
+            <Value volume="73">0x32</Value>
+            <Value volume="80">0x48</Value>
+            <Value volume="86">0x5a</Value>
+            <Value volume="93">0x72</Value>
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecognitionRecordFromDualAMic" component="CODEC">
+        <Gain name="MIC1_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="HiFi1RecognitionRecordFromDualAMic" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoipRecordFromDualAMic" component="CODEC">
+        <Gain name="MIC1_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoipRecordFromDualAMic" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+
+  <!-- Loopback RX Path config KSND -->
+    <AudioPath identifier="VoiceLoopPlayToEarpiece" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="0">0x23</Value>
+            <Value volume="20">0x25</Value>
+            <Value volume="40">0x27</Value>
+            <Value volume="60">0x29</Value>
+            <Value volume="80">0x2b</Value>
+            <Value volume="100">0x2d</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="0">0x23</Value>
+            <Value volume="20">0x25</Value>
+            <Value volume="40">0x27</Value>
+            <Value volume="60">0x29</Value>
+            <Value volume="80">0x2b</Value>
+            <Value volume="100">0x2d</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopPlayToEarpiece" component="CODEC">
+        <Gain name="VOL_SEL_1">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopPlayToEarpiece" component="APU">
+        <Gain name="D1IN2_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+
+    <AudioPath identifier="VoiceLoopPlayToHP" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopPlayToHP" component="CODEC">
+        <Gain name="VOL_SEL_2">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+        <Gain name="VOL_SEL_1">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopPlayToHP" component="APU">
+        <Gain name="D1IN2_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xeb</Value>
+        </Gain>
+    </AudioPath>
+
+    <AudioPath identifier="VoiceLoopPlayToSPKR" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="0">0x23</Value>
+            <Value volume="20">0x25</Value>
+            <Value volume="40">0x27</Value>
+            <Value volume="60">0x29</Value>
+            <Value volume="80">0x2b</Value>
+            <Value volume="100">0x2d</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="0">0x20</Value>
+            <Value volume="20">0x22</Value>
+            <Value volume="40">0x24</Value>
+            <Value volume="60">0x26</Value>
+            <Value volume="80">0x28</Value>
+            <Value volume="100">0x2a</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="0">0x23</Value>
+            <Value volume="20">0x25</Value>
+            <Value volume="40">0x27</Value>
+            <Value volume="60">0x29</Value>
+            <Value volume="80">0x2b</Value>
+            <Value volume="100">0x2d</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopPlayToSPKR" component="PMIC">
+        <Gain name="DIG_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+        <Gain name="ANA_GAIN">
+            <Value volume="100">0x03</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopPlayToSPKR" component="CODEC">
+        <Gain name="VOL_SEL_3">
+            <Value volume="100">0xb6</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopPlayToSPKR" component="APU">
+        <Gain name="D1IN2_2INMIX[7:0]">
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="DSP1_DAC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <!-- Loopback Mic Path config KSND -->
+    <AudioPath identifier="VoiceLoopRecordFromAMic1" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopRecordFromAMic1" component="CODEC">
+        <Gain name="MIC1_ANA_GAIN">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopRecordFromAMic1" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopRecordFromAMic2" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopRecordFromAMic2" component="CODEC">
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopRecordFromAMic2" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopRecordFromHsMic" component="MODEM">
+        <Gain name="DIGITAL_GAIN_NB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+        <Gain name="DIGITAL_GAIN_EXTRA_WB">
+            <Value volume="100">0x2f</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopRecordFromHsMic" component="CODEC">
+        <Gain name="MIC2_ANA_GAIN">
+            <Value volume="100">0x16</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath identifier="VoiceLoopRecordFromHsMic" component="APU">
+        <Gain name="D1AIN1_2INMIX[7:0]" >
+            <Value volume="100">0x80</Value>
+        </Gain>
+        <Gain name="ADC_LEFT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+        <Gain name="ADC_RIGHT_VOL[7:0]">
+            <Value volume="100">0xff</Value>
+        </Gain>
+    </AudioPath>
+    <AudioPath alias="VoiceLoopRecordFromAMic1" identifier="VoiceLoopRecordFromAMic1(Speaker Mode)" component="MODEM"/>
+    <AudioPath alias="VoiceLoopRecordFromAMic1" identifier="VoiceLoopRecordFromAMic1(Speaker Mode)" component="CODEC"/>
+    <AudioPath alias="VoiceLoopRecordFromAMic1" identifier="VoiceLoopRecordFromAMic1(Speaker Mode)" component="APU"/>
+    <AudioPath alias="VoiceLoopRecordFromAMic2" identifier="VoiceLoopRecordFromAMic2(Speaker Mode)" component="MODEM"/>
+    <AudioPath alias="VoiceLoopRecordFromAMic2" identifier="VoiceLoopRecordFromAMic2(Speaker Mode)" component="CODEC"/>
+    <AudioPath alias="VoiceLoopRecordFromAMic2" identifier="VoiceLoopRecordFromAMic2(Speaker Mode)" component="APU"/>
+
+    <AudioPath alias="HiFi1PlaybackToSpeaker" identifier="VoipPlaybackToSpeaker" component="PMIC"/>
+    <AudioPath alias="HiFi1PlaybackToSpeaker" identifier="VoipPlaybackToSpeaker" component="CODEC"/>
+    <AudioPath alias="HiFi1PlaybackToSpeaker" identifier="VoipPlaybackToSpeaker" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToStereoSpeaker" identifier="VoipPlaybackToStereoSpeaker" component="PMIC"/>
+    <AudioPath alias="HiFi1PlaybackToStereoSpeaker" identifier="VoipPlaybackToStereoSpeaker" component="CODEC"/>
+    <AudioPath alias="HiFi1PlaybackToStereoSpeaker" identifier="VoipPlaybackToStereoSpeaker" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToHeadphone" identifier="VoipPlaybackToHeadphone" component="CODEC"/>
+    <AudioPath alias="HiFi1PlaybackToHeadphone" identifier="VoipPlaybackToHeadphone" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToEarpiece" identifier="VoipPlaybackToEarpiece" component="CODEC"/>
+    <AudioPath alias="HiFi1PlaybackToEarpiece" identifier="VoipPlaybackToEarpiece" component="APU"/>
+
+    <AudioPath alias="HiFi1RecordFromAMic1" identifier="VoipRecordFromAMic1" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromAMic1" identifier="VoipRecordFromAMic1" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromAMic1" identifier="VoipRecordFromAMic1(Speaker Mode)" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromAMic1" identifier="VoipRecordFromAMic1(Speaker Mode)" component="APU"/>
+
+    <AudioPath alias="HiFi1RecordFromAMic2" identifier="VoipRecordFromAMic2" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromAMic2" identifier="VoipRecordFromAMic2" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromAMic2" identifier="VoipRecordFromAMic2(Speaker Mode)" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromAMic2" identifier="VoipRecordFromAMic2(Speaker Mode)" component="APU"/>
+
+    <AudioPath alias="HiFi1RecordFromHsMic" identifier="VoipRecordFromHsMic" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromHsMic" identifier="VoipRecordFromHsMic" component="APU"/>
+
+
+    <AudioPath alias="HiFi1PlaybackToBTNB" identifier="HiFi1PlaybackToBTNB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToBTNB" identifier="HiFi1PlaybackToBTWB" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToBTNB" identifier="HiFi1PlaybackToBTWB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToBTNB" identifier="VoipPlaybackToBTNB" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToBTNB" identifier="VoipPlaybackToBTNB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToBTNB" identifier="VoipPlaybackToBTWB" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToBTNB" identifier="VoipPlaybackToBTWB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="HiFi1RecordFromBTMicNB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="HiFi1RecordFromBTMicWB" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="HiFi1RecordFromBTMicWB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="VoipRecordFromBTMicNB" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="VoipRecordFromBTMicNB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="VoipRecordFromBTMicWB" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="VoipRecordFromBTMicWB(NREC Mode)" component="APU"/>
+    <AudioPath alias="VoicePlaybackToBTNB" identifier="VoicePlaybackToBTNB(NREC Mode)" component="MODEM"/>
+    <AudioPath alias="VoicePlaybackToBTNB" identifier="VoicePlaybackToBTWB" component="MODEM"/>
+    <AudioPath alias="VoicePlaybackToBTNB" identifier="VoicePlaybackToBTWB(NREC Mode)" component="MODEM"/>
+    <AudioPath alias="VoicePlaybackToBTNB" identifier="VoicePlaybackToBTNB(NREC Mode)" component="APU"/>
+    <AudioPath alias="VoicePlaybackToBTNB" identifier="VoicePlaybackToBTWB" component="APU"/>
+    <AudioPath alias="VoicePlaybackToBTNB" identifier="VoicePlaybackToBTWB(NREC Mode)" component="APU"/>
+    <AudioPath alias="VoiceRecordFromBTMicNB" identifier="VoiceRecordFromBTMicNB(NREC Mode)" component="MODEM"/>
+    <AudioPath alias="VoiceRecordFromBTMicNB" identifier="VoiceRecordFromBTMicWB" component="MODEM"/>
+    <AudioPath alias="VoiceRecordFromBTMicNB" identifier="VoiceRecordFromBTMicWB(NREC Mode)" component="MODEM"/>
+    <AudioPath alias="VoiceRecordFromBTMicNB" identifier="VoiceRecordFromBTMicNB(NREC Mode)" component="APU"/>
+    <AudioPath alias="VoiceRecordFromBTMicNB" identifier="VoiceRecordFromBTMicWB" component="APU"/>
+    <AudioPath alias="VoiceRecordFromBTMicNB" identifier="VoiceRecordFromBTMicWB(NREC Mode)" component="APU"/>
+    <AudioPath alias="VoicePlaybackToSpeaker" identifier="VoicePlaybackToTtyHcoSpeaker" component="MODEM"/>
+    <AudioPath alias="VoicePlaybackToSpeaker" identifier="VoicePlaybackToTtyHcoSpeaker" component="CODEC"/>
+    <AudioPath alias="VoicePlaybackToSpeaker" identifier="VoicePlaybackToTtyHcoSpeaker" component="APU"/>
+    <AudioPath alias="VoicePlaybackToStereoSpeaker" identifier="VoicePlaybackToTtyHcoStereoSpeaker" component="MODEM"/>
+    <AudioPath alias="VoicePlaybackToStereoSpeaker" identifier="VoicePlaybackToTtyHcoStereoSpeaker" component="CODEC"/>
+    <AudioPath alias="VoicePlaybackToStereoSpeaker" identifier="VoicePlaybackToTtyHcoStereoSpeaker" component="APU"/>
+    <AudioPath alias="VoiceRecordFromAMic1" identifier="VoiceRecordFromTtyVcoAMic1" component="MODEM"/>
+    <AudioPath alias="VoiceRecordFromAMic1" identifier="VoiceRecordFromTtyVcoAMic1" component="CODEC"/>
+    <AudioPath alias="VoiceRecordFromAMic1" identifier="VoiceRecordFromTtyVcoAMic1" component="APU"/>
+    <AudioPath alias="VoiceRecordFromAMic2" identifier="VoiceRecordFromTtyVcoAMic2" component="MODEM"/>
+    <AudioPath alias="VoiceRecordFromAMic2" identifier="VoiceRecordFromTtyVcoAMic2" component="CODEC"/>
+    <AudioPath alias="VoiceRecordFromAMic2" identifier="VoiceRecordFromTtyVcoAMic2" component="APU"/>
+    <AudioPath alias="VoiceRecordFromDualAMic" identifier="VoiceRecordFromTtyVcoDualMic" component="MODEM"/>
+    <AudioPath alias="VoiceRecordFromDualAMic" identifier="VoiceRecordFromTtyVcoDualMic" component="CODEC"/>
+    <AudioPath alias="VoiceRecordFromDualAMic" identifier="VoiceRecordFromTtyVcoDualMic" component="APU"/>
+
+    <AudioPath alias="VoiceRecordFromAMic1" identifier="VoiceRecordFromAMic1(Speaker Mode)" component="MODEM"/>
+    <AudioPath alias="VoiceRecordFromAMic1" identifier="VoiceRecordFromAMic1(Speaker Mode)" component="CODEC"/>
+    <AudioPath alias="VoiceRecordFromAMic1" identifier="VoiceRecordFromAMic1(Speaker Mode)" component="APU"/>
+
+    <AudioPath alias="VoiceRecordFromAMic2" identifier="VoiceRecordFromAMic2(Speaker Mode)" component="MODEM"/>
+    <AudioPath alias="VoiceRecordFromAMic2" identifier="VoiceRecordFromAMic2(Speaker Mode)" component="CODEC"/>
+    <AudioPath alias="VoiceRecordFromAMic2" identifier="VoiceRecordFromAMic2(Speaker Mode)" component="APU"/>
+
+    <AudioPath alias="HiFi1RecordFromAMic1" identifier="HiFi1RecognitionRecordFromAMic1" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromAMic1" identifier="HiFi1RecognitionRecordFromAMic1" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromAMic2" identifier="HiFi1RecognitionRecordFromAMic2" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromAMic2" identifier="HiFi1RecognitionRecordFromAMic2" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromHsMic" identifier="HiFi1RecognitionRecordFromHsMic" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromHsMic" identifier="HiFi1RecognitionRecordFromHsMic" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="HiFi1RecognitionRecordFromBTMicNB" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="HiFi1RecognitionRecordFromBTMicNB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="HiFi1RecognitionRecordFromBTMicWB" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB" identifier="HiFi1RecognitionRecordFromBTMicWB(NREC Mode)" component="APU"/>
+
+    <AudioPath alias="HiFi1PlaybackToSpeaker"           identifier="VTPlaybackToSpeaker" component="PMIC"/>
+    <AudioPath alias="HiFi1PlaybackToSpeaker"           identifier="VTPlaybackToSpeaker" component="CODEC"/>
+    <AudioPath alias="HiFi1PlaybackToSpeaker"           identifier="VTPlaybackToSpeaker" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToStereoSpeaker"     identifier="VTPlaybackToStereoSpeaker" component="PMIC"/>
+    <AudioPath alias="HiFi1PlaybackToStereoSpeaker"     identifier="VTPlaybackToStereoSpeaker" component="CODEC"/>
+    <AudioPath alias="HiFi1PlaybackToStereoSpeaker"     identifier="VTPlaybackToStereoSpeaker" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToHeadphone"         identifier="VTPlaybackToHeadphone" component="CODEC"/>
+    <AudioPath alias="HiFi1PlaybackToHeadphone"         identifier="VTPlaybackToHeadphone" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToEarpiece"          identifier="VTPlaybackToEarpiece" component="CODEC"/>
+    <AudioPath alias="HiFi1PlaybackToEarpiece"          identifier="VTPlaybackToEarpiece" component="APU"/>
+
+    <AudioPath alias="HiFi1RecordFromAMic1"             identifier="VTRecordFromAMic1" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromAMic1"             identifier="VTRecordFromAMic1" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromAMic1"             identifier="VTRecordFromAMic1(Speaker Mode)" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromAMic1"             identifier="VTRecordFromAMic1(Speaker Mode)" component="APU"/>
+
+    <AudioPath alias="HiFi1RecordFromAMic2"             identifier="VTRecordFromAMic2" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromAMic2"             identifier="VTRecordFromAMic2" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromAMic2"             identifier="VTRecordFromAMic2(Speaker Mode)" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromAMic2"             identifier="VTRecordFromAMic2(Speaker Mode)" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromDualAMic"          identifier="VTRecordFromDualAMic" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromDualAMic"          identifier="VTRecordFromDualAMic" component="APU"/>
+
+    <AudioPath alias="HiFi1RecordFromHsMic"             identifier="VTRecordFromHsMic" component="CODEC"/>
+    <AudioPath alias="HiFi1RecordFromHsMic"             identifier="VTRecordFromHsMic" component="APU"/>
+
+    <AudioPath alias="HiFi1PlaybackToBTNB"              identifier="VTPlaybackToBTNB" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToBTNB"              identifier="VTPlaybackToBTNB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToBTNB"              identifier="VTPlaybackToBTWB" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToBTNB"              identifier="VTPlaybackToBTWB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB"           identifier="VTRecordFromBTMicNB" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB"           identifier="VTRecordFromBTMicNB(NREC Mode)" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB"           identifier="VTRecordFromBTMicWB" component="APU"/>
+    <AudioPath alias="HiFi1RecordFromBTMicNB"           identifier="VTRecordFromBTMicWB(NREC Mode)" component="APU"/>
+
+<!-- KSND Dock Device -->
+    <AudioPath alias="HiFi1PlaybackToHeadphone" identifier="HiFi1PlaybackToDock" component="CODEC"/>
+    <AudioPath alias="HiFi1PlaybackToHeadphone" identifier="HiFi1PlaybackToDock" component="APU"/>
+    <AudioPath alias="VoicePlaybackToHeadphone" identifier="VoicePlaybackToDock" component="MODEM"/>
+    <AudioPath alias="VoicePlaybackToHeadphone" identifier="VoicePlaybackToDock" component="CODEC"/>
+    <AudioPath alias="VoicePlaybackToHeadphone" identifier="VoicePlaybackToDock" component="APU"/>
+    <AudioPath alias="HiFi1PlaybackToSpeakerAndHeadphone" identifier="HiFi1PlaybackToSpeakerAndDock" component="PMIC"/>
+    <AudioPath alias="HiFi1PlaybackToSpeakerAndHeadphone" identifier="HiFi1PlaybackToSpeakerAndDock" component="CODEC"/>
+    <AudioPath alias="HiFi1PlaybackToSpeakerAndHeadphone" identifier="HiFi1PlaybackToSpeakerAndDock" component="APU"/>
+
+</MarvellAudioGainConfiguration>

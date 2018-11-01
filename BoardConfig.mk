@@ -25,10 +25,12 @@ TARGET_OTA_ASSERT_DEVICE := grandprimevelte
 # Init
 TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_LIBINIT_PXA1908_DEFINES_FILE := $(DEVICE_PATH)/init/init_grandprimevelte.cpp
-TARGET_UNIFIED_DEVICE := true
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+
+# RIL
+#BOARD_PROVIDES_LIBRIL := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/grandprimevelte
@@ -68,7 +70,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
 
 # TWRP Recovery
 RECOVERY_VARIANT := twrp
-TW_THEME := portrait_mdpi
+TW_THEME := portrait_hdpi
 PRODUCT_COPY_FILES += $(DEVICE_PATH)/recovery/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab
 RECOVERY_FSTAB_VERSION := 2
 HAVE_SELINUX := true

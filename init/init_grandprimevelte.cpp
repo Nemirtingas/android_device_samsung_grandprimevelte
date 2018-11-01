@@ -113,7 +113,7 @@ void init_target_properties()
             property_override("ro.build.description", "grandprimeveltexx-user 5.1.1 LMY48B G531FXXU1APG2 release-keys");
             property_override("ro.product.model", "SM-G531F");
             property_override("ro.product.device", "grandprimevelte");
-            //property_override("ro.telephony.ril_class", "SamsungMSM8226RIL");
+            property_override("ro.telephony.ril_class", "SamsungMRVLRIL");
             lte_properties("");
             break;
         default:

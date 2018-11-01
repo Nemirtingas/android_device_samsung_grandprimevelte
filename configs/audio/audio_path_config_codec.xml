@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--      -->
+<!--   Marvell Audio Path Description    -->
+<!--      -->
+<!--   Device : 88PM818   -->
+<!--   Version : A0   -->
+<!--   Location : Pavia - Italy   -->
+<!--   Author : Alberto Ressia   -->
+<!--   email : aressia@marvell.com   -->
+<!--   Date : 2/19/2014   -->
+<!--   Time : 17:01:35    -->
+<!--   Updated by APSE-SH : 2/21/2014   -->
+<!--      -->
+
+<MarvellAudioPathConfiguration>
+    <AudioPath identifier="Earpiece">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x60 0x03 -->
+                <Register field="OVS_CH2_EN" value="1"/>
+                <Register field="OVS_CH1_EN" value="1"/>
+                <!-- Register 0x7B 0x59 -->
+                <Register field="CP_VOLTAGE_FORCE" value="1"/>
+                <Register field="CP_VOLTAGE" value="10"/>
+                <!-- Register 0x36 0x30 -->
+                <Register field="SDM_CH_SEL" value="01100"/>
+                <!-- Register 0x6A 0x0 -->
+                <Register field="DRE_EN" value="0"/>
+                <!-- Register 0x8E 0x39 -->
+                <Register field="SPARE_BITS" value="00111001"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x64 0x00 -->
+                <Register field="VOL_SEL_1" value="0"/>
+                <!-- Register 0x6A 0x1 -->
+                <Register field="DRE_EN" value="1"/>
+                <!-- Register 0x60 0x00 -->
+                <Register field="OVS_CH2_EN" value="0"/>
+                <Register field="OVS_CH1_EN" value="0"/>
+                <!-- Register 0x36 0x00 -->
+                <Register field="SDM_CH_SEL" value="0"/>
+                <!-- Register 0x7B 0x45 -->
+                <Register field="CP_VOLTAGE" value="01"/>
+                <Register field="CP_VOLTAGE_FORCE" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="Headphone">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x60 0x03 -->
+                <Register field="OVS_CH2_EN" value="1"/>
+                <Register field="OVS_CH1_EN" value="1"/>
+                <!-- Register 0x7B 0x59 -->
+                <Register field="CP_VOLTAGE_FORCE" value="1"/>
+                <Register field="CP_VOLTAGE" value="10"/>
+                <!-- Register 0x36 0x6C -->
+                <Register field="SDM_CH_SEL" value="11011"/>
+                <!-- Register 0x8E 0x39 -->
+                <Register field="SPARE_BITS" value="00111001"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x64 0x00 -->
+                <Register field="VOL_SEL_1" value="0"/>
+                <!-- Register 0x65 0x00 -->
+                <Register field="VOL_SEL_2" value="0"/>
+                <!-- Register 0x60 0x00 -->
+                <Register field="OVS_CH2_EN" value="0"/>
+                <Register field="OVS_CH1_EN" value="0"/>
+                <!-- Register 0x36 0x00 -->
+                <Register field="SDM_CH_SEL" value="0"/>
+                <!-- Register 0x7B 0x45 -->
+                <Register field="CP_VOLTAGE" value="01"/>
+                <Register field="CP_VOLTAGE_FORCE" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="Speaker">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x60 0x04 -->
+                <Register field="OVS_CH3_EN" value="1"/>
+                <!-- Register 0x32 0x64 -->
+                <Register field="PDMDAT_HIZ_DLY_SEL" value="011"/>
+                <Register field="PDMDAT_DLY_SEL" value="001"/>
+                <!-- Register 0x31 0x02 -->
+                <Register field="PDMCLK_DLY_SEL" value="000"/>
+                <Register field="PDM_MODE_SEL" value="010"/>
+                <!-- Register 0x30 0xC1 -->
+                <Register field="PDM_PAD_MODE" value="11"/>
+                <Register field="PDM1_DIS_MODE" value="00"/>
+                <Register field="PDM1_EN" value="1"/>
+            </AudioComponent>
+            <AudioComponent control_protocol="I2C" identifier="PMIC">
+                <!-- Register 0x48 0xf6 -->
+                <Register field="PDM_DDLY" value="0"/>
+                <Register field="PONZA_LR_POL" value="1"/>
+                <Register field="CLASSD_DIG_EN" value="1"/>
+                <Register field="CLASSD_OC" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="PMIC">
+                <!-- Register 0x61 0x00 -->
+                <Register field="DIG_GAIN" value="0"/>
+                <!-- Register 0x62 0x00 -->
+                <Register field="ANA_GAIN" value="0"/>
+                <!-- Register 0x48 0x00 -->
+                <Register field="PDM_DDLY" value="0"/>
+                <Register field="PONZA_LR_POL" value="0"/>
+                <Register field="CLASSD_DIG_EN" value="0"/>
+                <Register field="CLASSD_OC" value="0"/>
+            </AudioComponent>
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x66 0x00 -->
+                <Register field="VOL_SEL_3" value="0"/>
+                <!-- Register 0x30 0x02 -->
+                <Register field="PDM_PAD_MODE" value="00"/>
+                <Register field="PDM1_DIS_MODE" value="01"/>
+                <Register field="PDM1_EN" value="0"/>
+                <!-- Register 0x31 0x70 -->
+                <Register field="PDMCLK_DLY_SEL" value="111"/>
+                <Register field="PDM_MODE_SEL" value="000"/>
+                <!-- Register 0x32 0x00 -->
+                <Register field="PDMDAT_HIZ_DLY_SEL" value="000"/>
+                <Register field="PDMDAT_DLY_SEL" value="000"/>
+                <!-- Register 0x60 0x00 -->
+                <Register field="OVS_CH3_EN" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="StereoSpeaker">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x60 0x0C -->
+                <Register field="OVS_CH4_EN" value="1"/>
+                <Register field="OVS_CH3_EN" value="1"/>
+                <!-- Register 0x32 0x64 -->
+                <Register field="PDMDAT_HIZ_DLY_SEL" value="011"/>
+                <Register field="PDMDAT_DLY_SEL" value="001"/>
+                <!-- Register 0x31 0x22 -->
+                <Register field="PDMCLK_DLY_SEL" value="000"/>
+                <Register field="PDM_MODE_SEL" value="010"/>
+                <!-- Register 0x30 0xC9 -->
+                <Register field="PDM_PAD_MODE" value="11"/>
+                <Register field="PDM2_DIS_MODE" value="00"/>
+                <Register field="PDM2_EN" value="1"/>
+                <Register field="PDM1_DIS_MODE" value="00"/>
+                <Register field="PDM1_EN" value="1"/>
+            </AudioComponent>
+            <AudioComponent control_protocol="I2C" identifier="PMIC">
+                <!-- Register 0x48 0xf2 -->
+                <Register field="PDM_DDLY" value="0"/>
+                <Register field="PONZA_LR_POL" value="1"/>
+                <Register field="CLASSD_DIG_EN" value="1"/>
+                <Register field="CLASSD_OC" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="PMIC">
+                <!-- Register 0x61 0x00 -->
+                <Register field="DIG_GAIN" value="0"/>
+                <!-- Register 0x62 0x00 -->
+                <Register field="ANA_GAIN" value="0"/>
+                <!-- Register 0x48 0x00 -->
+                <Register field="PDM_DDLY" value="0"/>
+                <Register field="PONZA_LR_POL" value="0"/>
+                <Register field="CLASSD_DIG_EN" value="0"/>
+                <Register field="CLASSD_OC" value="0"/>
+            </AudioComponent>
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x66 0x00 -->
+                <Register field="VOL_SEL_3" value="0"/>
+                <!-- Register 0x67 0x00 -->
+                <Register field="VOL_SEL_4" value="0"/>
+                <!-- Register 0x30 0x12 -->
+                <Register field="PDM_PAD_MODE" value="00"/>
+                <Register field="PDM2_DIS_MODE" value="01"/>
+                <Register field="PDM2_EN" value="0"/>
+                <Register field="PDM1_DIS_MODE" value="01"/>
+                <Register field="PDM1_EN" value="0"/>
+                <!-- Register 0x31 0x70 -->
+                <Register field="PDMCLK_DLY_SEL" value="111"/>
+                <Register field="PDM_MODE_SEL" value="000"/>
+                <!-- Register 0x32 0x00 -->
+                <Register field="PDMDAT_HIZ_DLY_SEL" value="000"/>
+                <Register field="PDMDAT_DLY_SEL" value="000"/>
+                <!-- Register 0x60 0x00 -->
+                <Register field="OVS_CH4_EN" value="0"/>
+                <Register field="OVS_CH3_EN" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="HsMic">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x24 0x22 -->
+                <Register field="DWS2_IN_SEL" value="010"/>
+                <Register field="DWS1_IN_SEL" value="010"/>
+                <!-- Register 0x8A 0x20 -->
+                <Register field="ADC_OFF_GAIN_DIS" value="0"/>
+                <Register field="ADC_SEL_GNDSNS" value="0"/>
+                <Register field="ADC_CHOPEN" value="1"/>
+                <Register field="MIC_CLK_PD" value="0"/>
+                <Register field="ADC12_DIV3" value="0"/>
+                <Register field="ADC_CLKOUT_INV" value="0"/>
+                <Register field="ADC_LTC_DEL" value="0"/>
+                <Register field="ADC_SCR_EN" value="0"/>
+                <!-- Register 0x8B 0x54 -->
+                <Register field="ADC_ICINT1" value="10"/>
+                <Register field="ADC_ICINT2" value="10"/>
+                <Register field="ADC_ICOMP" value="10"/>
+                <Register field="ADC_IS2D" value="00"/>
+                <!-- Register 0x20 0x20 -->
+                <Register field="MIC2_ANA_IN_SEL" misc="dc_single_ended" value="0010"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="ac_single_ended" value="0100"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="ac_diff" value="1110"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="ac_quasi_diff" value="1110"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="dc_diff" value="1111"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="dc_quasi_diff" value="1111"/>
+                <!-- Register 0x60 0x30 -->
+                <Register field="DWS_CH2_EN" value="1"/>
+                <Register field="DWS_CH1_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x22 0x00 -->
+                <Register field="MIC2_ANA_GAIN" value="0"/>
+                <!-- Register 0x60 0x00 -->
+                <Register field="DWS_CH2_EN" value="0"/>
+                <Register field="DWS_CH1_EN" value="0"/>
+                <!-- Register 0x20 0x00 -->
+                <Register field="MIC2_ANA_IN_SEL" value="0"/>
+                <!-- Register 0x24 0x00 -->
+                <Register field="DWS2_IN_SEL" value="0"/>
+                <Register field="DWS1_IN_SEL" value="0"/>
+                <!-- Register 0x8A 0x39 -->
+                <Register field="ADC_OFF_GAIN_DIS" value="0"/>
+                <Register field="ADC_SEL_GNDSNS" value="0"/>
+                <Register field="ADC_CHOPEN" value="1"/>
+                <Register field="MIC_CLK_PD" value="1"/>
+                <Register field="ADC12_DIV3" value="1"/>
+                <Register field="ADC_CLKOUT_INV" value="0"/>
+                <Register field="ADC_LTC_DEL" value="0"/>
+                <Register field="ADC_SCR_EN" value="1"/>
+                <!-- Register 0x8B 0x10 -->
+                <Register field="ADC_ICINT1" value="00"/>
+                <Register field="ADC_ICINT2" value="01"/>
+                <Register field="ADC_ICOMP" value="00"/>
+                <Register field="ADC_IS2D" value="00"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="AMic1">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x24 0x11 -->
+                <Register field="DWS2_IN_SEL" value="001"/>
+                <Register field="DWS1_IN_SEL" value="001"/>
+                <!-- Register 0x8A 0x20 -->
+                <Register field="ADC_OFF_GAIN_DIS" value="0"/>
+                <Register field="ADC_SEL_GNDSNS" value="0"/>
+                <Register field="ADC_CHOPEN" value="1"/>
+                <Register field="MIC_CLK_PD" value="0"/>
+                <Register field="ADC12_DIV3" value="0"/>
+                <Register field="ADC_CLKOUT_INV" value="0"/>
+                <Register field="ADC_LTC_DEL" value="0"/>
+                <Register field="ADC_SCR_EN" value="0"/>
+                <!-- Register 0x8B 0x54 -->
+                <Register field="ADC_ICINT1" value="10"/>
+                <Register field="ADC_ICINT2" value="10"/>
+                <Register field="ADC_ICOMP" value="10"/>
+                <Register field="ADC_IS2D" value="00"/>
+                <!-- Register 0x20 0x02 -->
+                <Register field="MIC1_ANA_IN_SEL" misc="dc_single_ended" value="0010"/>
+                <Register field="MIC1_ANA_IN_SEL" misc="ac_single_ended" value="0100"/>
+                <Register field="MIC1_ANA_IN_SEL" misc="ac_diff" value="1110"/>
+                <Register field="MIC1_ANA_IN_SEL" misc="ac_quasi_diff" value="1110"/>
+                <Register field="MIC1_ANA_IN_SEL" misc="dc_diff" value="1111"/>
+                <Register field="MIC1_ANA_IN_SEL" misc="dc_quasi_diff" value="1111"/>
+                <!-- Register 0x60 0x30 -->
+                <Register field="DWS_CH2_EN" value="1"/>
+                <Register field="DWS_CH1_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x21 0x00 -->
+                <Register field="MIC1_ANA_GAIN" value="0"/>
+                <!-- Register 0x60 0x00 -->
+                <Register field="DWS_CH2_EN" value="0"/>
+                <Register field="DWS_CH1_EN" value="0"/>
+                <!-- Register 0x20 0x00 -->
+                <Register field="MIC1_ANA_IN_SEL" value="0"/>
+                <!-- Register 0x24 0x00 -->
+                <Register field="DWS2_IN_SEL" value="0"/>
+                <Register field="DWS1_IN_SEL" value="0"/>
+                <!-- Register 0x8A 0x39 -->
+                <Register field="ADC_OFF_GAIN_DIS" value="0"/>
+                <Register field="ADC_SEL_GNDSNS" value="0"/>
+                <Register field="ADC_CHOPEN" value="1"/>
+                <Register field="MIC_CLK_PD" value="1"/>
+                <Register field="ADC12_DIV3" value="1"/>
+                <Register field="ADC_CLKOUT_INV" value="0"/>
+                <Register field="ADC_LTC_DEL" value="0"/>
+                <Register field="ADC_SCR_EN" value="1"/>
+                <!-- Register 0x8B 0x10 -->
+                <Register field="ADC_ICINT1" value="00"/>
+                <Register field="ADC_ICINT2" value="01"/>
+                <Register field="ADC_ICOMP" value="00"/>
+                <Register field="ADC_IS2D" value="00"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="AMic2">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x24 0x22 -->
+                <Register field="DWS2_IN_SEL" value="010"/>
+                <Register field="DWS1_IN_SEL" value="010"/>
+                <!-- Register 0x8A 0x20 -->
+                <Register field="ADC_OFF_GAIN_DIS" value="0"/>
+                <Register field="ADC_SEL_GNDSNS" value="0"/>
+                <Register field="ADC_CHOPEN" value="1"/>
+                <Register field="MIC_CLK_PD" value="0"/>
+                <Register field="ADC12_DIV3" value="0"/>
+                <Register field="ADC_CLKOUT_INV" value="0"/>
+                <Register field="ADC_LTC_DEL" value="0"/>
+                <Register field="ADC_SCR_EN" value="0"/>
+                <!-- Register 0x8B 0x54 -->
+                <Register field="ADC_ICINT1" value="10"/>
+                <Register field="ADC_ICINT2" value="10"/>
+                <Register field="ADC_ICOMP" value="10"/>
+                <Register field="ADC_IS2D" value="00"/>
+                <!-- Register 0x20 0x20 -->
+                <Register field="MIC2_ANA_IN_SEL" misc="dc_single_ended" value="0010"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="ac_single_ended" value="0100"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="ac_diff" value="1110"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="ac_quasi_diff" value="1110"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="dc_diff" value="1111"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="dc_quasi_diff" value="1111"/>
+                <!-- Register 0x60 0x30 -->
+                <Register field="DWS_CH2_EN" value="1"/>
+                <Register field="DWS_CH1_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x22 0x00 -->
+                <Register field="MIC2_ANA_GAIN" value="0"/>
+                <!-- Register 0x60 0x00 -->
+                <Register field="DWS_CH2_EN" value="0"/>
+                <Register field="DWS_CH1_EN" value="0"/>
+                <!-- Register 0x20 0x00 -->
+                <Register field="MIC2_ANA_IN_SEL" value="0"/>
+                <!-- Register 0x24 0x00 -->
+                <Register field="DWS2_IN_SEL" value="0"/>
+                <Register field="DWS1_IN_SEL" value="0"/>
+                <!-- Register 0x8A 0x39 -->
+                <Register field="ADC_OFF_GAIN_DIS" value="0"/>
+                <Register field="ADC_SEL_GNDSNS" value="0"/>
+                <Register field="ADC_CHOPEN" value="1"/>
+                <Register field="MIC_CLK_PD" value="1"/>
+                <Register field="ADC12_DIV3" value="1"/>
+                <Register field="ADC_CLKOUT_INV" value="0"/>
+                <Register field="ADC_LTC_DEL" value="0"/>
+                <Register field="ADC_SCR_EN" value="1"/>
+                <!-- Register 0x8B 0x10 -->
+                <Register field="ADC_ICINT1" value="00"/>
+                <Register field="ADC_ICINT2" value="01"/>
+                <Register field="ADC_ICOMP" value="00"/>
+                <Register field="ADC_IS2D" value="00"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="DualAMic">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x24 0x21 -->
+                <Register field="DWS2_IN_SEL" value="010"/>
+                <Register field="DWS1_IN_SEL" value="001"/>
+                <!-- Register 0x8A 0x20 -->
+                <Register field="ADC_OFF_GAIN_DIS" value="0"/>
+                <Register field="ADC_SEL_GNDSNS" value="0"/>
+                <Register field="ADC_CHOPEN" value="1"/>
+                <Register field="MIC_CLK_PD" value="0"/>
+                <Register field="ADC12_DIV3" value="0"/>
+                <Register field="ADC_CLKOUT_INV" value="0"/>
+                <Register field="ADC_LTC_DEL" value="0"/>
+                <Register field="ADC_SCR_EN" value="0"/>
+                <!-- Register 0x8B 0x54 -->
+                <Register field="ADC_ICINT1" value="10"/>
+                <Register field="ADC_ICINT2" value="10"/>
+                <Register field="ADC_ICOMP" value="10"/>
+                <Register field="ADC_IS2D" value="00"/>
+                <!-- Register 0x20 0x22 -->
+                <Register field="MIC1_ANA_IN_SEL" misc="dc_single_ended" value="0010"/>
+                <Register field="MIC1_ANA_IN_SEL" misc="ac_single_ended" value="0100"/>
+                <Register field="MIC1_ANA_IN_SEL" misc="ac_diff" value="1110"/>
+                <Register field="MIC1_ANA_IN_SEL" misc="ac_quasi_diff" value="1110"/>
+                <Register field="MIC1_ANA_IN_SEL" misc="dc_diff" value="1111"/>
+                <Register field="MIC1_ANA_IN_SEL" misc="dc_quasi_diff" value="1111"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="dc_single_ended" value="0010"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="ac_single_ended" value="0100"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="ac_diff" value="1110"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="ac_quasi_diff" value="1110"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="dc_diff" value="1111"/>
+                <Register field="MIC2_ANA_IN_SEL" misc="dc_quasi_diff" value="1111"/>
+                <!-- Register 0x60 0x30 -->
+                <Register field="DWS_CH2_EN" value="1"/>
+                <Register field="DWS_CH1_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x21 0x00 -->
+                <Register field="MIC1_ANA_GAIN" value="0"/>
+                <!-- Register 0x22 0x00 -->
+                <Register field="MIC2_ANA_GAIN" value="0"/>
+                <!-- Register 0x60 0x00 -->
+                <Register field="DWS_CH2_EN" value="0"/>
+                <Register field="DWS_CH1_EN" value="0"/>
+                <!-- Register 0x20 0x00 -->
+                <Register field="MIC2_ANA_IN_SEL" value="0"/>
+                <Register field="MIC1_ANA_IN_SEL" value="0"/>
+                <!-- Register 0x24 0x00 -->
+                <Register field="DWS2_IN_SEL" value="0"/>
+                <Register field="DWS1_IN_SEL" value="0"/>
+                <!-- Register 0x8A 0x39 -->
+                <Register field="ADC_OFF_GAIN_DIS" value="0"/>
+                <Register field="ADC_SEL_GNDSNS" value="0"/>
+                <Register field="ADC_CHOPEN" value="1"/>
+                <Register field="MIC_CLK_PD" value="1"/>
+                <Register field="ADC12_DIV3" value="1"/>
+                <Register field="ADC_CLKOUT_INV" value="0"/>
+                <Register field="ADC_LTC_DEL" value="0"/>
+                <Register field="ADC_SCR_EN" value="1"/>
+                <!-- Register 0x8B 0x10 -->
+                <Register field="ADC_ICINT1" value="00"/>
+                <Register field="ADC_ICINT2" value="01"/>
+                <Register field="ADC_ICOMP" value="00"/>
+                <Register field="ADC_IS2D" value="00"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="DMic1">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x23 0x30 -->
+                <Register field="DMIC12_FREQ_SEL" value="11"/>
+                <!-- Register 0x24 0x44 -->
+                <Register field="DWS2_IN_SEL" value="100"/>
+                <Register field="DWS1_IN_SEL" value="100"/>
+                <!-- Register 0x60 0x30 -->
+                <Register field="DWS_CH2_EN" value="1"/>
+                <Register field="DWS_CH1_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x60 0x00 -->
+                <Register field="DWS_CH2_EN" value="0"/>
+                <Register field="DWS_CH1_EN" value="0"/>
+                <!-- Register 0x24 0x00 -->
+                <Register field="DWS2_IN_SEL" value="0"/>
+                <Register field="DWS1_IN_SEL" value="0"/>
+                <!-- Register 0x23 0x00 -->
+                <Register field="DMIC12_FREQ_SEL" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="DMic2">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x23 0x30 -->
+                <Register field="DMIC12_FREQ_SEL" value="11"/>
+                <!-- Register 0x24 0x55 -->
+                <Register field="DWS2_IN_SEL" value="101"/>
+                <Register field="DWS1_IN_SEL" value="101"/>
+                <!-- Register 0x60 0x30 -->
+                <Register field="DWS_CH2_EN" value="1"/>
+                <Register field="DWS_CH1_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x60 0x00 -->
+                <Register field="DWS_CH2_EN" value="0"/>
+                <Register field="DWS_CH1_EN" value="0"/>
+                <!-- Register 0x24 0x00 -->
+                <Register field="DWS2_IN_SEL" value="0"/>
+                <Register field="DWS1_IN_SEL" value="0"/>
+                <!-- Register 0x23 0x00 -->
+                <Register field="DMIC12_FREQ_SEL" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="DualDMic1">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x23 0x30 -->
+                <Register field="DMIC12_FREQ_SEL" value="11"/>
+                <!-- Register 0x24 0x45 -->
+                <Register field="DWS2_IN_SEL" value="100"/>
+                <Register field="DWS1_IN_SEL" value="101"/>
+                <!-- Register 0x60 0x30 -->
+                <Register field="DWS_CH2_EN" value="1"/>
+                <Register field="DWS_CH1_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x60 0x00 -->
+                <Register field="DWS_CH2_EN" value="0"/>
+                <Register field="DWS_CH1_EN" value="0"/>
+                <!-- Register 0x24 0x00 -->
+                <Register field="DWS2_IN_SEL" value="0"/>
+                <Register field="DWS1_IN_SEL" value="0"/>
+                <!-- Register 0x23 0x00 -->
+                <Register field="DMIC12_FREQ_SEL" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="LoopbackSDM">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x70 0x40 -->
+                <Register field="AUTO_SEQ_PU_DIS" value="0"/>
+                <Register field="PLL_EN" value="0"/>
+                <Register field="PLL_SELCKEXT" value="0"/>
+                <Register field="LDO_P_EN" value="0"/>
+                <Register field="REFGEN_EN_BG" value="0"/>
+                <Register field="REFGEN_BG_CURR_REF_EN" value="0"/>
+                <Register field="REFGEN_FC_TIM" value="01"/>
+                <!-- Register 0xA9 0x01 -->
+                <Register field="TST_DIG2DIG_MULTIBIT" value="1"/>
+                <Register field="TST_DIG2DIG_ONEBIT" value="0"/>
+                <!-- Register 0x24 0x21 -->
+                <Register field="DWS2_IN_SEL" value="010"/>
+                <Register field="DWS1_IN_SEL" value="001"/>
+                <!-- Register 0x60 0x30 -->
+                <Register field="DWS_CH2_EN" value="1"/>
+                <Register field="DWS_CH1_EN" value="1"/>
+                <!-- Register 0x6A 0x0 -->
+                <Register field="DRE_EN" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x6A 0x1 -->
+                <Register field="DRE_EN" value="1"/>
+                <!-- Register 0x60 0x00 -->
+                <Register field="DWS_CH2_EN" value="0"/>
+                <Register field="DWS_CH1_EN" value="0"/>
+                <!-- Register 0x24 0x00 -->
+                <Register field="DWS2_IN_SEL" value="0"/>
+                <Register field="DWS1_IN_SEL" value="0"/>
+                <!-- Register 0x70 0x40 -->
+                <Register field="AUTO_SEQ_PU_DIS" value="0"/>
+                <Register field="PLL_EN" value="0"/>
+                <Register field="PLL_SELCKEXT" value="0"/>
+                <Register field="LDO_P_EN" value="0"/>
+                <Register field="REFGEN_EN_BG" value="0"/>
+                <Register field="REFGEN_BG_CURR_REF_EN" value="0"/>
+                <Register field="REFGEN_FC_TIM" value="01"/>
+                <!-- Register 0xA9 0x00 -->
+                <Register field="TST_DIG2DIG_MULTIBIT" value="0"/>
+                <Register field="TST_DIG2DIG_ONEBIT" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath identifier="LoopbackPDM">
+        <Operation identifier="ENABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x70 0x40 -->
+                <Register field="AUTO_SEQ_PU_DIS" value="0"/>
+                <Register field="PLL_EN" value="0"/>
+                <Register field="PLL_SELCKEXT" value="0"/>
+                <Register field="LDO_P_EN" value="0"/>
+                <Register field="REFGEN_EN_BG" value="0"/>
+                <Register field="REFGEN_BG_CURR_REF_EN" value="0"/>
+                <Register field="REFGEN_FC_TIM" value="01"/>
+                <!-- Register 0xA9 0x02 -->
+                <Register field="TST_DIG2DIG_MULTIBIT" value="0"/>
+                <Register field="TST_DIG2DIG_ONEBIT" value="1"/>
+                <!-- Register 0x23 0x30 -->
+                <Register field="DMIC12_FREQ_SEL" value="000"/>
+                <!-- Register 0x24 0x45 -->
+                <Register field="DWS2_IN_SEL" value="100"/>
+                <Register field="DWS1_IN_SEL" value="101"/>
+                <!-- Register 0x60 0x30 -->
+                <Register field="DWS_CH2_EN" value="1"/>
+                <Register field="DWS_CH1_EN" value="1"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="DISABLE">
+            <AudioComponent control_protocol="I2C" identifier="CODEC">
+                <!-- Register 0x60 0x00 -->
+                <Register field="DWS_CH2_EN" value="0"/>
+                <Register field="DWS_CH1_EN" value="0"/>
+                <!-- Register 0x24 0x00 -->
+                <Register field="DWS2_IN_SEL" value="0"/>
+                <Register field="DWS1_IN_SEL" value="0"/>
+                <!-- Register 0x23 0x00 -->
+                <Register field="DMIC12_FREQ_SEL" value="0"/>
+                <!-- Register 0x70 0x40 -->
+                <Register field="AUTO_SEQ_PU_DIS" value="0"/>
+                <Register field="PLL_EN" value="0"/>
+                <Register field="PLL_SELCKEXT" value="0"/>
+                <Register field="LDO_P_EN" value="0"/>
+                <Register field="REFGEN_EN_BG" value="0"/>
+                <Register field="REFGEN_BG_CURR_REF_EN" value="0"/>
+                <Register field="REFGEN_FC_TIM" value="01"/>
+                <!-- Register 0xA9 0x00 -->
+                <Register field="TST_DIG2DIG_MULTIBIT" value="0"/>
+                <Register field="TST_DIG2DIG_ONEBIT" value="0"/>
+            </AudioComponent>
+        </Operation>
+        <Operation identifier="SETVOLUME"/>
+        <Operation identifier="MUTE"/>
+    </AudioPath>
+    <AudioPath alias="AMic1" identifier="AMic1(Speaker Mode)"/>
+    <AudioPath alias="AMic2" identifier="AMic2(Speaker Mode)"/>
+    <AudioPath alias="DualAMic" identifier="DualAMic(Speaker Mode)"/>
+</MarvellAudioPathConfiguration>
