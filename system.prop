@@ -22,3 +22,35 @@ sys.config.spcm_db_enable=true
 sys.config.spcm_db_launcher=true
 sys.config.spcm_preload_enable=true
 
+
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=96m
+dalvik.vm.heapsize=256m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=2m
+dalvik.vm.heapmaxfree=8m
+
+# Samsung Specific Properties
+ro.build.PDA=G531FXXU1APG2
+ro.build.hidden_ver=G531FXXU1APG2
+ro.config.rm_preload_enabled=0
+ro.build.changelist=1070395
+ro.product_ship=true
+ro.chipname=PXA19xx
+
+ro.tel.config.path=/system/etc/tel/
+ro.cmd.DUAL_SIMCARD=true
+ro.cmd.ssipc_enable=true
+ro.cmd.WORLD_PHONE=true
+ro.telephony.default_network=9
+#keyguard.no_require_sim=1
+#ro.wifi.active_roaming.enable=true
+#ro.config.max_starting_bg=10
+#persist.service.camera.isptype=1
+#ro.kernel.qemu=0
+#ril.stk.sim.profile=FFFFFFFF7F0F009F7F00001FE200000003
+#ril.stk.usim.profile=FFFFFFFF7F9F00DFFF00001FE2000000C3E00000000148005100000000080000
+#ro.security.mode=tz
+#ro.atm.manufacturer.id=Marvell
+#ro.atm.model.id=LINUX
+#ro.atm.id=Marvell

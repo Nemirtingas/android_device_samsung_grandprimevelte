@@ -1,4 +1,6 @@
-# WiFi & Bluetooth: Work In Progress...
+rtccd3 : RunTime CompressCache Daemon, its a daemon that enables zram0
+
+# WiFi & Bluetooth: Working on Lollipop 5.1.1
 
 # Disable WiFi & Bth Modem :
 echo 0 >/sys/devices/platform/sd8x-rfkill/pwr_ctrl
@@ -108,3 +110,27 @@ start imsc
 /system/lib/libagps_hal.so
 /system/etc/pxa_testcfg.ini
 /system/etc/mrvl_gps_platform.conf
+
+
+# Audio
+lib/hw/audio.primary.mrvl.so
+lib/hw/audio_policy.default.so
+lib/hw/audio.a2dp.default.so
+lib/hw/audio.primary.default.so
+lib/hw/audio.r_submix.default.so
+lib/hw/audio.usb.default.so
+lib/libsamsungSoundbooster.so
+lib/lib_Samsung_SB_AM_for_ICS_v03008.so
+lib/libSamsungPreProcess.so
+lib/libSamsungPostProcess.so
+lib/libsamsungRecord.so
+lib/lib_SamsungRec_V04012.so
+lib/libacm.so
+lib/libacoustic.so
+lib/libippsp.so
+lib/libmiscgen.so
+lib/libippvp.so
+lib/libaudiodebugtool.so
+lib/libvcm.so
+# For now, there'r rights bug on these files for sound, enable read/write for everyone (not good but till I find a good fix...)
+chmod 777 /dev/snd/*

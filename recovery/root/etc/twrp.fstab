@@ -3,7 +3,6 @@
 /recovery               emmc    /dev/block/platform/soc.2/by-name/RECOVERY
 /cache                  ext4    /dev/block/platform/soc.2/by-name/CACHE
 /system                 ext4    /dev/block/platform/soc.2/by-name/SYSTEM
-/system_image           emmc    /dev/block/platform/soc.2/by-name/SYSTEM
 /data                   ext4    /dev/block/platform/soc.2/by-name/USER      length=-16384
 /preload                ext4    /dev/block/platform/soc.2/by-name/HIDDEN
 /nvm                    ext4    /dev/block/platform/soc.2/by-name/NVM
