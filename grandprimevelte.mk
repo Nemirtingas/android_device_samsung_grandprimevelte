@@ -20,14 +20,14 @@ $(call inherit-product, vendor/samsung/grandprimevelte/grandprimevelte-vendor.mk
 
 # Audio Configs
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/audio/audio_swvol_element.xml:system/etc/audio/audio_swvol_element.xml \
-    $(LOCAL_PATH)/audio/audio_basic_element_codec.xml:system/etc/audio_basic_element_codec.xml \
-    $(LOCAL_PATH)/audio/audio_basic_element_apu.xml:system/etc/audio_basic_element_apu.xml \
-    $(LOCAL_PATH)/audio/platform_audio_config.xml:system/etc/platform_audio_config.xml \
-    $(LOCAL_PATH)/audio/audio_virtualpath_config.xml:system/etc/audio_virtualpath_config.xml \
-    $(LOCAL_PATH)/audio/audio_path_config_apu.xml:system/etc/audio_path_config_apu.xml \
-    $(LOCAL_PATH)/audio/audio_path_config_codec.xml:system/etc/audio_path_config_codec.xml \
-    $(LOCAL_PATH)/audio/audio_gain_config.xml:system/etc/audio_gain_config.xml
+    $(LOCAL_PATH)/configs/audio/audio_swvol_element.xml:system/etc/audio/audio_swvol_element.xml \
+    $(LOCAL_PATH)/configs/audio/audio_basic_element_codec.xml:system/etc/audio_basic_element_codec.xml \
+    $(LOCAL_PATH)/configs/audio/audio_basic_element_apu.xml:system/etc/audio_basic_element_apu.xml \
+    $(LOCAL_PATH)/configs/audio/platform_audio_config.xml:system/etc/platform_audio_config.xml \
+    $(LOCAL_PATH)/configs/audio/audio_virtualpath_config.xml:system/etc/audio_virtualpath_config.xml \
+    $(LOCAL_PATH)/configs/audio/audio_path_config_apu.xml:system/etc/audio_path_config_apu.xml \
+    $(LOCAL_PATH)/configs/audio/audio_path_config_codec.xml:system/etc/audio_path_config_codec.xml \
+    $(LOCAL_PATH)/configs/audio/audio_gain_config.xml:system/etc/audio_gain_config.xml
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -36,10 +36,11 @@ PRODUCT_COPY_FILES += \
 # Wifi
 PRODUCT_PACKAGES += \
     p2p_supplicant_overlay.conf \
-    wpa_supplicant_overlay.conf
+    wpa_supplicant_overlay.conf \
+    wpa_supplicant.conf
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
+#PRODUCT_COPY_FILES += \
+#    $(LOCAL_PATH)/configs/wifi/wpa_supplicant.conf:system/etc/wifi/wpa_supplicant.conf
 
 ifneq ($(TARGET_BUILD_VARIANT),user) 
 ADDITIONAL_DEFAULT_PROPERTIES += \
