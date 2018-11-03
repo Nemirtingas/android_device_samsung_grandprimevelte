@@ -33,6 +33,17 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
 
+# Ramdisk
+PRODUCT_PACKAGES += \
+    init.tel.rc \
+    init.wifi.rc \
+    init.container.rc \
+    init_bsp.pxa1908.rc \
+    init_bsp.pxa1908.tel.rc \
+    init_bsp.rc \
+    fstab.pxa1908 \
+    fstab_lpm.pxa1908
+
 # Wifi
 PRODUCT_PACKAGES += \
     p2p_supplicant_overlay.conf \
@@ -45,12 +56,7 @@ PRODUCT_PACKAGES += \
 ifneq ($(TARGET_BUILD_VARIANT),user) 
 ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.secure=0 \
-    ro.adb.secure=0 \
-    ro.debuggable=1 \
-    sys.usb.config=mtp,adb \
-    persist.service.adb.enable=1 \
-    persist.sys.usb.config=mtp,adb \
-    service.adb.root=1
+    ro.adb.secure=0
 endif
 
 # Inherit from 

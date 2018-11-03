@@ -1,3 +1,5 @@
+Find a way to compile boot image without doing: export MKBOOTIMG="mkbootimg-pxa"
+
 rtccd3 : RunTime CompressCache Daemon, its a daemon that enables zram0
 
 # WiFi & Bluetooth: Working on Lollipop 5.1.1
