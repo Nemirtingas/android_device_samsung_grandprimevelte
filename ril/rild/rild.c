@@ -45,11 +45,9 @@ static void usage(const char *argv0)
     exit(EXIT_FAILURE);
 }
 
-#ifdef QCOM_HARDWARE
 extern char rild[MAX_SOCKET_NAME_LENGTH] __attribute__((weak));
-#endif
 
-extern void RIL_register (const RIL_RadioFunctions *callbacks);
+extern void RIL_register (const RIL_RadioFunctions *callbacks, int socket_id);
 
 extern void RIL_onRequestComplete(RIL_Token t, RIL_Errno e,
                            void *response, size_t responselen);
@@ -138,9 +136,12 @@ int main(int argc, char **argv)
     const RIL_RadioFunctions *(*rilInit)(const struct RIL_Env *, int, char **);
     const RIL_RadioFunctions *funcs;
     char libPath[PROPERTY_VALUE_MAX];
+    char slotCount[PROPERTY_VALUE_MAX];
+    char buffer[PROPERTY_VALUE_MAX];
     unsigned char hasLibArgs = 0;
 
     int i;
+    int ril_nums;
     const char *clientId = NULL;
     RLOGD("**RIL Daemon Started**");
     RLOGD("**RILd param count=%d**", argc);
@@ -162,30 +163,45 @@ int main(int argc, char **argv)
         }
     }
 
-#ifdef QCOM_HARDWARE
     if (clientId == NULL) {
         clientId = "0";
     } else if (atoi(clientId) >= MAX_RILDS) {
         RLOGE("Max Number of rild's supported is: %d", MAX_RILDS);
         exit(0);
     }
-    if (strncmp(clientId, "0", MAX_CLIENT_ID_LENGTH)) {
-        if (RIL_setRilSocketName) {
-            RIL_setRilSocketName(strncat(rild, clientId, MAX_SOCKET_NAME_LENGTH));
-        } else {
-            RLOGE("Trying to instantiate multiple rild sockets without a compatible libril!");
-        }
+    if( strncmp(clientId, "2", MAX_CLIENT_ID_LENGTH) == 0 )
+    {
+        ril_nums = 1;
+        RIL_setRilSocketName(strncat(rild, clientId, MAX_SOCKET_NAME_LENGTH));
     }
-#endif
+    else if( strncmp(clientId, "3", MAX_CLIENT_ID_LENGTH) == 0 )
+    {
+        ril_nums = 2;
+        RIL_setRilSocketName(strncat(rild, clientId, MAX_SOCKET_NAME_LENGTH));
+    }
+    else if( strncmp(clientId, "4", MAX_CLIENT_ID_LENGTH) == 0 )
+    {
+        ril_nums = 3;
+        RIL_setRilSocketName(strncat(rild, clientId, MAX_SOCKET_NAME_LENGTH));
+    }
+    else
+    {
+        ril_nums = 0;
+    }
 
-    if (rilLibPath == NULL) {
-        if ( 0 == property_get(LIB_PATH_PROPERTY, libPath, NULL)) {
+    if (rilLibPath == NULL)
+    {
+        if ( 0 == property_get(LIB_PATH_PROPERTY, libPath, NULL))
+        {
             // No lib sepcified on the command line, and nothing set in props.
             // Assume "no-ril" case.
             goto done;
-        } else {
-            rilLibPath = libPath;
         }
+        if( ril_nums == 1 )
+        {
+            property_get("rild.libpath2", libPath, NULL);
+        }
+        rilLibPath = libPath;
     }
 
     /* special override when in the emulator */
@@ -297,6 +313,7 @@ OpenLib:
 #endif
     switchUser();
 
+    RLOGI("Loading libril %s", rilLibPath);
     dlHandle = dlopen(rilLibPath, RTLD_NOW);
 
     if (dlHandle == NULL) {
@@ -324,11 +341,9 @@ OpenLib:
         argc = make_argv(args, rilArgv);
     }
 
-#ifdef QCOM_HARDWARE
     rilArgv[argc++] = "-c";
     rilArgv[argc++] = clientId;
     RLOGD("RIL_Init argc = %d clientId = %s", argc, rilArgv[argc-1]);
-#endif
 
     // Make sure there's a reasonable argv[0]
     rilArgv[0] = argv[0];
@@ -336,22 +351,25 @@ OpenLib:
     funcs = rilInit(&s_rilEnv, argc, rilArgv);
     RLOGD("RIL_Init rilInit completed");
 
-#ifdef QCOM_HARDWARE
-    if (funcs == NULL) {
-        /* Pre-multi-client qualcomm vendor libraries won't support "-c" either, so
-         * try again without it. This should only happen on ancient qcoms, so raise
-         * a big fat warning
-         */
-        argc -= 2;
-        RLOGE("============= Retrying RIL_Init without a client id. This is only required for very old versions,");
-        RLOGE("============= and you're likely to have more radio breakage elsewhere!");
-        funcs = rilInit(&s_rilEnv, argc, rilArgv);
-    }
-#endif
-
-    RIL_register(funcs);
+    RIL_register(funcs, ril_nums);
 
     RLOGD("RIL_Init RIL_register completed");
+
+    property_get("ro.multisim.simslotcount", slotCount, "");
+    RLOGD("RILD: ro.multisim.simslotcount : %s", slotCount);
+    RLOGD("RILD: ril_nums = %d", ril_nums);
+    if( slotCount[0] == '2' && ril_nums == 0 )
+    {
+        property_get("init.svc.ril-daemon2", buffer, "");
+        if( strncmp(buffer, "running", 7) == 0 )
+        {
+            RLOGD("RIL_Init stop ril-daemon2");
+            property_set("ctl.stop", "ril-daemon2");
+            sleep(1);
+        }
+        RLOGD("RIL_Init start ril-daemon2");
+        property_set("ctl.start", "ril-daemon2");
+    }
 
 done:
 

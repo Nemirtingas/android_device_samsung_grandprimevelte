@@ -52,13 +52,12 @@ extern "C" {
 #define CDMA_ALPHA_INFO_BUFFER_LENGTH 64
 #define CDMA_NUMBER_INFO_BUFFER_LENGTH 81
 
-#define MAX_RILDS 3
+#define MAX_RILDS 4
 #define MAX_SOCKET_NAME_LENGTH 6
 #define MAX_CLIENT_ID_LENGTH 2
 #define MAX_DEBUG_SOCKET_NAME_LENGTH 12
 #define MAX_QEMU_PIPE_NAME_LENGTH  11
 #define MAX_UUID_LENGTH 64
-
 
 typedef void * RIL_Token;
 
@@ -301,6 +300,9 @@ typedef struct {
     char *          name;       /* Remote party name */
     int             namePresentation; /* 0=Allowed, 1=Restricted, 2=Not Specified/Unknown 3=Payphone */
     RIL_UUS_Info *  uusInfo;    /* NULL or Pointer to User-User Signaling Information */
+    // OEM Add
+    int32_t _padding1;
+    CallDetails *callDetails;
 } RIL_Call;
 
 /* Deprecated, use RIL_Data_Call_Response_v6 */
@@ -550,6 +552,9 @@ typedef struct {
     int             toa;         /* "type" from TS 27.007 7.11 */
     char *          number;      /* "number" from TS 27.007 7.11. May be NULL */
     int             timeSeconds; /* for CF no reply only */
+    // Oem Additions
+    char *x;
+    char *y;
 }RIL_CallForwardInfo;
 
 typedef struct {
@@ -742,6 +747,12 @@ typedef struct
   int              pin1_replaced;   /* applicable to USIM, CSIM & ISIM */
   RIL_PinState     pin1;
   RIL_PinState     pin2;
+  // OEM Additions
+  int32_t pin1_num_retries;
+  int32_t puk1_num_retries;
+  int32_t pin2_num_retries;
+  int32_t puk2_num_retries;
+  int32_t perso_unblock_retries;
 } RIL_AppStatus;
 
 /* Deprecated, use RIL_CardStatus_v6 */
@@ -4347,7 +4358,6 @@ typedef struct {
  */
 #define RIL_REQUEST_SET_RADIO_CAPABILITY 131
 
-
 /***********************************************************************/
 
 
@@ -4938,7 +4948,6 @@ typedef struct {
 
 /***********************************************************************/
 
-
 #if defined(ANDROID_MULTI_SIM)
 /**
  * RIL_Request Function pointer
@@ -5168,6 +5177,7 @@ void RIL_requestTimedCallback (RIL_TimedCallback callback,
 
 
 #endif /* RIL_SHLIB */
+
 
 #ifdef __cplusplus
 }

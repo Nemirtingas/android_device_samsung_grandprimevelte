@@ -15,7 +15,7 @@
 ** limitations under the License.
 */
 
-#define LOG_TAG "RILC"
+#define LOG_TAG "DEBUG-RIL-EVENT"
 
 #include <stdlib.h>
 #include <unistd.h>
@@ -74,6 +74,7 @@ static struct ril_event pending_list;
 
 #define DEBUG 0
 
+
 #if DEBUG
 #define dlog(x...) RLOGD( x )
 static void dump_event(struct ril_event * ev)
@@ -124,7 +125,6 @@ static void addToList(struct ril_event * ev, struct ril_event * list)
 
 static void removeFromList(struct ril_event * ev)
 {
-    dlog("~~~~ Removing event ~~~~");
     dump_event(ev);
 
     ev->next->prev = ev->prev;
@@ -158,7 +158,6 @@ static void removeWatch(struct ril_event * ev, int index)
 
 static void processTimeouts()
 {
-    dlog("~~~~ +processTimeouts ~~~~");
     MUTEX_ACQUIRE();
     struct timeval now;
     struct ril_event * tev = timer_list.next;
@@ -177,12 +176,10 @@ static void processTimeouts()
         tev = next;
     }
     MUTEX_RELEASE();
-    dlog("~~~~ -processTimeouts ~~~~");
 }
 
 static void processReadReadies(fd_set * rfds, int n)
 {
-    dlog("~~~~ +processReadReadies (%d) ~~~~", n);
     MUTEX_ACQUIRE();
 
     for (int i = 0; (i < MAX_FD_EVENTS) && (n > 0); i++) {
@@ -197,12 +194,10 @@ static void processReadReadies(fd_set * rfds, int n)
     }
 
     MUTEX_RELEASE();
-    dlog("~~~~ -processReadReadies (%d) ~~~~", n);
 }
 
 static void firePending()
 {
-    dlog("~~~~ +firePending ~~~~");
     struct ril_event * ev = pending_list.next;
     while (ev != &pending_list) {
         struct ril_event * next = ev->next;
@@ -210,7 +205,6 @@ static void firePending()
         ev->func(ev->fd, 0, ev->param);
         ev = next;
     }
-    dlog("~~~~ -firePending ~~~~");
 }
 
 static int calcNextTimeout(struct timeval * tv)
@@ -252,20 +246,20 @@ void ril_event_init()
 // Initialize an event
 void ril_event_set(struct ril_event * ev, int fd, bool persist, ril_event_cb func, void * param)
 {
-    dlog("~~~~ ril_event_set %x ~~~~", (unsigned int)ev);
     memset(ev, 0, sizeof(struct ril_event));
     ev->fd = fd;
     ev->index = -1;
     ev->persist = persist;
     ev->func = func;
     ev->param = param;
+
+
     fcntl(fd, F_SETFL, O_NONBLOCK);
 }
 
 // Add event to watch list
 void ril_event_add(struct ril_event * ev)
 {
-    dlog("~~~~ +ril_event_add ~~~~");
     MUTEX_ACQUIRE();
     for (int i = 0; i < MAX_FD_EVENTS; i++) {
         if (watch_table[i] == NULL) {
@@ -280,13 +274,11 @@ void ril_event_add(struct ril_event * ev)
         }
     }
     MUTEX_RELEASE();
-    dlog("~~~~ -ril_event_add ~~~~");
 }
 
 // Add timer event
 void ril_timer_add(struct ril_event * ev, struct timeval * tv)
 {
-    dlog("~~~~ +ril_timer_add ~~~~");
     MUTEX_ACQUIRE();
 
     struct ril_event * list;
@@ -309,13 +301,11 @@ void ril_timer_add(struct ril_event * ev, struct timeval * tv)
     }
 
     MUTEX_RELEASE();
-    dlog("~~~~ -ril_timer_add ~~~~");
 }
 
 // Remove event from watch or timer list
 void ril_event_del(struct ril_event * ev)
 {
-    dlog("~~~~ +ril_event_del ~~~~");
     MUTEX_ACQUIRE();
 
     if (ev->index < 0 || ev->index >= MAX_FD_EVENTS) {
@@ -326,7 +316,6 @@ void ril_event_del(struct ril_event * ev)
     removeWatch(ev, ev->index);
 
     MUTEX_RELEASE();
-    dlog("~~~~ -ril_event_del ~~~~");
 }
 
 #if DEBUG
