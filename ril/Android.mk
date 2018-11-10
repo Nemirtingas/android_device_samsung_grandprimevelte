@@ -1,8 +1,3 @@
-ifeq ($(BOARD_PROVIDES_LIBRIL),true)
+LOCAL_PATH := $(call my-dir)
 
-RIL_PATH := $(call my-dir)
-
-ifeq ($(RIL_PATH),$(call project-path-for,ril))
-include $(call first-makefiles-under,$(RIL_PATH))
-endif
-endif # BOARD_PROVIDES_LIBRIL
+include $(call first-makefiles-under,$(LOCAL_PATH))

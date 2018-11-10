@@ -15,15 +15,180 @@
 ** limitations under the License.
 */
 
-#define LOG_TAG "DEBUG-RIL"
+#define LOG_TAG "RILC"
 
-#include "oemril.h"
+#include <hardware_legacy/power.h>
+
+#include <telephony/ril.h>
+#include <telephony/ril_cdma_sms.h>
+#include <cutils/sockets.h>
+#include <cutils/jstring.h>
+#include <telephony/record_stream.h>
+#include <utils/Log.h>
+#include <utils/SystemClock.h>
+#include <pthread.h>
+#include <binder/Parcel.h>
+#include <cutils/jstring.h>
+
+#include <sys/types.h>
+#include <sys/limits.h>
+#include <pwd.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <string.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <time.h>
+#include <errno.h>
+#include <assert.h>
+#include <ctype.h>
+#include <alloca.h>
+#include <sys/un.h>
+#include <assert.h>
+#include <netinet/in.h>
+#include <cutils/properties.h>
+
+#include <ril_event.h>
 
 namespace android {
 
-/*******************************************************************/
+#define PHONE_PROCESS "radio"
 
-extern "C" char rild[MAX_SOCKET_NAME_LENGTH] = SOCKET_NAME_RIL;
+#define SOCKET_NAME_RIL "rild"
+#define SOCKET2_NAME_RIL "rild2"
+#define SOCKET3_NAME_RIL "rild3"
+#define SOCKET4_NAME_RIL "rild4"
+
+#define SOCKET_NAME_RIL_DEBUG "rild-debug"
+
+#define ANDROID_WAKE_LOCK_NAME "radio-interface"
+
+
+#define PROPERTY_RIL_IMPL "gsm.version.ril-impl"
+
+// match with constant in RIL.java
+#define MAX_COMMAND_BYTES (8 * 1024)
+
+// Basically: memset buffers that the client library
+// shouldn't be using anymore in an attempt to find
+// memory usage issues sooner.
+#define MEMSET_FREED 1
+
+#define NUM_ELEMS(a)     (sizeof (a) / sizeof (a)[0])
+
+#define MIN(a,b) ((a)<(b) ? (a) : (b))
+
+/* Constants for response types */
+#define RESPONSE_SOLICITED 0
+#define RESPONSE_UNSOLICITED 1
+
+/* Negative values for private RIL errno's */
+#define RIL_ERRNO_INVALID_RESPONSE -1
+
+// request, response, and unsolicited msg print macro
+#define PRINTBUF_SIZE 8096
+
+// Enable RILC log
+#define RILC_LOG 0
+
+#if RILC_LOG
+    #define startRequest           sprintf(printBuf, "(")
+    #define closeRequest           sprintf(printBuf, "%s)", printBuf)
+    #define printRequest(token, req)           \
+            RLOGD("[%04d]> %s %s", token, requestToString(req), printBuf)
+
+    #define startResponse           sprintf(printBuf, "%s {", printBuf)
+    #define closeResponse           sprintf(printBuf, "%s}", printBuf)
+    #define printResponse           RLOGD("%s", printBuf)
+
+    #define clearPrintBuf           printBuf[0] = 0
+    #define removeLastChar          printBuf[strlen(printBuf)-1] = 0
+    #define appendPrintBuf(x...)    sprintf(printBuf, x)
+
+    class __DEBUG_RIL_LOG__
+{
+    const char* _func;
+    public:
+        __DEBUG_RIL_LOG__(int line, const char* func):_func(func)
+        {
+            RLOGD("Entering %s at line %d", _func, line);
+        }
+
+        ~__DEBUG_RIL_LOG__()
+        {
+            RLOGD("Exiting %s", _func);
+        }
+};
+
+    #define log_func_entry         __DEBUG_RIL_LOG__ __debug_obj__(__LINE__, __func__)
+    #define log_func_line(fmt,...) RLOGD("%s at %d: " fmt, __func__, __LINE__, ## __VA_ARGS__)
+#else
+    #define startRequest
+    #define closeRequest
+    #define printRequest(token, req)
+    #define startResponse
+    #define closeResponse
+    #define printResponse
+    #define clearPrintBuf
+    #define removeLastChar
+    #define appendPrintBuf(x...)
+
+    #define log_func_entry
+    #define log_func_line(...)
+#endif
+
+enum WakeType {DONT_WAKE, WAKE_PARTIAL};
+
+typedef struct {
+    int requestNumber;
+    void (*dispatchFunction) (Parcel &p, struct RequestInfo *pRI);
+    int(*responseFunction) (Parcel &p, void *response, size_t responselen);
+} CommandInfo;
+
+typedef struct {
+    int requestNumber;
+    int (*responseFunction) (Parcel &p, void *response, size_t responselen);
+    WakeType wakeType;
+} UnsolResponseInfo;
+
+typedef struct RequestInfo {
+    int32_t token;      //this is not RIL_Token
+    CommandInfo *pCI;
+    struct RequestInfo *p_next;
+    char cancelled;
+    char local;         // responses to local commands do not go back to command process
+    RIL_SOCKET_ID socket_id;
+} RequestInfo;
+
+typedef struct UserCallbackInfo {
+    RIL_TimedCallback p_callback;
+    void *userParam;
+    struct ril_event event;
+    struct UserCallbackInfo *p_next;
+} UserCallbackInfo;
+
+typedef struct SocketListenParam {
+    RIL_SOCKET_ID socket_id;
+    int fdListen;
+    int fdCommand;
+    char* processName;
+    struct ril_event* commands_event;
+    struct ril_event* listen_event;
+    void (*processCommandsCallback)(int fd, short flags, void *param);
+    RecordStream *p_rs;
+} SocketListenParam;
+
+extern "C" const char * requestToString(int request);
+extern "C" const char * failCauseToString(RIL_Errno);
+extern "C" const char * callStateToString(RIL_CallState);
+extern "C" const char * radioStateToString(RIL_RadioState);
+extern "C" const char * rilSocketIdToString(RIL_SOCKET_ID socket_id);
+
+extern "C"
+char rild[MAX_SOCKET_NAME_LENGTH] = SOCKET_NAME_RIL;
+/*******************************************************************/
 
 RIL_RadioFunctions s_callbacks = {0, NULL, NULL, NULL, NULL, NULL};
 static int s_registerCalled = 0;
@@ -102,21 +267,134 @@ static size_t s_lastNITZTimeDataSize;
     static char printBuf[PRINTBUF_SIZE];
 #endif
 
+///////////////////////
+// OEM
+static int responseModifyCall(Parcel &p, void *response, size_t responselen);
+static int responseCBMessage(Parcel &p, void *response, size_t responselen);
+static int responseSSReleaseComplete(Parcel &p, void *response, size_t responselen);
+static int responseSimIccIdNoti(Parcel &p, void *response, size_t responselen);
+static int responseCBConfig(Parcel &p, void *response, size_t responselen);
+static int responsePBE(Parcel &p, void *response, size_t responselen);
+static int responseLockInfo(Parcel &p, void *response, size_t responselen);
+static int responsePreferredNetworkList(Parcel &p, void *response, size_t responselen);
+
+static void dispatchOEMDepersonalization(Parcel &p, RequestInfo* pRI);
+static void dispatchCallModify(Parcel &p, RequestInfo* pRI);
+static void dispatchPhoneEntry(Parcel &p, RequestInfo* pRI);
+static void dispatchPreferredNetwork(Parcel &p, RequestInfo* pRI);
+static void dispatchEncodedUSSD(Parcel &p, RequestInfo* pRI);
+static void dispatchLockInfo(Parcel &p, RequestInfo* pRI);
+
+char* serializeCallDetails(CallDetails *details);
+void unserializeCallDetails( char *buffer, CallDetails *callDetails );
+///////////////////////
+
+/*******************************************************************/
+static int sendResponse (Parcel &p, RIL_SOCKET_ID socket_id);
+
+static void dispatchVoid (Parcel& p, RequestInfo *pRI);
+static void dispatchString (Parcel& p, RequestInfo *pRI);
+static void dispatchStrings (Parcel& p, RequestInfo *pRI);
+static void dispatchInts (Parcel& p, RequestInfo *pRI);
+static void dispatchDial (Parcel& p, RequestInfo *pRI);
+static void dispatchSIM_IO (Parcel& p, RequestInfo *pRI);
+static void dispatchSIM_APDU (Parcel& p, RequestInfo *pRI);
+static void dispatchCallForward(Parcel& p, RequestInfo *pRI);
+static void dispatchRaw(Parcel& p, RequestInfo *pRI);
+static void dispatchSmsWrite (Parcel &p, RequestInfo *pRI);
+static void dispatchDataCall (Parcel& p, RequestInfo *pRI);
+static void dispatchVoiceRadioTech (Parcel& p, RequestInfo *pRI);
+static void dispatchSetInitialAttachApn (Parcel& p, RequestInfo *pRI);
+static void dispatchCdmaSubscriptionSource (Parcel& p, RequestInfo *pRI);
+
+static void dispatchCdmaSms(Parcel &p, RequestInfo *pRI);
+static void dispatchImsSms(Parcel &p, RequestInfo *pRI);
+static void dispatchImsCdmaSms(Parcel &p, RequestInfo *pRI, uint8_t retry, int32_t messageRef);
+static void dispatchImsGsmSms(Parcel &p, RequestInfo *pRI, uint8_t retry, int32_t messageRef);
+static void dispatchCdmaSmsAck(Parcel &p, RequestInfo *pRI);
+static void dispatchGsmBrSmsCnf(Parcel &p, RequestInfo *pRI);
+static void dispatchCdmaBrSmsCnf(Parcel &p, RequestInfo *pRI);
+static void dispatchRilCdmaSmsWriteArgs(Parcel &p, RequestInfo *pRI);
+static void dispatchNVReadItem(Parcel &p, RequestInfo *pRI);
+static void dispatchNVWriteItem(Parcel &p, RequestInfo *pRI);
+static void dispatchUiccSubscripton(Parcel &p, RequestInfo *pRI);
+static void dispatchSimAuthentication(Parcel &p, RequestInfo *pRI);
+static void dispatchDataProfile(Parcel &p, RequestInfo *pRI);
+static void dispatchRadioCapability(Parcel &p, RequestInfo *pRI);
+static int responseInts(Parcel &p, void *response, size_t responselen);
+static int responseStrings(Parcel &p, void *response, size_t responselen);
+static int responseString(Parcel &p, void *response, size_t responselen);
+static int responseVoid(Parcel &p, void *response, size_t responselen);
+static int responseCallList(Parcel &p, void *response, size_t responselen);
+static int responseSMS(Parcel &p, void *response, size_t responselen);
+static int responseSIM_IO(Parcel &p, void *response, size_t responselen);
+static int responseCallForwards(Parcel &p, void *response, size_t responselen);
+static int responseDataCallList(Parcel &p, void *response, size_t responselen);
+static int responseSetupDataCall(Parcel &p, void *response, size_t responselen);
+static int responseRaw(Parcel &p, void *response, size_t responselen);
+static int responseSsn(Parcel &p, void *response, size_t responselen);
+static int responseSimStatus(Parcel &p, void *response, size_t responselen);
+static int responseGsmBrSmsCnf(Parcel &p, void *response, size_t responselen);
+static int responseCdmaBrSmsCnf(Parcel &p, void *response, size_t responselen);
+static int responseCdmaSms(Parcel &p, void *response, size_t responselen);
+static int responseCellList(Parcel &p, void *response, size_t responselen);
+static int responseCdmaInformationRecords(Parcel &p,void *response, size_t responselen);
+static int responseRilSignalStrength(Parcel &p,void *response, size_t responselen);
+static int responseCallRing(Parcel &p, void *response, size_t responselen);
+static int responseCdmaSignalInfoRecord(Parcel &p,void *response, size_t responselen);
+static int responseCdmaCallWaiting(Parcel &p,void *response, size_t responselen);
+static int responseSimRefresh(Parcel &p, void *response, size_t responselen);
+static int responseCellInfoList(Parcel &p, void *response, size_t responselen);
+static int responseHardwareConfig(Parcel &p, void *response, size_t responselen);
+static int responseDcRtInfo(Parcel &p, void *response, size_t responselen);
+static int responseRadioCapability(Parcel &p, void *response, size_t responselen);
+static int responseSSData(Parcel &p, void *response, size_t responselen);
+
+static int decodeVoiceRadioTechnology (RIL_RadioState radioState);
+static int decodeCdmaSubscriptionSource (RIL_RadioState radioState);
+static RIL_RadioState processRadioState(RIL_RadioState newRadioState);
+
+static bool isServiceTypeCfQuery(RIL_SsServiceType serType, RIL_SsRequestType reqType);
+
+#ifdef RIL_SHLIB
+#if defined(ANDROID_MULTI_SIM)
+extern "C" void RIL_onUnsolicitedResponse(int unsolResponse, void *data,
+                                size_t datalen, RIL_SOCKET_ID socket_id);
+#else
+extern "C" void RIL_onUnsolicitedResponse(int unsolResponse, void *data,
+                                size_t datalen);
+#endif
+#endif
+
+#if defined(ANDROID_MULTI_SIM)
+#define RIL_UNSOL_RESPONSE(a, b, c, d) RIL_onUnsolicitedResponse((a), (b), (c), (d))
+#define CALL_ONREQUEST(a, b, c, d, e) s_callbacks.onRequest((a), (b), (c), (d), (e))
+#define CALL_ONSTATEREQUEST(a) s_callbacks.onStateRequest(a)
+#else
+#define RIL_UNSOL_RESPONSE(a, b, c, d) RIL_onUnsolicitedResponse((a), (b), (c))
+#define CALL_ONREQUEST(a, b, c, d, e) s_callbacks.onRequest((a), (b), (c), (d))
+#define CALL_ONSTATEREQUEST(a) s_callbacks.onStateRequest()
+#endif
+
+static UserCallbackInfo * internalRequestTimedCallback
+    (RIL_TimedCallback callback, void *param,
+        const struct timeval *relativeTime);
+
 /** Index == requestNumber */
 static CommandInfo s_commands[] = {
-#include <ril_commands.h>
+#include "ril_commands.h"
 };
 
 static UnsolResponseInfo s_unsolResponses[] = {
-#include <ril_unsol_commands.h>
+#include "ril_unsol_commands.h"
 };
 
 static CommandInfo s_oem_commands[] = {
-#include <oem_commands.h>
+#include "oem_commands.h"
 };
 
 static UnsolResponseInfo s_oem_unsolResponses[] = {
-#include <oem_unsol_commands.h>
+#include "oem_unsol_commands.h"
 };
 
 /* For older RILs that do not support new commands RIL_REQUEST_VOICE_RADIO_TECH and
@@ -124,143 +402,22 @@ static UnsolResponseInfo s_oem_unsolResponses[] = {
    radio state message and store it. Every time there is a change in Radio State
    check to see if voice radio tech changes and notify telephony
  */
-static int voiceRadioTech = -1;
+int voiceRadioTech = -1;
 
 /* For older RILs that do not support new commands RIL_REQUEST_GET_CDMA_SUBSCRIPTION_SOURCE
    and RIL_UNSOL_CDMA_SUBSCRIPTION_SOURCE_CHANGED messages, decode the subscription
    source from radio state and store it. Every time there is a change in Radio State
    check to see if subscription source changed and notify telephony
  */
-static int cdmaSubscriptionSource = -1;
+int cdmaSubscriptionSource = -1;
 
 /* For older RILs that do not send RIL_UNSOL_RESPONSE_SIM_STATUS_CHANGED, decode the
    SIM/RUIM state from radio state and store it. Every time there is a change in Radio State,
    check to see if SIM/RUIM status changed and notify telephony
  */
-static int simRuimStatus = -1;
-
-struct map_func_t
-{
-    void*       addr;
-    const char* name;
-} map_funcs[] =
-{
-    {(void*)RIL_getRilSocketName, "RIL_getRilSocketName"},
-    {(void*)RIL_setRilSocketName, "RIL_setRilSocketName"},
-    {(void*)strdupReadString,"strdupReadString"},
-    {(void*)readStringFromParcelInplace,"readStringFromParcelInplace"},
-    {(void*)writeStringToParcel,"writeStringToParcel"},
-    //{(void*)memsetString,"memsetString"},
-    //{(void*)nullParcelReleaseFunction,"nullParcelReleaseFunction"},
-    //{(void*)issueLocalRequest,"issueLocalRequest"},
-    //{(void*)processCommandBuffer,"processCommandBuffer"},
-    {(void*)invalidCommandBlock,"invalidCommandBlock"},
-    {(void*)dispatchVoid,"dispatchVoid"},
-    {(void*)dispatchString,"dispatchString"},
-    {(void*)dispatchStrings,"dispatchStrings"},
-    {(void*)dispatchInts,"dispatchInts"},
-    {(void*)dispatchSmsWrite,"dispatchSmsWrite"},
-    {(void*)dispatchDial,"dispatchDial"},
-    {(void*)dispatchSIM_IO,"dispatchSIM_IO"},
-    {(void*)dispatchSIM_APDU,"dispatchSIM_APDU"},
-    {(void*)dispatchCallForward,"dispatchCallForward"},
-    {(void*)dispatchRaw,"dispatchRaw"},
-    //{(void*)constructCdmaSms,"constructCdmaSms"},
-    {(void*)dispatchCdmaSms,"dispatchCdmaSms"},
-    {(void*)dispatchImsCdmaSms,"dispatchImsCdmaSms"},
-    {(void*)dispatchImsGsmSms,"dispatchImsGsmSms"},
-    {(void*)dispatchImsSms,"dispatchImsSms"},
-    {(void*)dispatchCdmaSmsAck,"dispatchCdmaSmsAck"},
-    {(void*)dispatchGsmBrSmsCnf,"dispatchGsmBrSmsCnf"},
-    {(void*)dispatchCdmaBrSmsCnf,"dispatchCdmaBrSmsCnf"},
-    {(void*)dispatchRilCdmaSmsWriteArgs,"dispatchRilCdmaSmsWriteArgs"},
-    {(void*)dispatchDataCall,"dispatchDataCall"},
-    {(void*)dispatchVoiceRadioTech,"dispatchVoiceRadioTech"},
-    {(void*)dispatchCdmaSubscriptionSource,"dispatchCdmaSubscriptionSource"},
-    {(void*)dispatchSetInitialAttachApn,"dispatchSetInitialAttachApn"},
-    {(void*)dispatchNVReadItem,"dispatchNVReadItem"},
-    {(void*)dispatchNVWriteItem,"dispatchNVWriteItem"},
-    {(void*)dispatchUiccSubscripton,"dispatchUiccSubscripton"},
-    {(void*)dispatchSimAuthentication,"dispatchSimAuthentication"},
-    {(void*)dispatchDataProfile,"dispatchDataProfile"},
-    {(void*)dispatchRadioCapability,"dispatchRadioCapability"},
-    //{(void*)blockingWrite,"blockingWrite"},
-    //{(void*)sendResponseRaw,"sendResponseRaw"},
-    {(void*)sendResponse,"sendResponse"},
-    {(void*)responseInts,"responseInts"},
-    //{(void*)responseStringsWithVersion,"responseStringsWithVersion"},
-    {(void*)responseStrings,"responseStrings"},
-    {(void*)responseString,"responseString"},
-    {(void*)responseVoid,"responseVoid"},
-    {(void*)responseCallList,"responseCallList"},
-    {(void*)responseSMS,"responseSMS"},
-    //{(void*)responseDataCallListV4,"responseDataCallListV4"},
-    //{(void*)responseDataCallListV6,"responseDataCallListV6"},
-    //{(void*)responseDataCallListV9,"responseDataCallListV9"},
-    {(void*)responseDataCallList,"responseDataCallList"},
-    {(void*)responseSetupDataCall,"responseSetupDataCall"},
-    {(void*)responseRaw,"responseRaw"},
-    {(void*)responseSIM_IO,"responseSIM_IO"},
-    {(void*)responseCallForwards,"responseCallForwards"},
-    {(void*)responseSsn,"responseSsn"},
-    {(void*)responseCellList,"responseCellList"},
-    //{(void*)marshallSignalInfoRecord,"marshallSignalInfoRecord"},
-    {(void*)responseCdmaInformationRecords,"responseCdmaInformationRecords"},
-    {(void*)responseRilSignalStrength,"responseRilSignalStrength"},
-    {(void*)responseCallRing,"responseCallRing"},
-    {(void*)responseCdmaSignalInfoRecord,"responseCdmaSignalInfoRecord"},
-    {(void*)responseCdmaCallWaiting,"responseCdmaCallWaiting"},
-    {(void*)responseSimRefresh,"responseSimRefresh"},
-    {(void*)responseCellInfoList,"responseCellInfoList"},
-    {(void*)responseHardwareConfig,"responseHardwareConfig"},
-    {(void*)responseRadioCapability,"responseRadioCapability"},
-    {(void*)responseSSData,"responseSSData"},
-    {(void*)isServiceTypeCfQuery,"isServiceTypeCfQuery"},
-    //{(void*)triggerEvLoop,"triggerEvLoop"},
-    //{(void*)rilEventAddWakeup,"rilEventAddWakeup"},
-    //{(void*)sendSimStatusAppInfo,"sendSimStatusAppInfo"},
-    {(void*)responseSimStatus,"responseSimStatus"},
-    {(void*)responseGsmBrSmsCnf,"responseGsmBrSmsCnf"},
-    {(void*)responseCdmaBrSmsCnf,"responseCdmaBrSmsCnf"},
-    {(void*)responseCdmaSms,"responseCdmaSms"},
-    {(void*)responseDcRtInfo,"responseDcRtInfo"},
-    //{(void*)processWakeupCallback,"processWakeupCallback"},
-    //{(void*)onCommandsSocketClosed,"onCommandsSocketClosed"},
-    //{(void*)processCommandsCallback,"processCommandsCallback"},
-    //{(void*)onNewCommandConnect,"onNewCommandConnect"},
-    //{(void*)listenCallback,"listenCallback"},
-    //{(void*)freeDebugCallbackArgs,"freeDebugCallbackArgs"},
-    //{(void*)debugCallback,"debugCallback"},
-    //{(void*)userTimerCallback,"userTimerCallback"},
-    //{(void*)eventLoop,"eventLoop"},
-    //{(void*)RIL_startEventLoop,"RIL_startEventLoop"},
-    //{(void*)RIL_setcallbacks,"RIL_setcallbacks"},
-    //{(void*)startListen,"startListen"},
-    {(void*)RIL_register,"RIL_register"},
-    //{(void*)checkAndDequeueRequestInfo,"checkAndDequeueRequestInfo"},
-    //{(void*)RIL_onRequestComplete,"RIL_onRequestComplete"},
-    //{g(void*)rabPartialWakeLock,"grabPartialWakeLock"},
-    //{(void*)releaseWakeLock,"releaseWakeLock"},
-    //{(void*)wakeTimeoutCallback,"wakeTimeoutCallback"},
-    {(void*)decodeVoiceRadioTechnology,"decodeVoiceRadioTechnology"},
-    {(void*)decodeCdmaSubscriptionSource,"decodeCdmaSubscriptionSource"},
-    //{(void*)decodeSimStatus,"decodeSimStatus"},
-    //{(void*)is3gpp2,"is3gpp2"},
-    //{(void*)processRadioState,"processRadioState"},
-    {(void*)RIL_onUnsolicitedResponse,"RIL_onUnsolicitedResponse"},
-    {(void*)internalRequestTimedCallback,"internalRequestTimedCallback"},
-    {(void*)RIL_requestTimedCallback,"RIL_requestTimedCallback"},
-    {(void*)failCauseToString,"failCauseToString"},
-    {(void*)radioStateToString,"radioStateToString"},
-    {(void*)callStateToString,"callStateToString"},
-    {(void*)requestToString,"requestToString"},
-    {(void*)rilSocketIdToString,"rilSocketIdToString"},
-};
-
-
+int simRuimStatus = -1;
 
 static char * RIL_getRilSocketName() {
-    //log_func_entry;
     return rild;
 }
 

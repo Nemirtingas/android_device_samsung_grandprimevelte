@@ -34,12 +34,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_profiles.xml:system/etc/media_profiles.xml
 
-# RIL
-PRODUCT_PACKAGES += \
-    rild \
-    libril \
-    librilutils
-
 # Ramdisk
 PRODUCT_PACKAGES += \
     init.tel.rc \

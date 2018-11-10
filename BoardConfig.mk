@@ -36,6 +36,7 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
+BOARD_PROVIDES_RILD := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/grandprimevelte
