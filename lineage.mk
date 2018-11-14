@@ -26,7 +26,7 @@ PRODUCT_RELEASE_NAME := SM-G531F
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := grandprimevelte
-PRODUCT_NAME := cm_grandprimevelte
+PRODUCT_NAME := lineage_grandprimevelte
 PRODUCT_BRAND := samsung
 PRODUCT_MODEL := SM-G531F
 PRODUCT_MANUFACTURER := samsung

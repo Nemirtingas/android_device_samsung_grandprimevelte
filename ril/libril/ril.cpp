@@ -4868,7 +4868,7 @@ void RIL_onUnsolicitedResponse(int unsolResponse, void *data,
         for( unsolResponseIndex = 0; unsolResponseIndex < (int32_t)NUM_ELEMS(s_oem_unsolResponses); ++unsolResponseIndex )
         {
 
-            if( unsolResponseIndex = ((int32_t)NUM_ELEMS(s_oem_unsolResponses)-1) )
+            if( unsolResponseIndex == ((int32_t)NUM_ELEMS(s_oem_unsolResponses)-1) )
             {
                 RLOGE("unsupported OEM unsolicated response code %d", unsolResponse);
             }

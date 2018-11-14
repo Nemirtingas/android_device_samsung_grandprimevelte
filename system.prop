@@ -2,6 +2,7 @@
 # system.prop
 #
 
+ro.product.model=SM-G531F
 rild.libpath=/system/lib/libsec-ril.so
 
 # System property for storage_preload
