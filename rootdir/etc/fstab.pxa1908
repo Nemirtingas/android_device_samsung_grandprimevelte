@@ -40,6 +40,7 @@
 /dev/block/platform/soc.2/by-name/KERNEL     /boot         emmc      defaults                                                                        defaults
 /dev/block/platform/soc.2/by-name/RECOVERY   /recovery     emmc      defaults                                                                        defaults
 /dev/block/platform/soc.2/by-name/NVM        /nvm          ext4      defaults                                                                        defaults
+/dev/block/platform/soc.2/by-name/NVM        /NVM          ext4      defaults                                                                        defaults
 /dev/block/platform/soc.2/by-name/MODEM      /radio        emmc      defaults                                                                        defaults
 
 
