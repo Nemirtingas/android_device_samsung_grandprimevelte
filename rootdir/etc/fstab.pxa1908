@@ -45,11 +45,5 @@
 
 
 # VOLD
-/devices/platform/soc.2/d4200000.axi/d4280000.sdh/mmc_host/mmc1/mmc1*    auto    vfat    default    voldmanaged=extSdCard:auto,noemulatedsd
-/devices/platform/soc.2/d4200000.axi/d4208100.ehci/usb*sda               auto    vfat    default    voldmanaged=UsbDriveA:auto
-/devices/platform/soc.2/d4200000.axi/d4208100.ehci/usb*sdb               auto    vfat    default    voldmanaged=UsbDriveB:auto
-/devices/platform/soc.2/d4200000.axi/d4208100.ehci/usb*sdc               auto    vfat    default    voldmanaged=UsbDriveC:auto
-/devices/platform/soc.2/d4200000.axi/d4208100.ehci/usb*sdd               auto    vfat    default    voldmanaged=UsbDriveD:auto
-/devices/platform/soc.2/d4200000.axi/d4208100.ehci/usb*sde               auto    vfat    default    voldmanaged=UsbDriveE:auto
-/devices/platform/soc.2/d4200000.axi/d4208100.ehci/usb*sdf               auto    vfat    default    voldmanaged=UsbDriveF:auto
-
+/devices/platform/soc.2/d4200000.axi/d4280000.sdh/mmc_host/mmc1/mmc1* auto auto defaults voldmanaged=sdcard1:auto,encryptable=userdata
+/devices/platform/soc.2/d4200000.axi/d4208100.ehci/usb*sd*            auto auto defaults voldmanaged=usb:auto
