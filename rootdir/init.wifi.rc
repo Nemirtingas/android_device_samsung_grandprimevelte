@@ -108,11 +108,6 @@ service iprenew_p2p /system/bin/dhcpcd -n
 #	 user wifi
 #	 group system
 
-# init.rc does not yet support applying capabilities, so run as root and
-# let wireless daemon drop uid to system with the right linux capabilities
-service mwirelessd /system/bin/MarvellWirelessDaemon
-    class main
-
 # hostapd
 service hostapd /system/bin/hostapd -dddd /data/misc/wifi/hostapd.conf
 	class late_start
