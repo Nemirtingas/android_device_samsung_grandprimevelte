@@ -22,11 +22,6 @@ DEVICE_PATH := device/samsung/grandprimevelte
 
 TARGET_OTA_ASSERT_DEVICE := grandprimevelte
 
-# RIL
-ANDROID_MULTI_SIM := true
-SIM_COUNT := 4
-ANDROID_SIM_COUNT_4 := true
-
 # Init
 TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_LIBINIT_PXA1908_DEFINES_FILE := $(DEVICE_PATH)/init/init_grandprimevelte.cpp
@@ -36,7 +31,8 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # RIL
 BOARD_PROVIDES_LIBRIL := true
-BOARD_PROVIDES_RILD := true
+ANDROID_MULTI_SIM := true
+ANDROID_SIM_COUNT_2 := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/grandprimevelte

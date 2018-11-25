@@ -1,5 +1,7 @@
 Find a way to compile boot image without doing: export MKBOOTIMG="mkbootimg-pxa"
 
+Find a way to build bluetooth.default.so without commenting "assert(ble_supported);" in system/bt/device/src/controller.c
+
 rtccd3 : RunTime CompressCache Daemon, its a daemon that enables zram0
 
 # WiFi & Bluetooth: Working on Lollipop 5.1.1
