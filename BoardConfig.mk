@@ -49,9 +49,9 @@ BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_IMAGE_NAME   := Image.gz
 BOARD_DTBTOOL_ARGS        :=
 BOARD_MKBOOTIMG_ARGS      := --unknown 0x3000000 --tags_offset 0x00000100
-#BOARD_MKBOOTIMG_ARGS      := --signature device/samsung/grandprimevelte/boot/boot.img-signature --unknown 0x3000000 --tags_offset 0x00000100
+BOARD_MKBOOTIMG_ARGS      := --signature device/samsung/grandprimevelte/boot/boot.img-signature --unknown 0x3000000 --tags_offset 0x00000100
 BOARD_MKRECOVERYIMG_ARGS  := --unknown 0x3000000 --tags_offset 0x00000100
-#BOARD_MKRECOVERYIMG_ARGS  := --signature device/samsung/grandprimevelte/recovery/recovery.img-signature --unknown 0x3000000 --tags_offset 0x00000100
+BOARD_MKRECOVERYIMG_ARGS  := --signature device/samsung/grandprimevelte/recovery/recovery.img-signature --unknown 0x3000000 --tags_offset 0x00000100
 BOARD_UBOOT_ARGS          := -A arm64 -O linux -T kernel -C gzip -a 01000000 -e 01000000 -n "pxa1928dkb linux"
 BOARD_UBOOT_IMAGE_NAME    := uImage
 

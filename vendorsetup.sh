@@ -1,3 +1,3 @@
-add_lunch_combo cm_grandprimevelte-eng
-add_lunch_combo cm_grandprimevelte-user
-add_lunch_combo cm_grandprimevelte-userdebug
+add_lunch_combo lineage_grandprimevelte-eng
+add_lunch_combo lineage_grandprimevelte-user
+add_lunch_combo lineage_grandprimevelte-userdebug

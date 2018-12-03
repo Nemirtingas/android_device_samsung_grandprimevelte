@@ -39,20 +39,6 @@
 
 #include "init_pxa1908.h"
 
-enum
-{
-	G531F,
-	NONE
-};
-
-int get_device_variant(const char* bootloader)
-{
-	if( strstr(bootloader,"SM-G531F") != NULL )
-		return G531F;
-
-	return NONE;
-}
-
 void set_rild_libpath(char const *variant)
 {
     char libpath[512];
@@ -105,21 +91,17 @@ void init_target_properties()
 
     char bootloader[PROPERTY_VALUE_MAX];
     property_get("ro.bootloader", bootloader);
-
-    switch(get_device_variant(bootloader))
+    
+    if( strstr(bootloader, "SM-G531F") )
     {
-        case G531F:
             property_override("ro.build.fingerprint", "samsung/grandprimeveltexx/grandprimevelte:5.1.1/LMY48B/G531FXXU1APG2:user/release-keys");
             property_override("ro.build.description", "grandprimeveltexx-user 5.1.1 LMY48B G531FXXU1APG2 release-keys");
             property_override("ro.product.model", "SM-G531F");
             property_override("ro.product.device", "grandprimevelte");
             property_override("ro.telephony.ril_class", "SamsungPXA1908RIL");
             lte_properties("");
-            break;
-        default:
-	    break;
     }
-
+    
     char device[PROPERTY_VALUE_MAX];
     property_get("ro.product.device", device);
     INFO("Found bootloader id %s setting build properties for %s device\n", bootloader, device);
