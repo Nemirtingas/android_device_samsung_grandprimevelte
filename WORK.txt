@@ -1,0 +1,142 @@
+drivers/clk/mmp/dvfs-pxa1908.c -> frequency table
+
+DONE = Find a way to compile boot image without doing: export MKBOOTIMG="mkbootimg-pxa"
+
+Find a way to build bluetooth.default.so without commenting "assert(ble_supported);" in system/bt/device/src/controller.c
+
+rtccd3 : RunTime CompressCache Daemon, its a daemon that enables zram0
+
+# WiFi & Bluetooth: Working on Lollipop 5.1.1
+
+# Disable WiFi & Bth Modem :
+echo 0 >/sys/devices/platform/sd8x-rfkill/pwr_ctrl
+# Enable WiFi & Bth Modem :
+echo 1 >/sys/devices/platform/sd8x-rfkill/pwr_ctrl
+
+bin/mfgloader             -> Init modem
+  |-- -l|--load (normal|debug) : enable Modem in normal or debug mode (debug mode needs /system/etc/firmware/mrvl/SDIO8777_SDIO_SDIO.bin).
+  \-- -u : unload modem.
+
+bin/MarvellWirelessDaemon -> Modem control Daemon
+
+
+# Backlight
+/sys/devices/platform/soc.2/d4000000.apb/d4037000.i2c/i2c-2/2-0030/88pm88x-leds.1/leds/torch/brightness
+
+
+# RIL: DONE
+# All those bins are needed
+/system/bin/cploader
+/system/bin/mrdloader
+/system/bin/telmon
+/system/bin/nvm
+/system/bin/diag
+/system/bin/pppmodem
+/system/bin/at_router
+/system/bin/IMLLog
+/system/bin/eeh
+/system/bin/nvmcp
+/system/bin/tel_launch.sh
+/system/bin/tel_lpm.sh
+/system/bin/run_composite.sh
+/system/bin/backup_log.sh
+/system/bin/copy_nvm.sh
+/system/lib/libMILV.so
+/system/lib/libwtpsp_ss.so
+/system/lib/libatchannel.so
+/system/lib/libatserver.so
+/system/lib/libmtel.so
+
+# To setup RIL modem, run tel_launch.sh
+# RIL Setup:
+Initrd starts tel_launch.sh, 
+#init.tel.rc defines
+#export NVM_ROOT_DIR /NVM
+#export MARVELL_RW_DIR /tmp/acat
+
+tel_launch.sh: 
+setprop marvell.ril.ppp.enabled 0
+setprop log.tag.Mms V
+setprop sys.usb.diagmodem 1
+if getprop ro.cmd.WORLD_PHONE == "true"
+    if getprop persist.radio.auto.switch is not set
+         setprop persist.radio.auto.switch 0
+
+backup_log.sh:
+mv /data/atcmd.log /data/atcmd.log.bak
+mv /data/sm.log /data/sm.log.bak
+mv /data/ad.log /data/ad.log.bak
+mv /data/radio.log /data/radio.log.bak
+mv /data/memlog.bin /data/memlog.bin.bak
+mv $NVM_ROOT_DIR/AppErrorStatistic.log $NVM_ROOT_DIR/AppErrorStatistic.log.bak
+mv $NVM_ROOT_DIR/CpErrorStatistic.log $NVM_ROOT_DIR/CpErrorStatistic.log.bak
+
+run_composite.sh:
+setprop sys.telephony.default.loglevel 8
+chown system:root /sys/class/power_supply/battery/capacity
+chmod 0664 /sys/class/power_supply/battery/capacity
+pcm_master=`getprop persist.radio.pcmmaster`
+if "$pcm_master" != "0" 
+  pcm_master="1"
+echo $pcm_master > /sys/module/audiostub/parameters/pcm_master
+/system/bin/cploader
+ret = $?
+if not exists $MARVELL_RW_DIR
+    mkdir $MARVELL_RW_DIR
+    chown system.system $MARVELL_RW_DIR
+    chmod 0755 $MARVELL_RW_DIR
+
+if $ret == "255"
+    stop ril_daemon
+if $ret == 1
+    stop ril-daemon
+    start diag-aponly
+    start atcmdsrv-aponly
+
+sync
+start eeh
+start nvm-aponly
+start diag
+start iml
+testMode = getprop persist.sys.telephony.testmode
+if getprop ro.cmd.ssipc_enable == "true"
+    if "${testMode/L1V}" == "$testMode"
+        start atcmdsrv
+    else
+        start atcmdsrv-aponly
+else
+    start at_router
+
+start log_on_boot
+start imsc
+
+
+# GPS
+/system/bin/gpslpm_srv
+/system/lib/libagps_hal.so
+/system/etc/pxa_testcfg.ini
+/system/etc/mrvl_gps_platform.conf
+
+
+# Audio
+lib/hw/audio.primary.mrvl.so
+lib/hw/audio_policy.default.so
+lib/hw/audio.a2dp.default.so
+lib/hw/audio.primary.default.so
+lib/hw/audio.r_submix.default.so
+lib/hw/audio.usb.default.so
+lib/libsamsungSoundbooster.so
+lib/lib_Samsung_SB_AM_for_ICS_v03008.so
+lib/libSamsungPreProcess.so
+lib/libSamsungPostProcess.so
+lib/libsamsungRecord.so
+lib/lib_SamsungRec_V04012.so
+lib/libacm.so
+lib/libacoustic.so
+lib/libippsp.so
+lib/libmiscgen.so
+lib/libippvp.so
+lib/libaudiodebugtool.so
+lib/libvcm.so
+# For now, there'r rights bug on these files for sound, enable read/write for everyone (not good but till I find a good fix...)
+chmod 777 /dev/snd/*

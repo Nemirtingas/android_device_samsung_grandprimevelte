@@ -36,7 +36,7 @@ ANDROID_SIM_COUNT_2 := true
 
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/grandprimevelte
-TARGET_KERNEL_CONFIG := cm_grandprimevelte_defconfig
+TARGET_KERNEL_CONFIG := lineage_grandprimevelte_defconfig
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
