@@ -55,3 +55,6 @@ ro.telephony.default_network=9
 #ro.atm.manufacturer.id=Marvell
 #ro.atm.model.id=LINUX
 #ro.atm.id=Marvell
+
+ro.build.fingerprint=samsung/grandprimeveltexx/grandprimevelte:5.1.1/LMY48B/G531FXXU1APG2:user/release-keys
+ro.build.description=grandprimeveltexx-user 5.1.1 LMY48B G531FXXU1APG2 release-keys

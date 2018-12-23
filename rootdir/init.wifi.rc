@@ -16,8 +16,8 @@ on init
     chown system system /sys/module/sd8777/parameters/mfg_mode
     chown system system /sys/module/sd8777/parameters/fw_name
     chown system system /sys/module/sd8777/parameters/cfg80211_wext
-on post-fs-data
 
+on post-fs-data
     # create directory for hostapd
     mkdir /data/hostapd 0770 system wifi
 
@@ -103,11 +103,6 @@ service iprenew_p2p /system/bin/dhcpcd -n
     disabled
     oneshot
 
-#service simal /system/bin/simal
-#	 class late_start
-#	 user wifi
-#	 group system
-
 # hostapd
 service hostapd /system/bin/hostapd -dddd /data/misc/wifi/hostapd.conf
 	class late_start
@@ -116,27 +111,8 @@ service hostapd /system/bin/hostapd -dddd /data/misc/wifi/hostapd.conf
 	oneshot
 	disabled
 
-#Start for  WiFi MFG(TestMode)
-service mfgloader /system/bin/mfgloader
-	class main
-	disabled
-	oneshot
-
-service wlandutservice /system/bin/wlandutservice
-	class main
-	user system
-	group wifi net_raw net_admin system inet
-	disabled
-	oneshot
-
-service macloader /system/bin/macloader
-	class main
-	oneshot
-
-on property:init.svc.macloader=stopped
-    chown system root /data/.cid.info
-    chmod 0664 /data/.cid.info
-    chown system root /data/.rev
-    chmod 0664 /data/.rev
-#End of WiFi MFG(TestMode)
+# init.rc does not yet support applying capabilities, so run as root and
+# let wireless daemon drop uid to system with the right linux capabilities
+service mwirelessd /system/bin/MarvellWirelessDaemon
+    class main
 

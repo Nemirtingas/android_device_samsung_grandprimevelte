@@ -38,10 +38,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_PACKAGES += \
     init.tel.rc \
     init.wifi.rc \
-    init.container.rc \
-    init_bsp.pxa1908.rc \
-    init_bsp.pxa1908.tel.rc \
-    init_bsp.rc \
     fstab.pxa1908 \
     fstab_lpm.pxa1908
 

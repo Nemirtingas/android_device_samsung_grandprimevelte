@@ -87,12 +87,6 @@ service mfgbridge /system/bin/mfgbridge
     oneshot
     disabled
 
-service log_on_boot /system/bin/log_on_boot.sh
-    user radio
-    group system log
-    oneshot
-    disabled
-
 service at_router /system/bin/at_router
     disabled
     socket atil stream 660 system radio
