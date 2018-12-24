@@ -92,7 +92,7 @@ void init_target_properties()
     char bootloader[PROPERTY_VALUE_MAX];
     property_get("ro.bootloader", bootloader);
     
-    if( strstr(bootloader, "SM-G531F") )
+    if( strstr(bootloader, "G531F") )
     {
             property_override("ro.build.fingerprint", "samsung/grandprimeveltexx/grandprimevelte:5.1.1/LMY48B/G531FXXU1APG2:user/release-keys");
             property_override("ro.build.description", "grandprimeveltexx-user 5.1.1 LMY48B G531FXXU1APG2 release-keys");
@@ -104,5 +104,5 @@ void init_target_properties()
     
     char device[PROPERTY_VALUE_MAX];
     property_get("ro.product.device", device);
-    INFO("Found bootloader id %s setting build properties for %s device\n", bootloader, device);
+    ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader, device);
 }
