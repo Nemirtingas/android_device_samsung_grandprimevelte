@@ -811,7 +811,7 @@ dispatchDial (Parcel &p, RequestInfo *pRI) {
     status_t status;
 // OEM //
     char *buffer;
-    CallDetails datas;
+    CallDetails datas = {0};
 // OEM //
     RLOGD("dispatchDial");
     memset (&dial, 0, sizeof(dial));
@@ -2358,7 +2358,7 @@ static int responseVoid(Parcel &p, void *response, size_t responselen) {
 static int responseCallList(Parcel &p, void *response, size_t responselen) {
     int num;
 // OEM //
-    char *serialized_callList;
+    char *serialized_callList = NULL;
 // OEM //
 
     if (response == NULL && responselen != 0) {
@@ -2395,16 +2395,20 @@ static int responseCallList(Parcel &p, void *response, size_t responselen) {
             p.writeInt32(p_cur->callDetails->call_domain);
             serialized_callList = serializeCallDetails(p_cur->callDetails);
             if(serialized_callList == NULL)
-                serialized_callList = "";
+            {
+                writeStringToParcel(p, "");
+            }
+            else
+            {
+                writeStringToParcel(p, serialized_callList);
+            }
         }
         else
         {
             p.writeInt32(0);
             p.writeInt32(1);
-            serialized_callList = "";
+            writeStringToParcel(p, "");
         }
-
-        writeStringToParcel(p, serialized_callList);
 // OEM //
 
         p.writeInt32(p_cur->isVoicePrivacy);
@@ -2441,6 +2445,11 @@ static int responseCallList(Parcel &p, void *response, size_t responselen) {
             p_cur->numberPresentation,
             p_cur->name,
             p_cur->namePresentation);
+
+// OEM //
+        if(serialized_callList != NULL)
+            free(serialized_callList);
+// OEM //
     }
     removeLastChar;
     closeResponse;
