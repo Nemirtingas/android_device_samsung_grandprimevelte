@@ -3,7 +3,6 @@
 #
 
 ro.product.model=SM-G531F
-rild.libpath=/system/lib/libsec-ril.so
 
 # System property for storage_preload
 persist.sys.storage_preload=1
@@ -43,15 +42,11 @@ ro.tel.config.path=/system/etc/tel/
 ro.cmd.DUAL_SIMCARD=true
 ro.cmd.ssipc_enable=true
 ro.cmd.WORLD_PHONE=true
-ro.telephony.default_network=9
-#keyguard.no_require_sim=1
-#ro.wifi.active_roaming.enable=true
-#ro.config.max_starting_bg=10
-#persist.service.camera.isptype=1
-#ro.kernel.qemu=0
-#ril.stk.sim.profile=FFFFFFFF7F0F009F7F00001FE200000003
-#ril.stk.usim.profile=FFFFFFFF7F9F00DFFF00001FE2000000C3E00000000148005100000000080000
-#ro.security.mode=tz
-#ro.atm.manufacturer.id=Marvell
-#ro.atm.model.id=LINUX
-#ro.atm.id=Marvell
+
+ro.config.oomminfree=73728,92160,110592,129024,147456,184320
+ro.wifi.active_roaming.enable=true
+keyguard.no_require_sim=1
+ro.config.max_starting_bg=10
+persist.service.camera.isptype=1
+ro.kernel.qemu=0
+ro.security.mode=tz
