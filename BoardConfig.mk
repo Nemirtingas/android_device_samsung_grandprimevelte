@@ -43,15 +43,13 @@ TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/
 
 BOARD_KERNEL_BASE         := 0x10000000
-BOARD_KERNEL_CMDLINE      :=
+BOARD_KERNEL_CMDLINE      := android.mavaleur=test
 BOARD_KERNEL_PAGESIZE     := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_IMAGE_NAME   := Image.gz
 BOARD_DTBTOOL_ARGS        :=
 BOARD_MKBOOTIMG_ARGS      := --unknown 0x3000000 --tags_offset 0x00000100
-BOARD_MKBOOTIMG_ARGS      := --signature device/samsung/grandprimevelte/boot/boot.img-signature --unknown 0x3000000 --tags_offset 0x00000100
 BOARD_MKRECOVERYIMG_ARGS  := --unknown 0x3000000 --tags_offset 0x00000100
-BOARD_MKRECOVERYIMG_ARGS  := --signature device/samsung/grandprimevelte/recovery/recovery.img-signature --unknown 0x3000000 --tags_offset 0x00000100
 BOARD_UBOOT_ARGS          := -A arm64 -O linux -T kernel -C gzip -a 01000000 -e 01000000 -n "pxa1928dkb linux"
 BOARD_UBOOT_IMAGE_NAME    := uImage
 
@@ -73,7 +71,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
 # TWRP Recovery
 RECOVERY_VARIANT := twrp
 TW_THEME := portrait_hdpi
-PRODUCT_COPY_FILES += $(DEVICE_PATH)/recovery/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab
+PRODUCT_COPY_FILES += $(DEVICE_PATH)/root/etc/twrp.fstab:recovery/root/etc/twrp.fstab
 RECOVERY_FSTAB_VERSION := 2
 HAVE_SELINUX := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true

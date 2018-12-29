@@ -48,5 +48,5 @@ ro.wifi.active_roaming.enable=true
 keyguard.no_require_sim=1
 ro.config.max_starting_bg=10
 persist.service.camera.isptype=1
-ro.kernel.qemu=0
-ro.security.mode=tz
+#ro.kernel.qemu=0
+#ro.security.mode=tz

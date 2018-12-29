@@ -53,48 +53,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.adb.secure=0
 endif
 
+ADDITION_DEFAULT_PROPERTIES += ro.boot.bootdevice=soc.2/d4200000.axi/d4281000.sdh
+
 # Inherit from 
 $(call inherit-product, device/samsung/pxa1908-common/pxa1908-common.mk)
-
-# Permissions
-#PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/permissions/allshare_library.xml:system/etc/permissions/allshare_library.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.bluetooth_le.xml:system/etc/permissions/android.hardware.bluetooth_le.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.jazzhand.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
-    $(LOCAL_PATH)/configs/permissions/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
-    $(LOCAL_PATH)/configs/permissions/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml \
-    $(LOCAL_PATH)/configs/permissions/com.broadcom.bt.xml:system/etc/permissions/com.broadcom.bt.xml \
-    $(LOCAL_PATH)/configs/permissions/com.broadcom.nfc.xml:system/etc/permissions/com.broadcom.nfc.xml \
-    $(LOCAL_PATH)/configs/permissions/com.google.android.maps.xml:system/etc/permissions/com.google.android.maps.xml \
-    $(LOCAL_PATH)/configs/permissions/com.google.android.media.effects.xml:system/etc/permissions/com.google.android.media.effects.xml \
-    $(LOCAL_PATH)/configs/permissions/com.google.widevine.software.drm.xml:system/etc/permissions/com.google.widevine.software.drm.xml \
-    $(LOCAL_PATH)/configs/permissions/com.gsma.services.nfc.xml:system/etc/permissions/com.gsma.services.nfc.xml \
-    $(LOCAL_PATH)/configs/permissions/com.marvell.atclient.xml:system/etc/permissions/com.marvell.atclient.xml \
-    $(LOCAL_PATH)/configs/permissions/com.marvell.fmmanager.xml:system/etc/permissions/com.marvell.fmmanager.xml \
-    $(LOCAL_PATH)/configs/permissions/com.samsung.bbc.xml:system/etc/permissions/com.samsung.bbc.xml \
-    $(LOCAL_PATH)/configs/permissions/com.samsung.device.xml:system/etc/permissions/com.samsung.device.xml \
-    $(LOCAL_PATH)/configs/permissions/com.sec.feature.call_vt_support.xml:system/etc/permissions/com.sec.feature.call_vt_support.xml \
-    $(LOCAL_PATH)/configs/permissions/com.sec.smartcard.auth.xml:system/etc/permissions/com.sec.smartcard.auth.xml \
-    $(LOCAL_PATH)/configs/permissions/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    $(LOCAL_PATH)/configs/permissions/hw-features.xml:system/etc/permissions/hw-features.xml \
-    $(LOCAL_PATH)/configs/permissions/imsmanager_library.xml:system/etc/permissions/imsmanager_library.xml \
-    $(LOCAL_PATH)/configs/permissions/org.simalliance.openmobileapi.xml:system/etc/permissions/org.simalliance.openmobileapi.xml \
-    $(LOCAL_PATH)/configs/permissions/rcsopenapi_library.xml:system/etc/permissions/rcsopenapi_library.xml \
-    $(LOCAL_PATH)/configs/permissions/sec_edm.xml:system/etc/permissions/sec_edm.xml \
-    $(LOCAL_PATH)/configs/permissions/sec_mdm.xml:system/etc/permissions/sec_mdm.xml \
-    $(LOCAL_PATH)/configs/permissions/sec_platform_library.xml:system/etc/permissions/sec_platform_library.xml \
-    $(LOCAL_PATH)/configs/permissions/seccamera.xml:system/etc/permissions/seccamera.xml \
-    $(LOCAL_PATH)/configs/permissions/secimaging.xml:system/etc/permissions/secimaging.xml \
-    $(LOCAL_PATH)/configs/permissions/secmediarecorder.xml:system/etc/permissions/secmediarecorder.xml \
-    $(LOCAL_PATH)/configs/permissions/secvisualeffect.xml:system/etc/permissions/secvisualeffect.xml \
-    $(LOCAL_PATH)/configs/permissions/sw-features.xml:system/etc/permissions/sw-features.xml \
-    $(LOCAL_PATH)/configs/permissions/touchwiz.xml:system/etc/permissions/touchwiz.xml \
-    $(LOCAL_PATH)/configs/permissions/vtmanager_library.xml:system/etc/permissions/vtmanager_library.xml
-
