@@ -53,7 +53,7 @@ ADDITIONAL_DEFAULT_PROPERTIES += \
     ro.adb.secure=0
 endif
 
-ADDITION_DEFAULT_PROPERTIES += ro.boot.bootdevice=soc.2/d4200000.axi/d4281000.sdh
+ADDITIONAL_DEFAULT_PROPERTIES += ro.boot.bootdevice=soc.2/d4200000.axi/d4281000.sdh
 
 # Inherit from 
 $(call inherit-product, device/samsung/pxa1908-common/pxa1908-common.mk)
