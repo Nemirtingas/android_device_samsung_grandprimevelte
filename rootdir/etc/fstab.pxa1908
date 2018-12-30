@@ -32,15 +32,15 @@
 ## filesystem marked with check.
 ##
 ##
-/dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/SYSTEM     /system       ext4      ro,errors=panic                                                          wait
-/dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/CACHE      /cache        ext4      nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic  wait,check
-/dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/USER       /data         ext4      nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic  wait,check,encryptable=footer
-/dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/EFS        /efs          ext4      nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic  wait,check
-/dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/PERSISTENT /persistent   emmc      defaults                                                                        defaults
-/dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/KERNEL     /boot         emmc      defaults                                                                        defaults
-/dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/RECOVERY   /recovery     emmc      defaults                                                                        defaults
-/dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/NVM        /NVM          ext4      defaults                                                                        defaults
-/dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/MODEM      /radio        emmc      defaults                                                                        defaults
+/dev/block/platform/pxa_sdcc.1/by-name/SYSTEM     /system       ext4      ro,errors=panic                                                                 wait
+/dev/block/platform/pxa_sdcc.1/by-name/CACHE      /cache        ext4      nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic  wait,check
+/dev/block/platform/pxa_sdcc.1/by-name/USER       /data         ext4      nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic  wait,check,encryptable=footer
+/dev/block/platform/pxa_sdcc.1/by-name/EFS        /efs          ext4      nosuid,nodev,noatime,noauto_da_alloc,discard,journal_async_commit,errors=panic  wait,check
+/dev/block/platform/pxa_sdcc.1/by-name/PERSISTENT /persistent   emmc      defaults                                                                        defaults
+/dev/block/platform/pxa_sdcc.1/by-name/KERNEL     /boot         emmc      defaults                                                                        defaults
+/dev/block/platform/pxa_sdcc.1/by-name/RECOVERY   /recovery     emmc      defaults                                                                        defaults
+/dev/block/platform/pxa_sdcc.1/by-name/NVM        /NVM          ext4      defaults                                                                        defaults
+/dev/block/platform/pxa_sdcc.1/by-name/MODEM      /radio        emmc      defaults                                                                        defaults
 
 
 # VOLD
