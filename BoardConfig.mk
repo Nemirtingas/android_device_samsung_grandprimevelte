@@ -76,12 +76,13 @@ RECOVERY_FSTAB_VERSION := 2
 HAVE_SELINUX := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
+TW_HAS_DOWNLOAD_MODE := true
+TW_NO_REBOOT_BOOTLOADER := true
+TW_MTP_DEVICE := /dev/mtp_usb
 
 #TW_EXCLUDE_SUPERSU := true
 #TW_EXCLUDE_MTP := true
-#TW_MTP_DEVICE := /dev/usb_mtp_gadget
 #TW_EXCLUDE_DEFAULT_USB_INIT := true
-#TW_NO_REBOOT_BOOTLOADER := true
 #TW_HAS_DOWNLOAD_MODE := true
 #TW_INCLUDE_CRYPTO := true
 #TW_BRIGHTNESS_PATH := "/sys/devices/platform/ktd3102-bl.24/backlight/panel/brightness"
