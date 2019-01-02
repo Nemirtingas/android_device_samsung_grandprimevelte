@@ -45,7 +45,6 @@ ro.cmd.WORLD_PHONE=true
 
 ro.config.oomminfree=73728,92160,110592,129024,147456,184320
 ro.wifi.active_roaming.enable=true
-keyguard.no_require_sim=1
 ro.config.max_starting_bg=10
 persist.service.camera.isptype=1
 #ro.kernel.qemu=0

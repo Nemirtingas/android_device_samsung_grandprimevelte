@@ -84,24 +84,22 @@ void gsm_properties(char const *rild_lib_variant)
 
 void init_target_properties()
 {
-    char platform[PROPERTY_VALUE_MAX];
-    property_get("ro.board.platform", platform);
-    if ( strstr(platform,ANDROID_TARGET) == NULL )
+    std::string platform = property_get("ro.board.platform");
+    if (platform != ANDROID_TARGET)
         return;
 
-    char bootloader[PROPERTY_VALUE_MAX];
-    property_get("ro.bootloader", bootloader);
-    if( strstr(bootloader, "G531F") != NULL )
+    std::string bootloader = property_get("ro.bootloader");
+
+    if( bootloader.find("G531F") == 0 )
     {
-            property_override("ro.build.fingerprint", "samsung/grandprimeveltexx/grandprimevelte:5.1.1/LMY48B/G531FXXU1APG2:user/release-keys");
-            property_override("ro.build.description", "grandprimeveltexx-user 5.1.1 LMY48B G531FXXU1APG2 release-keys");
-            property_override("ro.product.model", "SM-G531F");
-            property_override("ro.product.device", "grandprimevelte");
-            property_override("ro.telephony.ril_class", "SamsungPXA1908RIL");
-            lte_properties("");
+        property_override("ro.build.fingerprint", "samsung/grandprimeveltexx/grandprimevelte:5.1.1/LMY48B/G531FXXU1APG2:user/release-keys");
+        property_override("ro.build.description", "grandprimeveltexx-user 5.1.1 LMY48B G531FXXU1APG2 release-keys");
+        property_override("ro.product.model", "SM-G531F");
+        property_override("ro.product.device", "grandprimevelte");
+        property_override("ro.telephony.ril_class", "SamsungPXA1908RIL");
+        lte_properties("");
     }
-    
-    char device[PROPERTY_VALUE_MAX];
-    property_get("ro.product.device", device);
-    ERROR("Found bootloader id %s setting build properties for %s device\n", bootloader, device);
+
+    std::string device = property_get("ro.product.device");
+    INFO("Found bootloader id %s setting build properties for %s device\n", bootloader.c_str(), device.c_str());
 }
