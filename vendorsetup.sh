@@ -1,0 +1,3 @@
+add_lunch_combo cm_grandprimevelte-eng
+add_lunch_combo cm_grandprimevelte-user
+add_lunch_combo cm_grandprimevelte-userdebug

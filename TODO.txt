@@ -1,0 +1,7 @@
+- Upstream kernel from 3.10.27 to 3.10.108
+- Change CPU Frequencies to lower the power drain
+- Setup the OTA server
+- Fix libstagefrighthw (damn you Marvell...)
+- Make wrapper libraries to use Marvell libraries without modifying Android's code
+- Rework the power.mrvl library, to enhance battery life
+- Maybe something more, I can't remember right now

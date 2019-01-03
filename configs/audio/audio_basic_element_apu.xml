@@ -1,0 +1,2692 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MarvellAudioBasicElements>
+  <Version>2.0</Version>
+  <AudioComponents>
+    <AudioComponent>ELBA</AudioComponent>
+    <AudioComponent>USTICA</AudioComponent>
+    <AudioComponent>CLASSD_AMP</AudioComponent>
+    <AudioComponent>BT</AudioComponent>
+    <AudioComponent>FM</AudioComponent>
+    <AudioComponent>GPIO_PORT</AudioComponent>
+    <AudioComponent>DELAY</AudioComponent>
+    <AudioComponent>MODEM</AudioComponent>
+    <AudioComponent>SW</AudioComponent>
+    <AudioComponent>CODEC</AudioComponent>
+    <AudioComponent>PMIC</AudioComponent>
+    <AudioComponent>APU</AudioComponent>
+  </AudioComponents>
+  <ControlProtocols>
+    <Protocol>I2C</Protocol>
+    <Protocol>HCI</Protocol>
+    <Protocol>GPIO</Protocol>
+    <Protocol>ACIPC</Protocol>
+    <Protocol>SLEEP</Protocol>
+    <Protocol>APB</Protocol>
+  </ControlProtocols>
+  <Operations>
+    <Operation>ENABLE</Operation>
+    <Operation>DISABLE</Operation>
+    <Operation>MUTE</Operation>
+    <Operation>SETVOLUME</Operation>
+    <Operation>SWITCH</Operation>
+  </Operations>
+  <Component identifier="APU">
+    <RegisterInfo index="0x00" name="Revision Control Register">
+      <Bits range="31:8" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="7:4" field="MAJOR_REV_ID[3:0]" default="1" desc="major revision id. Format is major(3:0).minor(3:0)" />
+      <Bits range="3:0" field="MINOR_REV_ID[3:0]" default="0" desc="minor revision id. Format is major(3:0).minor(3:0)" />
+    </RegisterInfo>
+    <RegisterInfo index="0x04" name="LRCLK selection for both ADC and DAC Path">
+      <Bits range="31:20" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="19:16" field="RATE_I2S1_PCM[3:0]" default="111" desc="I2S Data rate for both I2S Interface 1 (Audio)" />
+      <Bits range="15:12" field="RATE_I2S2_PCM[3:0]" default="0" desc="I2S Data rate for both I2S Interface 2 (Voice)" />
+      <Bits range="11:8" field="RATE_I2S3_PCM[3:0]" default="0" desc="I2S Data rate for both I2S Interface 3 (Aux)" />
+      <Bits range="7:4" field="RATE_I2S4_PCM[3:0]" default="111" desc="I2S Data rate for both I2S Interface 4 (Hifi)" />
+      <Bits range="3:0" field="RATE_I2S_OUT_PCM[3:0]" default="111" desc="I2S Data rate for internal DSP operation" />
+    </RegisterInfo>
+    <RegisterInfo index="0x08" name="Configuration of Audio I2S/PCM interface for both DAC and ADC Path">
+      <Bits range="31:23" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="22:19" field="I2S_START_POSITION[3:0]" default="100" desc="I2S start posisition" />
+      <Bits range="18:16" field="I2S1_LRCLK_WIDTH[2:0]" default="0" desc="I2S1 LRCLK width" />
+      <Bits range="15:14" field="I2S1_MODE[1:0]" default="00" desc="Audio interface mode selection " />
+      <Bits range="13:12" field="I2S1_DATA_LEN[1:0]" default="10" desc="Data length selection per channel (i.e. NBIT)" />
+      <Bits range="11" field="LRCLK1_POL" default="0" desc="ADC/DAC data left/right swap" />
+      <Bits range="10" field="BCLK1_POL" default="0" desc="I2S/PCM bclk polarity control" />
+      <Bits range="9" field="PCM1_MODE_SEL" default="0" desc="PCM Mode Select " />
+      <Bits range="8" field="I2S1_MASTER_SLAVE_SEL" default="1" desc="Main serial data port mode selection (I2S or PCM)" />
+      <Bits range="7" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="6" field="INVERT_LRCLK_I2S1" default="0" desc="Invert I2S1 LRCLK" />
+      <Bits range="5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4" field="I2S1_MSB_LSB" default="0" desc="Selects if MSB appears first or LSB appears first in I2S/PCM interface" />
+      <Bits range="3:2" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="1" field="I2S1_GEN_EN" default="0" desc="Enabled I2S Audio Generator (ADC side), effective after write apply_changes" />
+      <Bits range="0" field="I2S1_REC_EN" default="0" desc="Enabled I2S Audio Receiver (DAC side), effective after write apply_changes" />
+    </RegisterInfo>
+    <RegisterInfo index="0x0c" name="Configuration of I2S/PCM interface for both DAC and ADC Path">
+      <Bits range="31:19" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="18:16" field="I2S2_LRCLK_WIDTH[2:0]" default="0" desc="I2S2 LRCLK width" />
+      <Bits range="15:14" field="I2S2_MODE[1:0]" default="00" desc="Audio interface mode selection " />
+      <Bits range="13:12" field="I2S2_DATA_LEN[1:0]" default="10" desc="Data length selection per channel (i.e. NBIT)" />
+      <Bits range="11" field="LRCLK2_POL" default="0" desc="ADC/DAC data left/right swap" />
+      <Bits range="10" field="BCLK2_POL" default="0" desc="I2S/PCM bclk polarity control" />
+      <Bits range="9" field="PCM2_MODE_SEL" default="0" desc="PCM Mode Select " />
+      <Bits range="8" field="I2S2_MASTER_SLAVE_SEL" default="1" desc="Main serial data port mode selection (I2S or PCM)" />
+      <Bits range="7" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="6" field="INVERT_LRCLK2" default="0" desc="Invert LRCLK2" />
+      <Bits range="5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4" field="I2S2_MSB_LSB" default="0" desc="Selects if MSB appears first or LSB appears first in I2S/PCM interface" />
+      <Bits range="3:2" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="1" field="I2S2_GEN_EN" default="0" desc="Enabled I2S Voice Generator (ADC side), effective after write apply_changes" />
+      <Bits range="0" field="I2S2_REC_EN" default="0" desc="Enabled I2S Voice Receiver (DAC side), effective after write apply_changes" />
+    </RegisterInfo>
+    <RegisterInfo index="0x10" name="Configuration of I2S3/PCM3 interface for both DAC and ADC Path">
+      <Bits range="31:19" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="18:16" field="I2S3_LRCLK_WIDTH[2:0]" default="0" desc="I2S3 LRCLK width" />
+      <Bits range="15:14" field="I2S3_MODE[1:0]" default="00" desc="Audio interface mode selection " />
+      <Bits range="13:12" field="I2S3_DATA_LEN[1:0]" default="10" desc="Data length selection per channel (i.e. NBIT)" />
+      <Bits range="11" field="LRCLK3_POL" default="0" desc="ADC/DAC data left/right swap" />
+      <Bits range="10" field="BCLK3_POL" default="0" desc="I2S/PCM bclk polarity control" />
+      <Bits range="9" field="PCM3_MODE_SEL" default="0" desc="PCM Mode Select " />
+      <Bits range="8" field="I2S3_MASTER_SLAVE_SEL" default="1" desc="Main serial data port mode selection (I2S or PCM)" />
+      <Bits range="7" field="PCM_WIDTH_SEL" default="0" desc="pcm high phase width selection" />
+      <Bits range="6" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="5" field="HIZ_I2S3_DOUT" default="0" desc="I2S_DOUT pin behavior" />
+      <Bits range="4" field="I2S3_MSB_LSB" default="0" desc="Selects if MSB appears first or LSB appears first in I2S/PCM interface" />
+      <Bits range="3:2" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="1" field="I2S3_GEN_EN" default="0" desc="Enabled I2S Aux Generator (ADC side), effective after write apply_changes" />
+      <Bits range="0" field="I2S3_REC_EN" default="0" desc="Enabled I2S Aux Receiver (DAC side), effective after write apply_changes" />
+    </RegisterInfo>
+    <RegisterInfo index="0x14" name="Configuration of I2S4/PCM4 interface for both DAC and ADC Path">
+      <Bits range="31:19" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="18:16" field="I2S4_LRCLK_WIDTH[2:0]" default="0" desc="I2S4 LRCLK width" />
+      <Bits range="15:14" field="I2S4_MODE[1:0]" default="00" desc="Audio interface mode selection " />
+      <Bits range="13:12" field="I2S4_DATA_LEN[1:0]" default="10" desc="Data length selection per channel (i.e. NBIT)" />
+      <Bits range="11" field="LRCLK4_POL" default="0" desc="ADC/DAC data left/right swap" />
+      <Bits range="10" field="BCLK4_POL" default="0" desc="I2S/PCM bclk polarity control" />
+      <Bits range="9" field="PCM4_MODE_SEL" default="0" desc="PCM Mode Select " />
+      <Bits range="8" field="I2S4_MASTER_SLAVE_SEL" default="1" desc="Main serial data port mode selection (I2S or PCM)" />
+      <Bits range="7" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="6" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4" field="I2S4_MSB_LSB" default="0" desc="Selects if MSB appears first or LSB appears first in I2S/PCM interface" />
+      <Bits range="3:2" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="1" field="I2S4_GEN_EN" default="0" desc="Enabled I2S Hifi Generator (ADC side), effective after write apply_changes" />
+      <Bits range="0" field="I2S4_REC_EN" default="0" desc="Enabled I2S Hifi Receiver (DAC side), effective after write apply_changes" />
+    </RegisterInfo>
+    <RegisterInfo index="0x18" name="Configuration of DEI2S interface for both DAC and ADC Path">
+      <Bits range="31:21" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="20:18" field="DEI2S_LRCLK_WIDTH[2:0]" default="0" desc="DEI2S LRCLK width" />
+      <Bits range="17" field="DEI2S_MASTER_SLAVE_SEL" default="1" desc="Main serial data port mode selection (I2S or PCM)" />
+      <Bits range="16" field="HIZ_DEI2S_DOUT" default="0" desc="I2S_DOUT pin behavior" />
+      <Bits range="15:14" field="DEI2S_MODE[1:0]" default="00" desc="Audio interface mode selection " />
+      <Bits range="13:12" field="DEI2S_DATA_LEN[1:0]" default="10" desc="Data length selection per channel (i.e. NBIT)" />
+      <Bits range="11" field="DEI2S_LRCLK_POL" default="0" desc="ADC/DAC data left/right swap" />
+      <Bits range="10" field="DEI2S_BCLK_POL" default="0" desc="I2S/PCM bclk polarity control" />
+      <Bits range="9" field="DEI2S_PCM_MODE_SEL" default="0" desc="PCM Mode Select " />
+      <Bits range="8" field="DEI2S_MSB_LSB" default="0" desc="Selects if MSB appears first or LSB appears first in I2S/PCM interface" />
+      <Bits range="7" field="DEI2S_REC_L1_EN" default="0" desc="Enable rec path left channel 1, effective after write apply_changes" />
+      <Bits range="6" field="DEI2S_REC_L2_EN" default="0" desc="Enable rec path left channel 2, effective after write apply_changes" />
+      <Bits range="5" field="DEI2S_REC_R1_EN" default="0" desc="Enable rec path right channel 1, effective after write apply_changes" />
+      <Bits range="4" field="DEI2S_REC_R2_EN" default="0" desc="Enable rec path right channel 2, effective after write apply_changes" />
+      <Bits range="3" field="DEI2S_GEN_L1_EN" default="0" desc="Enable gen path left channel 1, effective after write apply_changes" />
+      <Bits range="2" field="DEI2S_GEN_L2_EN" default="0" desc="Enable gen path left channel 2, effective after write apply_changes" />
+      <Bits range="1" field="DEI2S_GEN_R1_EN" default="0" desc="Enable gen path right channel 1, effective after write apply_changes" />
+      <Bits range="0" field="DEI2S_GEN_R2_EN" default="0" desc="Enable gen path right channel 2, effective after write apply_changes" />
+    </RegisterInfo>
+    <RegisterInfo index="0x1c" name="oflag from mac and alu engines">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15" field="DEI2S_ADC_FIFO_STATUS_CLR" default="0" desc="Use to clear latching high register in DEI2S ADC FIFO. active high" />
+      <Bits range="14" field="DEI2S_DAC_FIFO_STATUS_CLR" default="0" desc="Use to clear latching high register in DEI2S DAC FIFO. active high" />
+      <Bits range="13" field="DEI2S_ADC_FIFO2_OFLAG" default="0" desc="ADC I2S FIFO overflor flag" />
+      <Bits range="12" field="DEI2S_ADC_FIFO2_EMPTY" default="0" desc="ADC I2S FIFO empty status bit (active high). It can only be cleared when 1 is written into adc_fifO_status_clr bit." />
+      <Bits range="11" field="DEI2S_ADC_FIFO2_FULL" default="0" desc="ADC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into adc_fifo_status_clr bit. " />
+      <Bits range="10" field="DEI2S_DAC_FIFO2_EMPTY" default="0" desc="DAC I2S FIFO empty status bit (active high). It can only be cleared when a 1 is written into dac_fifo_staus_clr bit." />
+      <Bits range="9" field="DEI2S_DAC_FIFO2_FULL" default="0" desc="DAC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into dac_fifo_status_clr bit." />
+      <Bits range="8" field="DEI2S_DAC_FIFO2_OFLAG" default="0" desc="DAC I2S FIFO overflor flag" />
+      <Bits range="7:6" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="5" field="DSP1_MAC_OFLAG" default="0" desc="Overflow flag from DAC Path DSP1" />
+      <Bits range="4" field="DSP2_MAC_OFLAG" default="0" desc="Overflow flag from DAC Path DSP2" />
+      <Bits range="3" field="DSP1A_MAC_OFLAG" default="0" desc="Overflow flag from ADC Path DSP1A" />
+      <Bits range="2" field="DSP1_ALU_OFLAG" default="0" desc="Overflow flag from DAC Path ALU1" />
+      <Bits range="1" field="DSP2_ALU_OFLAG" default="0" desc="Overflow flag from DAC Path ALU2" />
+      <Bits range="0" field="DSP1A_ALU_OFLAG" default="0" desc="Overflow flag from ADC Path ALU1A" />
+    </RegisterInfo>
+    <RegisterInfo index="0x20" name="I2S FIFO status">
+      <Bits range="31" field="ADC_FIFO_STATUS_CLR" default="0" desc="Use to clear latching high register in ADC FIFO. active high" />
+      <Bits range="30" field="DAC_FIFO_STATUS_CLR" default="0" desc="Use to clear latching high register in DAC FIFO. active high" />
+      <Bits range="29" field="DEI2S_ADC_FIFO1_OFLAG" default="0" desc="ADC I2S FIFO overflor flag" />
+      <Bits range="28" field="DEI2S_ADC_FIFO1_EMPTY" default="0" desc="ADC I2S FIFO empty status bit (active high). It can only be cleared when 1 is written into adc_fifO_status_clr bit." />
+      <Bits range="27" field="DEI2S_ADC_FIFO1_FULL" default="0" desc="ADC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into adc_fifo_status_clr bit. " />
+      <Bits range="26" field="DEI2S_DAC_FIFO1_EMPTY" default="0" desc="DAC I2S FIFO empty status bit (active high). It can only be cleared when a 1 is written into dac_fifo_staus_clr bit." />
+      <Bits range="25" field="DEI2S_DAC_FIFO1_FULL" default="0" desc="DAC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into dac_fifo_status_clr bit." />
+      <Bits range="24" field="DEI2S_DAC_FIFO1_OFLAG" default="0" desc="DAC I2S FIFO overflor flag" />
+      <Bits range="23" field="I2S4_ADC_FIFO_OFLAG" default="0" desc="ADC I2S FIFO overflor flag" />
+      <Bits range="22" field="I2S4_ADC_FIFO_EMPTY" default="0" desc="ADC I2S FIFO empty status bit (active high). It can only be cleared when 1 is written into adc_fifO_status_clr bit." />
+      <Bits range="21" field="I2S4_ADC_FIFO_FULL" default="0" desc="ADC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into adc_fifo_status_clr bit. " />
+      <Bits range="20" field="I2S4_DAC_FIFO_EMPTY" default="0" desc="DAC I2S FIFO empty status bit (active high). It can only be cleared when a 1 is written into dac_fifo_staus_clr bit." />
+      <Bits range="19" field="I2S4_DAC_FIFO_FULL" default="0" desc="DAC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into dac_fifo_status_clr bit." />
+      <Bits range="18" field="I2S4_DAC_FIFO_OFLAG" default="0" desc="DAC I2S FIFO overflor flag" />
+      <Bits range="17" field="I2S3_ADC_FIFO_OFLAG" default="0" desc="ADC I2S FIFO overflor flag" />
+      <Bits range="16" field="I2S3_ADC_FIFO_EMPTY" default="0" desc="ADC I2S FIFO empty status bit (active high). It can only be cleared when 1 is written into adc_fifO_status_clr bit." />
+      <Bits range="15" field="I2S3_ADC_FIFO_FULL" default="0" desc="ADC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into adc_fifo_status_clr bit. " />
+      <Bits range="14" field="I2S3_DAC_FIFO_EMPTY" default="0" desc="DAC I2S FIFO empty status bit (active high). It can only be cleared when a 1 is written into dac_fifo_staus_clr bit." />
+      <Bits range="13" field="I2S3_DAC_FIFO_FULL" default="0" desc="DAC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into dac_fifo_status_clr bit." />
+      <Bits range="12" field="I2S3_DAC_FIFO_OFLAG" default="0" desc="DAC I2S FIFO overflor flag" />
+      <Bits range="11" field="I2S2_ADC_FIFO_OFLAG" default="0" desc="ADC I2S FIFO overflor flag" />
+      <Bits range="10" field="I2S2_ADC_FIFO_EMPTY" default="0" desc="ADC I2S FIFO empty status bit (active high). It can only be cleared when 1 is written into adc_fifO_status_clr bit." />
+      <Bits range="9" field="I2S2_ADC_FIFO_FULL" default="0" desc="ADC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into adc_fifo_status_clr bit. " />
+      <Bits range="8" field="I2S2_DAC_FIFO_EMPTY" default="0" desc="DAC I2S FIFO empty status bit (active high). It can only be cleared when a 1 is written into dac_fifo_staus_clr bit." />
+      <Bits range="7" field="I2S2_DAC_FIFO_FULL" default="0" desc="DAC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into dac_fifo_status_clr bit." />
+      <Bits range="6" field="I2S2_DAC_FIFO_OFLAG" default="0" desc="DAC I2S FIFO overflor flag" />
+      <Bits range="5" field="I2S1_ADC_FIFO_OFLAG" default="0" desc="ADC I2S FIFO overflor flag" />
+      <Bits range="4" field="I2S1_ADC_FIFO_EMPTY" default="0" desc="ADC I2S FIFO empty status bit (active high). It can only be cleared when 1 is written into adc_fifO_status_clr bit." />
+      <Bits range="3" field="I2S1_ADC_FIFO_FULL" default="0" desc="ADC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into adc_fifo_status_clr bit. " />
+      <Bits range="2" field="I2S1_DAC_FIFO_EMPTY" default="0" desc="DAC I2S FIFO empty status bit (active high). It can only be cleared when a 1 is written into dac_fifo_staus_clr bit." />
+      <Bits range="1" field="I2S1_DAC_FIFO_FULL" default="0" desc="DAC I2S FIFO full status bit (active high). It can only be cleared when a 1 is written into dac_fifo_status_clr bit." />
+      <Bits range="0" field="I2S1_DAC_FIFO_OFLAG" default="0" desc="DAC I2S FIFO overflor flag" />
+    </RegisterInfo>
+    <RegisterInfo index="0x24" name="Configuration parameters for top fsm operation">
+      <Bits range="31:20" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="19" field="I2S_OUT_RESET" default="0" desc="DEI2S Reset" />
+      <Bits range="18" field="I2S4_RESET" default="0" desc="I2S Hifi Reset" />
+      <Bits range="17" field="I2S3_RESET" default="0" desc="I2S Aux Reset" />
+      <Bits range="16" field="I2S2_RESET" default="0" desc="I2S Voice Reset" />
+      <Bits range="15" field="I2S1_RESET" default="0" desc="I2S Audio Reset" />
+      <Bits range="14" field="ASRC4_RESET" default="0" desc="ASRC4 Reset" />
+      <Bits range="13" field="ASRC3_RESET" default="0" desc="ASRC3 Reset" />
+      <Bits range="12" field="ASRC2_RESET" default="0" desc="ASRC2 Reset" />
+      <Bits range="11" field="ASRC1_RESET" default="0" desc="ASRC1 Reset" />
+      <Bits range="10" field="DSP1A_RESET" default="0" desc="DSP1A Reset" />
+      <Bits range="9" field="DSP2_RESET" default="0" desc="DSP2 Reset" />
+      <Bits range="8" field="DSP1_RESET" default="0" desc="DSP1 Reset" />
+      <Bits range="7:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4" field="AUDIO_CLK_DIS" default="0" desc="Enable or disable all clocks" />
+      <Bits range="3:2" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="1" field="DATAPATH_RSTB" default="0" desc="Synchronous reset of the digital audio module, i.e. datapath is cleared with clock still running. Active LOW reset." />
+      <Bits range="0" field="AUDIO_RSTB" default="1" desc="Global entire chip active low reset." />
+    </RegisterInfo>
+    <RegisterInfo index="0x28" name="Configuration parameters for top fsm operation">
+      <Bits range="31:20" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="19:18" field="MEM_WTC[1:0]" default="0" desc="WTC of memories" />
+      <Bits range="17:16" field="MEM_RTC[1:0]" default="0" desc="RTC of memories" />
+      <Bits range="15" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="14:13" field="DEI2S_BCLK_SEL[1:0]" default="0" desc="dei2s_bclk_sel" />
+      <Bits range="12" field="I2S_VOICE_BCLK_SEL" default="0" desc="i2s_voice_bclk_sel" />
+      <Bits range="11:10" field="I2S_AUDIO_BCLK_SEL[1:0]" default="0" desc="i2s_audio_bclk_sel" />
+      <Bits range="9:8" field="I2S_HIFI_BCLK_SEL[1:0]" default="0" desc="i2s_hifi_bclk_sel" />
+      <Bits range="7" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="6" field="PRAM_CLK_SEL" default="0" desc="PRAM of DSP1/2/1A Clock Selection" />
+      <Bits range="5:4" field="DIG_CLK_DIV[1:0]" default="0" desc="Digital Clock Divider from High Speed Clock" />
+      <Bits range="3" field="TDM_PLL_CLK_SEL" default="0" desc="TDM PLL Clock Selection" />
+      <Bits range="2" field="BCLK_CLK_SEL" default="0" desc="BCLK Divider Source Clock Selection" />
+      <Bits range="1" field="PLL_CLK_SEL" default="0" desc="PLL Clock Selection" />
+      <Bits range="0" field="DIG_CLK_SEL" default="0" desc="Digital Clock Selection" />
+    </RegisterInfo>
+    <RegisterInfo index="0x2c" name="Configuration of DSP Engine output">
+      <Bits range="31:22" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="21:19" field="OUT1_SEL[2:0]" default="0" desc="MAP output1 select" />
+      <Bits range="18:16" field="OUT2_SEL[2:0]" default="0" desc="MAP output2 select" />
+      <Bits range="15:12" field="AIN1_SEL[3:0]" default="0" desc="ASRC1 input select" />
+      <Bits range="11:8" field="AIN2_SEL[3:0]" default="0" desc="ASRC2 input select" />
+      <Bits range="7:4" field="AIN3_SEL[3:0]" default="0" desc="ASRC3 input select" />
+      <Bits range="3:0" field="AIN4_SEL[3:0]" default="0" desc="ASRC4 input select" />
+    </RegisterInfo>
+    <RegisterInfo index="0x30" name="Configuration of DSP engine inputs">
+      <Bits range="31:22" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="21:19" field="D1AIN1_SEL[2:0]" default="0" desc="DSP1A input1 select" />
+      <Bits range="18:16" field="D1AIN2_SEL[2:0]" default="0" desc="DSP1A input1 select" />
+      <Bits range="15:14" field="D2IN1_SEL[1:0]" default="0" desc="DSP2 input1 select" />
+      <Bits range="13:12" field="D2IN2_SEL[1:0]" default="0" desc="DSP2 input2 select" />
+      <Bits range="11:10" field="D2IN3_SEL[1:0]" default="0" desc="DSP2 input3 select" />
+      <Bits range="9:8" field="D2IN4_SEL[1:0]" default="0" desc="DSP2 input4 select" />
+      <Bits range="7:6" field="D1IN1_SEL[1:0]" default="0" desc="DSP1 input1 select" />
+      <Bits range="5:4" field="D1IN2_SEL[1:0]" default="0" desc="DSP1 input2 select" />
+      <Bits range="3:2" field="D1IN3_SEL[1:0]" default="0" desc="DSP1 input3 select" />
+      <Bits range="1:0" field="D1IN4_SEL[1:0]" default="0" desc="DSP1 input4 select" />
+    </RegisterInfo>
+    <RegisterInfo index="0x34" name="Configuration of I2S outputs for stereo and mono data">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15" field="D1IN4_RIGHT_MUXSEL" default="0" desc="d1in4_right_muxsel" />
+      <Bits range="14" field="D1IN4_LEFT_MUXSEL" default="0" desc="d1in4_left_muxsel" />
+      <Bits range="13" field="D1IN3_RIGHT_MUXSEL" default="0" desc="d1in3_right_muxsel" />
+      <Bits range="12" field="D1IN3_LEFT_MUXSEL" default="0" desc="d1in3_left_muxsel" />
+      <Bits range="11" field="D1IN2_RIGHT_MUXSEL" default="0" desc="d1in2_right_muxsel" />
+      <Bits range="10" field="D1IN2_LEFT_MUXSEL" default="0" desc="d1in2_left_muxsel" />
+      <Bits range="9" field="D1IN1_RIGHT_MUXSEL" default="0" desc="d1in1_right_muxsel" />
+      <Bits range="8" field="D1IN1_LEFT_MUXSEL" default="0" desc="d1in1_left_muxsel" />
+      <Bits range="7" field="D2IN4_RIGHT_MUXSEL" default="0" desc="d2in4_right_muxsel" />
+      <Bits range="6" field="D2IN4_LEFT_MUXSEL" default="0" desc="d2in4_left_muxsel" />
+      <Bits range="5" field="D2IN3_RIGHT_MUXSEL" default="0" desc="d2in3_right_muxsel" />
+      <Bits range="4" field="D2IN3_LEFT_MUXSEL" default="0" desc="d2in3_left_muxsel" />
+      <Bits range="3" field="D2IN2_RIGHT_MUXSEL" default="0" desc="d2in2_right_muxsel" />
+      <Bits range="2" field="D2IN2_LEFT_MUXSEL" default="0" desc="d2in2_left_muxsel" />
+      <Bits range="1" field="D2IN1_RIGHT_MUXSEL" default="0" desc="d2in1_right_muxsel" />
+      <Bits range="0" field="D2IN1_LEFT_MUXSEL" default="0" desc="d2in1_left_muxsel" />
+    </RegisterInfo>
+    <RegisterInfo index="0x38" name="Dynamic ASRC Ratio adjust enable">
+      <Bits range="31:8" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="7" field="ASRC4_DN_FIX_EN" default="1" desc="asrc4_dn_fix_en" />
+      <Bits range="6" field="ASRC4_UP_FIX_EN" default="1" desc="asrc4_up_fix_en" />
+      <Bits range="5" field="ASRC3_DN_FIX_EN" default="1" desc="asrc3_dn_fix_en" />
+      <Bits range="4" field="ASRC3_UP_FIX_EN" default="1" desc="asrc3_up_fix_en" />
+      <Bits range="3" field="ASRC2_DN_FIX_EN" default="1" desc="asrc2_dn_fix_en" />
+      <Bits range="2" field="ASRC2_UP_FIX_EN" default="1" desc="asrc2_up_fix_en" />
+      <Bits range="1" field="ASRC1_DN_FIX_EN" default="1" desc="asrc1_dn_fix_en" />
+      <Bits range="0" field="ASRC1_UP_FIX_EN" default="1" desc="asrc1_up_fix_en" />
+    </RegisterInfo>
+    <RegisterInfo index="0x3c" name="TDM Control Register1">
+      <Bits range="31:21" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="20" field="TDM_EN" default="0" desc="TDM enable" />
+      <Bits range="19" field="TDM_MST" default="0" desc="TDM is master or slave mode" />
+      <Bits range="18" field="TDM_FIFO_BYPASS" default="0" desc="TDM fifo bypass" />
+      <Bits range="17" field="TDM_MNT_FIFO_EN" default="0" desc="TDM mount fifo enable" />
+      <Bits range="16" field="TDM_DELAY_MODE" default="0" desc="TDM delay mode setting" />
+      <Bits range="15" field="TDM_DOUBLE_EDGE" default="0" desc="TDM double edge mode enable" />
+      <Bits range="14" field="TDM_APPLY_CKG_CONF" default="0" desc="TDM apply the ckg configuration" />
+      <Bits range="13" field="TDM_APPLY_TDM_CONF" default="0" desc="TDM apply the configuration" />
+      <Bits range="12:11" field="TDM_SLOT_SIZE[1:0]" default="0" desc="TDM slot size, applied with apply_tdm_conf" />
+      <Bits range="10:8" field="TDM_SLOT_SPACE[2:0]" default="0" desc="Number of bclk between two slots (0-7), (1-8) in double edge mode, applied with apply_tdm_conf" />
+      <Bits range="7:4" field="TDM_MAX_SLOT[3:0]" default="0" desc="Max number of slots that can be allocated on the bus (0-12), After the last slot, the bclk is stopped. Not used if set to 0. Applied with apply_ckg_conf" />
+      <Bits range="3:0" field="TDM_START_SLOT[3:0]" default="0" desc="Number of bclk between fsyn edge and the first slot (12-0), 0 cannot be used in double edge (automatically set 1), Applied with apply_tdm_conf" />
+    </RegisterInfo>
+    <RegisterInfo index="0x40" name="TDM Control Register2">
+      <Bits range="31:24" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="23:0" field="TDM_CHO_SLOT_1[23:0]" default="0" desc="First slot used by output channel x (0-12), applied with apply_tdm_conf" />
+    </RegisterInfo>
+    <RegisterInfo index="0x44" name="TDM Control Register3">
+      <Bits range="31:24" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="23:0" field="TDM_CHO_SLOT_2[23:0]" default="0" desc="Second slot used by output channel x (0-12), applied with apply_tdm_conf" />
+    </RegisterInfo>
+    <RegisterInfo index="0x48" name="TDM Control Register4">
+      <Bits range="31:20" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="19:0" field="TDM_CHI_SLOT[51:32]" default="0" desc="Slot used by input channel x in sdi (8-12)" />
+    </RegisterInfo>
+    <RegisterInfo index="0x4c" name="TDM Control Register5">
+      <Bits range="31:0" field="TDM_CHI_SLOT[31:0]" default="0" desc="Slot used by input channel x in sdi (0-7)" />
+    </RegisterInfo>
+    <RegisterInfo index="0x50" name="TDM Control Register6">
+      <Bits range="31:12" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="11:0" field="TDM_CHO_DL[11:0]" default="0" desc="Data length of output channel (0-5), applied with apply_tdm_conf" />
+    </RegisterInfo>
+    <RegisterInfo index="0x54" name="TDM Control Register7">
+      <Bits range="31:26" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="25:0" field="TDM_CHI_DL[25:0]" default="0" desc="Data length of input channel (0-12), applied with apply_tdm_conf" />
+    </RegisterInfo>
+    <RegisterInfo index="0x58" name="TDM Control Register8">
+      <Bits range="31" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="30" field="TDM_FSYN_DITH" default="0" desc="TDM fsyn dithering mode, applied with apply_ckg_conf" />
+      <Bits range="29" field="TDM_FSYN_DITH_MODE" default="0" desc="Set TDM fsyn ditering mode, applied with apply_ckg_conf" />
+      <Bits range="28" field="TDM_FSYN_POLARITY" default="0" desc="TDM fsyn polarity" />
+      <Bits range="27:18" field="TDM_FSYN_PULSE_WIDTH[9:0]" default="0" desc="Fsyn low duration in number of bclk (1023-1). Note that it must be lower than the number of bclk inside one fsyn clock cycle. Applied with apply_ckg_conf." />
+      <Bits range="17:0" field="TDM_FSYN_RATE[17:0]" default="0" desc="Set the fsyn_freq, fsyn_freq=(pll_clk_freq/tdm_fsyn_rate+4)" />
+    </RegisterInfo>
+    <RegisterInfo index="0x5c" name="TDM Control Register9">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15" field="TDM_BCLK_DITH" default="0" desc="TDM bclk dithering mode enable, applied with apply_ckg_conf" />
+      <Bits range="14" field="TDM_BCLK_DITH_MODE" default="0" desc="Set the dithering mode when tdm_bclk_dith is 1." />
+      <Bits range="13" field="TDM_BCLK_POLARITY" default="0" desc="TDM bclk polarity" />
+      <Bits range="12:0" field="TDM_BCLK_RATE[12:0]" default="0" desc="Set the bclk_freq, bclk_freq=(pll_clk_freq/tdm_bclk_rate+1)), applied with apply_ckg_conf." />
+    </RegisterInfo>
+    <RegisterInfo index="0x60" name="TDM Control Register10">
+      <Bits range="31:25" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="24" field="TDM_CHO_TEST_EN" default="0" desc="TDM output test enable" />
+      <Bits range="23:0" field="TDM_CHO_TEST[119:96]" default="0" desc="TDM output test data" />
+    </RegisterInfo>
+    <RegisterInfo index="0x64" name="TDM Control Register11">
+      <Bits range="31:0" field="TDM_CHO_TEST[95:64]" default="0" desc="TDM output test data" />
+    </RegisterInfo>
+    <RegisterInfo index="0x68" name="TDM Control Register12">
+      <Bits range="31:0" field="TDM_CHO_TEST[63:32]" default="0" desc="TDM output test data" />
+    </RegisterInfo>
+    <RegisterInfo index="0x6c" name="TDM Control Register13">
+      <Bits range="31:0" field="TDM_CHO_TEST[31:0]" default="0" desc="TDM output test data" />
+    </RegisterInfo>
+    <RegisterInfo index="0x70" name="Interrupt Control">
+      <Bits range="31:25" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="24" field="INT_OUT_POLARITY" default="0" desc="Interrupt polarity" />
+      <Bits range="23:17" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="16" field="TDM_FIFO_ERR_LATCH" default="0" desc="tdm_fifo_err_latch" />
+      <Bits range="15" field="TDM_INTERRUPT" default="0" desc="tdm_interrupt" />
+      <Bits range="14" field="TDM_CKG_FSYN_PULSE_WIDTH_INT" default="0" desc="tdm_ckg_fsyn_pulse_width_int" />
+      <Bits range="13" field="TDM_CKG_INT" default="0" desc="tdm_ckg_int" />
+      <Bits range="15:12" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="11" field="TDM_FIFO_ERR_LATCH_MASK" default="0" desc="tdm_fifo_err_latch_mask" />
+      <Bits range="10" field="TDM_INTERRUPT_MASK" default="0" desc="tdm_interrupt_mask" />
+      <Bits range="9" field="TDM_CKG_FSYN_PULSE_WIDTH_INT_MASK" default="0" desc="tdm_ckg_fsyn_pulse_width_int_mask" />
+      <Bits range="8" field="TDM_CKG_INT_MASK" default="0" desc="tdm_ckg_int_mask" />
+      <Bits range="7:4" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="3" field="TDM_FIFO_ERR_LATCH_CLEAR" default="0" desc="tdm_fifo_err_latch_clear" />
+      <Bits range="2" field="TDM_INTERRUPT_CLEAR" default="0" desc="tdm_interrupt_clear" />
+      <Bits range="1" field="TDM_CKG_FSYN_PULSE_WIDTH_INT_CLEAR" default="0" desc="tdm_ckg_fsyn_pulse_width_int_clear" />
+      <Bits range="0" field="TDM_CKG_INT_CLEAR" default="0" desc="tdm_ckg_int_clear" />
+    </RegisterInfo>
+    <RegisterInfo index="0x74" name="I2S1 BCLK Divider">
+      <Bits range="31:29" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="28" field="I2S1_NOM_SEL" default="0" desc="I2S1 BCLK divider ratio selection" />
+      <Bits range="27:16" field="I2S1_DENOM[11:0]" default="0" desc="I2S1 BCLK divider denominator" />
+      <Bits range="15:0" field="I2S1_NOM[15:0]" default="0" desc="I2S1 BCLK divider numerator" />
+    </RegisterInfo>
+    <RegisterInfo index="0x78" name="I2S2 BCLK Divider">
+      <Bits range="31:29" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="28" field="I2S2_NOM_SEL" default="0" desc="I2S2 BCLK divider ratio selection" />
+      <Bits range="27:16" field="I2S2_DENOM[11:0]" default="0" desc="I2S2 BCLK divider denominator" />
+      <Bits range="15:0" field="I2S2_NOM[15:0]" default="0" desc="I2S2 BCLK divider numerator" />
+    </RegisterInfo>
+    <RegisterInfo index="0x7c" name="I2S3 BCLK Divider">
+      <Bits range="31:29" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="28" field="I2S3_NOM_SEL" default="0" desc="I2S3 BCLK divider ratio selection" />
+      <Bits range="27:16" field="I2S3_DENOM[11:0]" default="0" desc="I2S3 BCLK divider denominator" />
+      <Bits range="15:0" field="I2S3_NOM[15:0]" default="0" desc="I2S3 BCLK divider numerator" />
+    </RegisterInfo>
+    <RegisterInfo index="0x80" name="I2S4 BCLK Divider">
+      <Bits range="31:29" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="28" field="I2S4_NOM_SEL" default="0" desc="I2S4 BCLK divider ratio selection" />
+      <Bits range="27:16" field="I2S4_DENOM[11:0]" default="0" desc="I2S4 BCLK divider denominator" />
+      <Bits range="15:0" field="I2S4_NOM[15:0]" default="0" desc="I2S4 BCLK divider numerator" />
+    </RegisterInfo>
+    <RegisterInfo index="0x8c" name="DEI2S BCLK Divider">
+      <Bits range="31:29" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="28" field="I2S_OUT_NOM_SEL" default="0" desc="DEI2S BCLK divider ratio selection" />
+      <Bits range="27:16" field="I2S_OUT_DENOM[11:0]" default="0" desc="DEI2S BCLK divider denominator" />
+      <Bits range="15:0" field="I2S_OUT_NOM[15:0]" default="0" desc="DEI2S BCLK divider numerator" />
+    </RegisterInfo>
+    <RegisterInfo index="0x100" name="DAC path DSP1 audio processing register. AudioReg1 is [7:0] and AudioReg2 is [15:8]">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15" field="DSP1_DAC_DUMMY2_EN" default="0" desc="" />
+      <Bits range="14" field="DSP1_DAC_3D_ENABLE" default="0" desc="Write 1 to enable 3D sound" />
+      <Bits range="13" field="DSP1_DAC_TXRX_MIX_ENABLE" default="0" desc="Write 1 to enable mixing of D1AO1" />
+      <Bits range="12" field="DSP1_DAC_D1IN4_MIX_ENABLE" default="0" desc="Write 1 to enable mixing of D1IN4" />
+      <Bits range="11" field="DSP1_DAC_D1IN3_MIX_ENABLE" default="0" desc="Write 1 to enable mixing of D1IN3" />
+      <Bits range="10" field="DSP1_DAC_D1IN2_MIX_ENABLE" default="0" desc="Write 1 to enable mixing of D1IN2" />
+      <Bits range="9" field="DSP1_DAC_D1IN1_MIX_ENABLE" default="0" desc="Write 1 to enable mixing of D1IN1" />
+      <Bits range="8" field="DSP1_DAC_OUT_MIX_ENABLE" default="0" desc="Write 1 to enable DAC path data mixing at output" />
+      <Bits range="7" field="DSP1_DAC_DUMMY1_EN" default="0" desc="" />
+      <Bits range="6" field="DSP1_DAC_AMUTE_ENABLE" default="0" desc="Write 1 to enable auto mute" />
+      <Bits range="5" field="DSP1_DAC_MUTE_UNMUTE" default="0" desc="Write 0 to mute and 1 to unmute the DAC side" />
+      <Bits range="4" field="DSP1_DAC_VOLUME_UPDATE" default="0" type="Force" desc="After updating dac_vol_left and dac_vol_right, write 1 to send the volume command" />
+      <Bits range="3" field="DSP1_DAC_DRC_ENABLE" default="0" desc="Write 1 to enable DRC. Look at register 0x52~0x5C for DRC parameters" />
+      <Bits range="2" field="DSP1_DAC_EQ_UPDATE" default="0" desc="After updating EQ coefs, write 1 to send the eq update command" />
+      <Bits range="1" field="DSP1_DAC_EQ_ENABLE" default="0" desc="Write 1 to enable EQ. Look at registers 0x2E~0x51 for EQ parameters" />
+      <Bits range="0" field="DSP1_DAC_ANC_ENABLE" default="0" desc="Write 1 to enable ambient noise cancellation. Look at registers 0x26~0x2D for ANC parameters" />
+    </RegisterInfo>
+    <RegisterInfo index="0x104" name="DSP1 Control Register">
+      <Bits range="31:6" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="5" field="DSP1_DAC_SOFT_RAMP_ENABLE" default="0" desc="Write 1 to enable soft volume ramp and soft mute/unmute ramp. Soft ramp uses zero-crossing detection." />
+      <Bits range="4" field="DSP1_DAC_MONOMODE_EN" default="0" desc="Write 1 to enable DAC mode mode. Left channel = (L+R)/2. Right channel is disabled" />
+      <Bits range="3:2" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="1" field="DSP1_EN_DAC_RIGHT" default="0" desc="Write 1 to enable right channel in DAC path" />
+      <Bits range="0" field="DSP1_EN_DAC_LEFT" default="0" desc="Write 1 to enable left channel in DAC path" />
+    </RegisterInfo>
+    <RegisterInfo index="0x108" name="Volume setting for DSP1">
+      <Bits range="31:24" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="23:16" field="DSP1_DAC_LEFT_VOL[7:0]" default="11101011" type="Gain" desc="dB volume setting for left channel in DAC path in 0.5dB step">
+        <Capbility range="0x00~0xff" dbrange="-127.5~0.0" step="0.5" />
+      </Bits>
+      <Bits range="15:8" field="DSP1_DAC_RIGHT_VOL[7:0]" default="11101011" type="Gain" desc="dB volume setting for right channel in DAC path in 0.5dB step">
+        <Capbility range="0x00~0xff" dbrange="-127.5~0.0" step="0.5" />
+      </Bits>
+      <Bits range="7:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:2" field="DSP1_PLAYBACK_GAIN[2:0]" default="0" type="Gain" desc="Digital Gain boost for both Left and Right channel data on playback path">
+        <Capbility value="0x0" decibel="0" />
+        <Capbility value="0x1" decibel="6" />
+        <Capbility value="0x2" decibel="12" />
+        <Capbility value="0x3" decibel="18" />
+        <Capbility value="0x4" decibel="0" />
+        <Capbility value="0x5" decibel="-6" />
+        <Capbility value="0x6" decibel="-12" />
+        <Capbility value="0x7" decibel="-18" />
+      </Bits>
+      <Bits range="1:0" field="DSP1_DAC_VOL_CHG_TIME[1:0]" default="1" desc="During volume soft ramp amount of time allowed for ramp to complete" />
+    </RegisterInfo>
+    <RegisterInfo index="0x10c" name="ANC parameter to control LMS adaptation step size">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="DSP1_ANC_MU[15:0]" default="10000000000" desc="MSB field of parameter u. Smaller values yields lower residual mean square error." />
+    </RegisterInfo>
+    <RegisterInfo index="0x110" name="ANC parameter to control alpha energy filter">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="DSP1_ANC_LAM[15:0]" default="10000000" desc="MSB field of parameter lamba. Smaller values yields smoother energy estimates" />
+    </RegisterInfo>
+    <RegisterInfo index="0x114" name="ANC parameter to control xcorr coef calculation">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="DSP1_ANC_BETA[15:0]" default="11111100000000" desc="MSB field of parameter beta. Larger value yields better results." />
+    </RegisterInfo>
+    <RegisterInfo index="0x118" name="ANC parameter to err_th to control double talk detection">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="DSP1_ANC_ERR_TH[15:0]" default="100001" desc="MSB field of parameter err_th" />
+    </RegisterInfo>
+    <RegisterInfo index="0x11c" name="Gain for EQ Band 1 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP1_K_EQ1[4:0]" default="1100" type="Gain" desc="dB Gain setting for EQ band1 filter. Look at following table.">
+        <Capbility value="0x0" decibel="-12" />
+        <Capbility value="0x1" decibel="-11" />
+        <Capbility value="0x2" decibel="-10" />
+        <Capbility value="0x3" decibel="-9" />
+        <Capbility value="0x4" decibel="-8" />
+        <Capbility value="0x5" decibel="-7" />
+        <Capbility value="0x6" decibel="-6" />
+        <Capbility value="0x7" decibel="-5" />
+        <Capbility value="0x8" decibel="-4" />
+        <Capbility value="0x9" decibel="-3" />
+        <Capbility value="0xA" decibel="-2" />
+        <Capbility value="0xB" decibel="-1" />
+        <Capbility value="0xC" decibel="0" />
+        <Capbility value="0xD" decibel="1" />
+        <Capbility value="0xE" decibel="2" />
+        <Capbility value="0xF" decibel="3" />
+        <Capbility value="0x10" decibel="4" />
+        <Capbility value="0x11" decibel="5" />
+        <Capbility value="0x12" decibel="6" />
+        <Capbility value="0x13" decibel="7" />
+        <Capbility value="0x14" decibel="8" />
+        <Capbility value="0x15" decibel="9" />
+        <Capbility value="0x16" decibel="10" />
+        <Capbility value="0x17" decibel="11" />
+        <Capbility value="0x18" decibel="12" />
+    </Bits>
+    </RegisterInfo>
+    <RegisterInfo index="0x120" name="Normalized center frequency for EQ band1">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_WC_HI_EQ1[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band1" />
+      <Bits range="7:0" field="DSP1_WC_LO_EQ1[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band1" />
+    </RegisterInfo>
+    <RegisterInfo index="0x124" name="Gain for EQ Band 2 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP1_K_EQ2[4:0]" default="1100" desc="dB Gain setting for EQ band2 filter. Look at EQ Band1 Gain table." />
+    </RegisterInfo>
+    <RegisterInfo index="0x128" name="Normalized center frequency for EQ band2">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_WC_HI_EQ2[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band2" />
+      <Bits range="7:0" field="DSP1_WC_LO_EQ2[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band2" />
+    </RegisterInfo>
+    <RegisterInfo index="0x12c" name="Normalized bandwidth deltaf for EQ band2">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_BW_HI_EQ2[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band2" />
+      <Bits range="7:0" field="DSP1_BW_LO_EQ2[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band2" />
+    </RegisterInfo>
+    <RegisterInfo index="0x130" name="Gain for EQ Band 3 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP1_K_EQ3[4:0]" default="1100" desc="dB Gain setting for EQ band3 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x134" name="Normalized center frequency for EQ band3">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_WC_HI_EQ3[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band3" />
+      <Bits range="7:0" field="DSP1_WC_LO_EQ3[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band3" />
+    </RegisterInfo>
+    <RegisterInfo index="0x138" name="Normalized bandwidth deltaf for EQ band3">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_BW_HI_EQ3[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band3" />
+      <Bits range="7:0" field="DSP1_BW_LO_EQ3[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band3" />
+    </RegisterInfo>
+    <RegisterInfo index="0x13c" name="Gain for EQ Band 4 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP1_K_EQ4[4:0]" default="1100" desc="dB Gain setting for EQ band4 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x140" name="Normalized center frequency for EQ band4">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_WC_HI_EQ4[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band4" />
+      <Bits range="7:0" field="DSP1_WC_LO_EQ4[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band4" />
+    </RegisterInfo>
+    <RegisterInfo index="0x144" name="Normalized bandwidth deltaf for EQ band4">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_BW_HI_EQ4[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band4" />
+      <Bits range="7:0" field="DSP1_BW_LO_EQ4[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band4" />
+    </RegisterInfo>
+    <RegisterInfo index="0x148" name="Gain for EQ Band 5 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP1_K_EQ5[4:0]" default="1100" desc="dB Gain setting for EQ band5 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x14c" name="Normalized center frequency for EQ band5">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_WC_HI_EQ5[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band5" />
+      <Bits range="7:0" field="DSP1_WC_LO_EQ5[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band5" />
+    </RegisterInfo>
+    <RegisterInfo index="0x150" name="Normalized bandwidth deltaf for EQ band5">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_BW_HI_EQ5[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band5" />
+      <Bits range="7:0" field="DSP1_BW_LO_EQ5[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band5" />
+    </RegisterInfo>
+    <RegisterInfo index="0x154" name="Gain for EQ Band 6 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP1_K_EQ6[4:0]" default="1100" desc="dB Gain setting for EQ band6 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x158" name="Normalized center frequency for EQ band6">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_WC_HI_EQ6[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band6" />
+      <Bits range="7:0" field="DSP1_WC_LO_EQ6[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band6" />
+    </RegisterInfo>
+    <RegisterInfo index="0x15c" name="Normalized bandwidth deltaf for EQ band6">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_BW_HI_EQ6[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band6" />
+      <Bits range="7:0" field="DSP1_BW_LO_EQ6[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band6" />
+    </RegisterInfo>
+    <RegisterInfo index="0x160" name="Gain for EQ Band 7 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP1_K_EQ7[4:0]" default="1100" desc="dB Gain setting for EQ band7 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x164" name="Normalized center frequency for EQ band7">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_WC_HI_EQ7[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band7" />
+      <Bits range="7:0" field="DSP1_WC_LO_EQ7[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band7" />
+    </RegisterInfo>
+    <RegisterInfo index="0x168" name="Normalized bandwidth deltaf for EQ band7">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_BW_HI_EQ7[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band7" />
+      <Bits range="7:0" field="DSP1_BW_LO_EQ7[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band7" />
+    </RegisterInfo>
+    <RegisterInfo index="0x16c" name="Gain for EQ Band 8 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP1_K_EQ8[4:0]" default="1100" desc="dB Gain setting for EQ band8 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x170" name="Normalized center frequency for EQ band8">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_WC_HI_EQ8[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band8" />
+      <Bits range="7:0" field="DSP1_WC_LO_EQ8[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band8" />
+    </RegisterInfo>
+    <RegisterInfo index="0x174" name="Threshold value for DRC compression engine in DAC path">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_T_DRC_HI[7:0]" default="11111000" desc="MSB field of threshold dB value of DRC compression engine" />
+      <Bits range="7:0" field="DSP1_T_DRC_LO[7:0]" default="111" desc="LSB field of threshold dB value of DRC compression engine" />
+    </RegisterInfo>
+    <RegisterInfo index="0x178" name="Offset value for DRC compression engine in DAC path">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_O_DRC_HI[7:0]" default="0" desc="MSB field of offset dB value of DRC compression engine" />
+      <Bits range="7:0" field="DSP1_O_DRC_LO[7:0]" default="0" desc="LSB field of offset dB value of DRC compression engine" />
+    </RegisterInfo>
+    <RegisterInfo index="0x17c" name="compression ratio (K:1) for DRC compression engine in DAC path">
+      <Bits range="31:8" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="7:0" field="DSP1_K_DRC[7:0]" default="10000" desc="compression ratio value of DRC compression engine" />
+    </RegisterInfo>
+    <RegisterInfo index="0x180" name="Time constant for energy filter in DAC DRC">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_DRC_ALPHA_ENG_HI[7:0]" default="1" desc="MSB field of DRC alpha energy filter time constant" />
+      <Bits range="7:0" field="DSP1_DRC_ALPHA_ENG_LO[7:0]" default="1010100" desc="LSB field of DRC alpha energy filter time constant" />
+    </RegisterInfo>
+    <RegisterInfo index="0x184" name="Time constant for attack in DAC DRC">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_DRC_ALPHA_ATK_HI[7:0]" default="10" desc="MSB field of DRC attack time constant" />
+      <Bits range="7:0" field="DSP1_DRC_ALPHA_ATK_LO[7:0]" default="10100100" desc="LSB field of DRC attack time constant" />
+    </RegisterInfo>
+    <RegisterInfo index="0x188" name="Time constant for decay in DAC DRC">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_DRC_ALPHA_DEC_HI[7:0]" default="0" desc="MSB field of DRC decay time constant" />
+      <Bits range="7:0" field="DSP1_DRC_ALPHA_DEC_LO[7:0]" default="10001000" desc="LSB field of DRC decay time constant" />
+    </RegisterInfo>
+    <RegisterInfo index="0x18c" name="Mix coefficient for left contribution to left output mix">
+      <Bits range="31:24" field="DSP1_DAC_LMIXL[7:0]" default="1000000" desc="Mix coefficient for left contribution to left output mix" />
+      <Bits range="23:16" field="DSP1_DAC_RMIXL[7:0]" default="1000000" desc="Mix coefficient for right contribution to left output mix" />
+      <Bits range="15:8" field="DSP1_DAC_LMIXR[7:0]" default="1000000" desc="Mix coefficient for left contribution to right output mix" />
+      <Bits range="7:0" field="DSP1_DAC_RMIXR[7:0]" default="1000000" desc="Mix coefficient for right contribution to right output mix" />
+    </RegisterInfo>
+    <RegisterInfo index="0x190" name="TxRx mix coef Register">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="TX_2TXRX_MIX[7:0]" default="1000000" desc="tx_2txrx_mix" />
+      <Bits range="7:0" field="RX_2TXRX_MIX[7:0]" default="1000000" desc="rx_2txrx_mix" />
+    </RegisterInfo>
+    <RegisterInfo index="0x194" name="DSP1 input mix coefs">
+      <Bits range="31:24" field="D1IN4_2INMIX[7:0]" default="1000000" type="Gain" desc="DSP1 IN4 mix coefficient">
+        <Capbility value="0x0" decibel="Mute" />
+        <Capbility value="0x1" decibel="-42.14" />
+        <Capbility value="0x2" decibel="-36.12" />
+        <Capbility value="0x3" decibel="-32.6" />
+        <Capbility value="0x4" decibel="-30.1" />
+        <Capbility value="0x5" decibel="-28.16" />
+        <Capbility value="0x6" decibel="-26.58" />
+        <Capbility value="0x7" decibel="-25.24" />
+        <Capbility value="0x8" decibel="-24.08" />
+        <Capbility value="0x9" decibel="-23.06" />
+        <Capbility value="0xA" decibel="-22.14" />
+        <Capbility value="0xB" decibel="-21.32" />
+        <Capbility value="0xC" decibel="-20.56" />
+        <Capbility value="0xD" decibel="-19.87" />
+        <Capbility value="0xE" decibel="-19.22" />
+        <Capbility value="0xF" decibel="-18.62" />
+        <Capbility value="0x10" decibel="-18.06" />
+        <Capbility value="0x11" decibel="-17.54" />
+        <Capbility value="0x12" decibel="-17.04" />
+        <Capbility value="0x13" decibel="-16.57" />
+        <Capbility value="0x14" decibel="-16.12" />
+        <Capbility value="0x15" decibel="-15.7" />
+        <Capbility value="0x16" decibel="-15.3" />
+        <Capbility value="0x17" decibel="-14.91" />
+        <Capbility value="0x18" decibel="-14.54" />
+        <Capbility value="0x19" decibel="-14.19" />
+        <Capbility value="0x1A" decibel="-13.84" />
+        <Capbility value="0x1B" decibel="-13.52" />
+        <Capbility value="0x1C" decibel="-13.2" />
+        <Capbility value="0x1D" decibel="-12.9" />
+        <Capbility value="0x1E" decibel="-12.6" />
+        <Capbility value="0x1F" decibel="-12.32" />
+        <Capbility value="0x20" decibel="-12.04" />
+        <Capbility value="0x21" decibel="-11.77" />
+        <Capbility value="0x22" decibel="-11.51" />
+        <Capbility value="0x23" decibel="-11.26" />
+        <Capbility value="0x24" decibel="-11.02" />
+        <Capbility value="0x25" decibel="-10.78" />
+        <Capbility value="0x26" decibel="-10.55" />
+        <Capbility value="0x27" decibel="-10.32" />
+        <Capbility value="0x28" decibel="-10.1" />
+        <Capbility value="0x29" decibel="-9.89" />
+        <Capbility value="0x2A" decibel="-9.68" />
+        <Capbility value="0x2B" decibel="-9.47" />
+        <Capbility value="0x2C" decibel="-9.28" />
+        <Capbility value="0x2D" decibel="-9.08" />
+        <Capbility value="0x2E" decibel="-8.89" />
+        <Capbility value="0x2F" decibel="-8.7" />
+        <Capbility value="0x30" decibel="-8.52" />
+        <Capbility value="0x31" decibel="-8.34" />
+        <Capbility value="0x32" decibel="-8.16" />
+        <Capbility value="0x33" decibel="-7.99" />
+        <Capbility value="0x34" decibel="-7.82" />
+        <Capbility value="0x35" decibel="-7.66" />
+        <Capbility value="0x36" decibel="-7.5" />
+        <Capbility value="0x37" decibel="-7.34" />
+        <Capbility value="0x38" decibel="-7.18" />
+        <Capbility value="0x39" decibel="-7.03" />
+        <Capbility value="0x3A" decibel="-6.88" />
+        <Capbility value="0x3B" decibel="-6.73" />
+        <Capbility value="0x3C" decibel="-6.58" />
+        <Capbility value="0x3D" decibel="-6.44" />
+        <Capbility value="0x3E" decibel="-6.3" />
+        <Capbility value="0x3F" decibel="-6.16" />
+        <Capbility value="0x40" decibel="-6.02" />
+        <Capbility value="0x41" decibel="-5.89" />
+        <Capbility value="0x42" decibel="-5.75" />
+        <Capbility value="0x43" decibel="-5.62" />
+        <Capbility value="0x44" decibel="-5.49" />
+        <Capbility value="0x45" decibel="-5.37" />
+        <Capbility value="0x46" decibel="-5.24" />
+        <Capbility value="0x47" decibel="-5.12" />
+        <Capbility value="0x48" decibel="-5" />
+        <Capbility value="0x49" decibel="-4.88" />
+        <Capbility value="0x4A" decibel="-4.76" />
+        <Capbility value="0x4B" decibel="-4.64" />
+        <Capbility value="0x4C" decibel="-4.53" />
+        <Capbility value="0x4D" decibel="-4.41" />
+        <Capbility value="0x4E" decibel="-4.3" />
+        <Capbility value="0x4F" decibel="-4.19" />
+        <Capbility value="0x50" decibel="-4.08" />
+        <Capbility value="0x51" decibel="-3.97" />
+        <Capbility value="0x52" decibel="-3.87" />
+        <Capbility value="0x53" decibel="-3.76" />
+        <Capbility value="0x54" decibel="-3.66" />
+        <Capbility value="0x55" decibel="-3.56" />
+        <Capbility value="0x56" decibel="-3.45" />
+        <Capbility value="0x57" decibel="-3.35" />
+        <Capbility value="0x58" decibel="-3.25" />
+        <Capbility value="0x59" decibel="-3.16" />
+        <Capbility value="0x5A" decibel="-3.06" />
+        <Capbility value="0x5B" decibel="-2.96" />
+        <Capbility value="0x5C" decibel="-2.87" />
+        <Capbility value="0x5D" decibel="-2.77" />
+        <Capbility value="0x5E" decibel="-2.68" />
+        <Capbility value="0x5F" decibel="-2.59" />
+        <Capbility value="0x60" decibel="-2.5" />
+        <Capbility value="0x61" decibel="-2.41" />
+        <Capbility value="0x62" decibel="-2.32" />
+        <Capbility value="0x63" decibel="-2.23" />
+        <Capbility value="0x64" decibel="-2.14" />
+        <Capbility value="0x65" decibel="-2.06" />
+        <Capbility value="0x66" decibel="-1.97" />
+        <Capbility value="0x67" decibel="-1.89" />
+        <Capbility value="0x68" decibel="-1.8" />
+        <Capbility value="0x69" decibel="-1.72" />
+        <Capbility value="0x6A" decibel="-1.64" />
+        <Capbility value="0x6B" decibel="-1.56" />
+        <Capbility value="0x6C" decibel="-1.48" />
+        <Capbility value="0x6D" decibel="-1.4" />
+        <Capbility value="0x6E" decibel="-1.32" />
+        <Capbility value="0x6F" decibel="-1.24" />
+        <Capbility value="0x70" decibel="-1.16" />
+        <Capbility value="0x71" decibel="-1.08" />
+        <Capbility value="0x72" decibel="-1.01" />
+        <Capbility value="0x73" decibel="-0.93" />
+        <Capbility value="0x74" decibel="-0.86" />
+        <Capbility value="0x75" decibel="-0.78" />
+        <Capbility value="0x76" decibel="-0.71" />
+        <Capbility value="0x77" decibel="-0.63" />
+        <Capbility value="0x78" decibel="-0.56" />
+        <Capbility value="0x79" decibel="-0.49" />
+        <Capbility value="0x7A" decibel="-0.42" />
+        <Capbility value="0x7B" decibel="-0.35" />
+        <Capbility value="0x7C" decibel="-0.28" />
+        <Capbility value="0x7D" decibel="-0.21" />
+        <Capbility value="0x7E" decibel="-0.14" />
+        <Capbility value="0x7F" decibel="-0.07" />
+        <Capbility value="0x80" decibel="0" />
+      </Bits>
+      <Bits range="23:16" field="D1IN3_2INMIX[7:0]" default="1000000" type="Gain" desc="DSP1 IN3 mix coefficient">
+        <Capbility value="0x0" decibel="Mute" />
+        <Capbility value="0x1" decibel="-42.14" />
+        <Capbility value="0x2" decibel="-36.12" />
+        <Capbility value="0x3" decibel="-32.6" />
+        <Capbility value="0x4" decibel="-30.1" />
+        <Capbility value="0x5" decibel="-28.16" />
+        <Capbility value="0x6" decibel="-26.58" />
+        <Capbility value="0x7" decibel="-25.24" />
+        <Capbility value="0x8" decibel="-24.08" />
+        <Capbility value="0x9" decibel="-23.06" />
+        <Capbility value="0xA" decibel="-22.14" />
+        <Capbility value="0xB" decibel="-21.32" />
+        <Capbility value="0xC" decibel="-20.56" />
+        <Capbility value="0xD" decibel="-19.87" />
+        <Capbility value="0xE" decibel="-19.22" />
+        <Capbility value="0xF" decibel="-18.62" />
+        <Capbility value="0x10" decibel="-18.06" />
+        <Capbility value="0x11" decibel="-17.54" />
+        <Capbility value="0x12" decibel="-17.04" />
+        <Capbility value="0x13" decibel="-16.57" />
+        <Capbility value="0x14" decibel="-16.12" />
+        <Capbility value="0x15" decibel="-15.7" />
+        <Capbility value="0x16" decibel="-15.3" />
+        <Capbility value="0x17" decibel="-14.91" />
+        <Capbility value="0x18" decibel="-14.54" />
+        <Capbility value="0x19" decibel="-14.19" />
+        <Capbility value="0x1A" decibel="-13.84" />
+        <Capbility value="0x1B" decibel="-13.52" />
+        <Capbility value="0x1C" decibel="-13.2" />
+        <Capbility value="0x1D" decibel="-12.9" />
+        <Capbility value="0x1E" decibel="-12.6" />
+        <Capbility value="0x1F" decibel="-12.32" />
+        <Capbility value="0x20" decibel="-12.04" />
+        <Capbility value="0x21" decibel="-11.77" />
+        <Capbility value="0x22" decibel="-11.51" />
+        <Capbility value="0x23" decibel="-11.26" />
+        <Capbility value="0x24" decibel="-11.02" />
+        <Capbility value="0x25" decibel="-10.78" />
+        <Capbility value="0x26" decibel="-10.55" />
+        <Capbility value="0x27" decibel="-10.32" />
+        <Capbility value="0x28" decibel="-10.1" />
+        <Capbility value="0x29" decibel="-9.89" />
+        <Capbility value="0x2A" decibel="-9.68" />
+        <Capbility value="0x2B" decibel="-9.47" />
+        <Capbility value="0x2C" decibel="-9.28" />
+        <Capbility value="0x2D" decibel="-9.08" />
+        <Capbility value="0x2E" decibel="-8.89" />
+        <Capbility value="0x2F" decibel="-8.7" />
+        <Capbility value="0x30" decibel="-8.52" />
+        <Capbility value="0x31" decibel="-8.34" />
+        <Capbility value="0x32" decibel="-8.16" />
+        <Capbility value="0x33" decibel="-7.99" />
+        <Capbility value="0x34" decibel="-7.82" />
+        <Capbility value="0x35" decibel="-7.66" />
+        <Capbility value="0x36" decibel="-7.5" />
+        <Capbility value="0x37" decibel="-7.34" />
+        <Capbility value="0x38" decibel="-7.18" />
+        <Capbility value="0x39" decibel="-7.03" />
+        <Capbility value="0x3A" decibel="-6.88" />
+        <Capbility value="0x3B" decibel="-6.73" />
+        <Capbility value="0x3C" decibel="-6.58" />
+        <Capbility value="0x3D" decibel="-6.44" />
+        <Capbility value="0x3E" decibel="-6.3" />
+        <Capbility value="0x3F" decibel="-6.16" />
+        <Capbility value="0x40" decibel="-6.02" />
+        <Capbility value="0x41" decibel="-5.89" />
+        <Capbility value="0x42" decibel="-5.75" />
+        <Capbility value="0x43" decibel="-5.62" />
+        <Capbility value="0x44" decibel="-5.49" />
+        <Capbility value="0x45" decibel="-5.37" />
+        <Capbility value="0x46" decibel="-5.24" />
+        <Capbility value="0x47" decibel="-5.12" />
+        <Capbility value="0x48" decibel="-5" />
+        <Capbility value="0x49" decibel="-4.88" />
+        <Capbility value="0x4A" decibel="-4.76" />
+        <Capbility value="0x4B" decibel="-4.64" />
+        <Capbility value="0x4C" decibel="-4.53" />
+        <Capbility value="0x4D" decibel="-4.41" />
+        <Capbility value="0x4E" decibel="-4.3" />
+        <Capbility value="0x4F" decibel="-4.19" />
+        <Capbility value="0x50" decibel="-4.08" />
+        <Capbility value="0x51" decibel="-3.97" />
+        <Capbility value="0x52" decibel="-3.87" />
+        <Capbility value="0x53" decibel="-3.76" />
+        <Capbility value="0x54" decibel="-3.66" />
+        <Capbility value="0x55" decibel="-3.56" />
+        <Capbility value="0x56" decibel="-3.45" />
+        <Capbility value="0x57" decibel="-3.35" />
+        <Capbility value="0x58" decibel="-3.25" />
+        <Capbility value="0x59" decibel="-3.16" />
+        <Capbility value="0x5A" decibel="-3.06" />
+        <Capbility value="0x5B" decibel="-2.96" />
+        <Capbility value="0x5C" decibel="-2.87" />
+        <Capbility value="0x5D" decibel="-2.77" />
+        <Capbility value="0x5E" decibel="-2.68" />
+        <Capbility value="0x5F" decibel="-2.59" />
+        <Capbility value="0x60" decibel="-2.5" />
+        <Capbility value="0x61" decibel="-2.41" />
+        <Capbility value="0x62" decibel="-2.32" />
+        <Capbility value="0x63" decibel="-2.23" />
+        <Capbility value="0x64" decibel="-2.14" />
+        <Capbility value="0x65" decibel="-2.06" />
+        <Capbility value="0x66" decibel="-1.97" />
+        <Capbility value="0x67" decibel="-1.89" />
+        <Capbility value="0x68" decibel="-1.8" />
+        <Capbility value="0x69" decibel="-1.72" />
+        <Capbility value="0x6A" decibel="-1.64" />
+        <Capbility value="0x6B" decibel="-1.56" />
+        <Capbility value="0x6C" decibel="-1.48" />
+        <Capbility value="0x6D" decibel="-1.4" />
+        <Capbility value="0x6E" decibel="-1.32" />
+        <Capbility value="0x6F" decibel="-1.24" />
+        <Capbility value="0x70" decibel="-1.16" />
+        <Capbility value="0x71" decibel="-1.08" />
+        <Capbility value="0x72" decibel="-1.01" />
+        <Capbility value="0x73" decibel="-0.93" />
+        <Capbility value="0x74" decibel="-0.86" />
+        <Capbility value="0x75" decibel="-0.78" />
+        <Capbility value="0x76" decibel="-0.71" />
+        <Capbility value="0x77" decibel="-0.63" />
+        <Capbility value="0x78" decibel="-0.56" />
+        <Capbility value="0x79" decibel="-0.49" />
+        <Capbility value="0x7A" decibel="-0.42" />
+        <Capbility value="0x7B" decibel="-0.35" />
+        <Capbility value="0x7C" decibel="-0.28" />
+        <Capbility value="0x7D" decibel="-0.21" />
+        <Capbility value="0x7E" decibel="-0.14" />
+        <Capbility value="0x7F" decibel="-0.07" />
+        <Capbility value="0x80" decibel="0" />
+      </Bits>
+      <Bits range="15:8" field="D1IN2_2INMIX[7:0]" default="1000000" type="Gain" desc="DSP1 IN2 mix coefficient">
+        <Capbility value="0x0" decibel="Mute" />
+        <Capbility value="0x1" decibel="-42.14" />
+        <Capbility value="0x2" decibel="-36.12" />
+        <Capbility value="0x3" decibel="-32.6" />
+        <Capbility value="0x4" decibel="-30.1" />
+        <Capbility value="0x5" decibel="-28.16" />
+        <Capbility value="0x6" decibel="-26.58" />
+        <Capbility value="0x7" decibel="-25.24" />
+        <Capbility value="0x8" decibel="-24.08" />
+        <Capbility value="0x9" decibel="-23.06" />
+        <Capbility value="0xA" decibel="-22.14" />
+        <Capbility value="0xB" decibel="-21.32" />
+        <Capbility value="0xC" decibel="-20.56" />
+        <Capbility value="0xD" decibel="-19.87" />
+        <Capbility value="0xE" decibel="-19.22" />
+        <Capbility value="0xF" decibel="-18.62" />
+        <Capbility value="0x10" decibel="-18.06" />
+        <Capbility value="0x11" decibel="-17.54" />
+        <Capbility value="0x12" decibel="-17.04" />
+        <Capbility value="0x13" decibel="-16.57" />
+        <Capbility value="0x14" decibel="-16.12" />
+        <Capbility value="0x15" decibel="-15.7" />
+        <Capbility value="0x16" decibel="-15.3" />
+        <Capbility value="0x17" decibel="-14.91" />
+        <Capbility value="0x18" decibel="-14.54" />
+        <Capbility value="0x19" decibel="-14.19" />
+        <Capbility value="0x1A" decibel="-13.84" />
+        <Capbility value="0x1B" decibel="-13.52" />
+        <Capbility value="0x1C" decibel="-13.2" />
+        <Capbility value="0x1D" decibel="-12.9" />
+        <Capbility value="0x1E" decibel="-12.6" />
+        <Capbility value="0x1F" decibel="-12.32" />
+        <Capbility value="0x20" decibel="-12.04" />
+        <Capbility value="0x21" decibel="-11.77" />
+        <Capbility value="0x22" decibel="-11.51" />
+        <Capbility value="0x23" decibel="-11.26" />
+        <Capbility value="0x24" decibel="-11.02" />
+        <Capbility value="0x25" decibel="-10.78" />
+        <Capbility value="0x26" decibel="-10.55" />
+        <Capbility value="0x27" decibel="-10.32" />
+        <Capbility value="0x28" decibel="-10.1" />
+        <Capbility value="0x29" decibel="-9.89" />
+        <Capbility value="0x2A" decibel="-9.68" />
+        <Capbility value="0x2B" decibel="-9.47" />
+        <Capbility value="0x2C" decibel="-9.28" />
+        <Capbility value="0x2D" decibel="-9.08" />
+        <Capbility value="0x2E" decibel="-8.89" />
+        <Capbility value="0x2F" decibel="-8.7" />
+        <Capbility value="0x30" decibel="-8.52" />
+        <Capbility value="0x31" decibel="-8.34" />
+        <Capbility value="0x32" decibel="-8.16" />
+        <Capbility value="0x33" decibel="-7.99" />
+        <Capbility value="0x34" decibel="-7.82" />
+        <Capbility value="0x35" decibel="-7.66" />
+        <Capbility value="0x36" decibel="-7.5" />
+        <Capbility value="0x37" decibel="-7.34" />
+        <Capbility value="0x38" decibel="-7.18" />
+        <Capbility value="0x39" decibel="-7.03" />
+        <Capbility value="0x3A" decibel="-6.88" />
+        <Capbility value="0x3B" decibel="-6.73" />
+        <Capbility value="0x3C" decibel="-6.58" />
+        <Capbility value="0x3D" decibel="-6.44" />
+        <Capbility value="0x3E" decibel="-6.3" />
+        <Capbility value="0x3F" decibel="-6.16" />
+        <Capbility value="0x40" decibel="-6.02" />
+        <Capbility value="0x41" decibel="-5.89" />
+        <Capbility value="0x42" decibel="-5.75" />
+        <Capbility value="0x43" decibel="-5.62" />
+        <Capbility value="0x44" decibel="-5.49" />
+        <Capbility value="0x45" decibel="-5.37" />
+        <Capbility value="0x46" decibel="-5.24" />
+        <Capbility value="0x47" decibel="-5.12" />
+        <Capbility value="0x48" decibel="-5" />
+        <Capbility value="0x49" decibel="-4.88" />
+        <Capbility value="0x4A" decibel="-4.76" />
+        <Capbility value="0x4B" decibel="-4.64" />
+        <Capbility value="0x4C" decibel="-4.53" />
+        <Capbility value="0x4D" decibel="-4.41" />
+        <Capbility value="0x4E" decibel="-4.3" />
+        <Capbility value="0x4F" decibel="-4.19" />
+        <Capbility value="0x50" decibel="-4.08" />
+        <Capbility value="0x51" decibel="-3.97" />
+        <Capbility value="0x52" decibel="-3.87" />
+        <Capbility value="0x53" decibel="-3.76" />
+        <Capbility value="0x54" decibel="-3.66" />
+        <Capbility value="0x55" decibel="-3.56" />
+        <Capbility value="0x56" decibel="-3.45" />
+        <Capbility value="0x57" decibel="-3.35" />
+        <Capbility value="0x58" decibel="-3.25" />
+        <Capbility value="0x59" decibel="-3.16" />
+        <Capbility value="0x5A" decibel="-3.06" />
+        <Capbility value="0x5B" decibel="-2.96" />
+        <Capbility value="0x5C" decibel="-2.87" />
+        <Capbility value="0x5D" decibel="-2.77" />
+        <Capbility value="0x5E" decibel="-2.68" />
+        <Capbility value="0x5F" decibel="-2.59" />
+        <Capbility value="0x60" decibel="-2.5" />
+        <Capbility value="0x61" decibel="-2.41" />
+        <Capbility value="0x62" decibel="-2.32" />
+        <Capbility value="0x63" decibel="-2.23" />
+        <Capbility value="0x64" decibel="-2.14" />
+        <Capbility value="0x65" decibel="-2.06" />
+        <Capbility value="0x66" decibel="-1.97" />
+        <Capbility value="0x67" decibel="-1.89" />
+        <Capbility value="0x68" decibel="-1.8" />
+        <Capbility value="0x69" decibel="-1.72" />
+        <Capbility value="0x6A" decibel="-1.64" />
+        <Capbility value="0x6B" decibel="-1.56" />
+        <Capbility value="0x6C" decibel="-1.48" />
+        <Capbility value="0x6D" decibel="-1.4" />
+        <Capbility value="0x6E" decibel="-1.32" />
+        <Capbility value="0x6F" decibel="-1.24" />
+        <Capbility value="0x70" decibel="-1.16" />
+        <Capbility value="0x71" decibel="-1.08" />
+        <Capbility value="0x72" decibel="-1.01" />
+        <Capbility value="0x73" decibel="-0.93" />
+        <Capbility value="0x74" decibel="-0.86" />
+        <Capbility value="0x75" decibel="-0.78" />
+        <Capbility value="0x76" decibel="-0.71" />
+        <Capbility value="0x77" decibel="-0.63" />
+        <Capbility value="0x78" decibel="-0.56" />
+        <Capbility value="0x79" decibel="-0.49" />
+        <Capbility value="0x7A" decibel="-0.42" />
+        <Capbility value="0x7B" decibel="-0.35" />
+        <Capbility value="0x7C" decibel="-0.28" />
+        <Capbility value="0x7D" decibel="-0.21" />
+        <Capbility value="0x7E" decibel="-0.14" />
+        <Capbility value="0x7F" decibel="-0.07" />
+        <Capbility value="0x80" decibel="0" />
+      </Bits>
+      <Bits range="7:0" field="D1IN1_2INMIX[7:0]" default="1000000" type="Gain" desc="DSP1 IN1 mix coefficient">
+        <Capbility value="0x0" decibel="Mute" />
+        <Capbility value="0x1" decibel="-42.14" />
+        <Capbility value="0x2" decibel="-36.12" />
+        <Capbility value="0x3" decibel="-32.6" />
+        <Capbility value="0x4" decibel="-30.1" />
+        <Capbility value="0x5" decibel="-28.16" />
+        <Capbility value="0x6" decibel="-26.58" />
+        <Capbility value="0x7" decibel="-25.24" />
+        <Capbility value="0x8" decibel="-24.08" />
+        <Capbility value="0x9" decibel="-23.06" />
+        <Capbility value="0xA" decibel="-22.14" />
+        <Capbility value="0xB" decibel="-21.32" />
+        <Capbility value="0xC" decibel="-20.56" />
+        <Capbility value="0xD" decibel="-19.87" />
+        <Capbility value="0xE" decibel="-19.22" />
+        <Capbility value="0xF" decibel="-18.62" />
+        <Capbility value="0x10" decibel="-18.06" />
+        <Capbility value="0x11" decibel="-17.54" />
+        <Capbility value="0x12" decibel="-17.04" />
+        <Capbility value="0x13" decibel="-16.57" />
+        <Capbility value="0x14" decibel="-16.12" />
+        <Capbility value="0x15" decibel="-15.7" />
+        <Capbility value="0x16" decibel="-15.3" />
+        <Capbility value="0x17" decibel="-14.91" />
+        <Capbility value="0x18" decibel="-14.54" />
+        <Capbility value="0x19" decibel="-14.19" />
+        <Capbility value="0x1A" decibel="-13.84" />
+        <Capbility value="0x1B" decibel="-13.52" />
+        <Capbility value="0x1C" decibel="-13.2" />
+        <Capbility value="0x1D" decibel="-12.9" />
+        <Capbility value="0x1E" decibel="-12.6" />
+        <Capbility value="0x1F" decibel="-12.32" />
+        <Capbility value="0x20" decibel="-12.04" />
+        <Capbility value="0x21" decibel="-11.77" />
+        <Capbility value="0x22" decibel="-11.51" />
+        <Capbility value="0x23" decibel="-11.26" />
+        <Capbility value="0x24" decibel="-11.02" />
+        <Capbility value="0x25" decibel="-10.78" />
+        <Capbility value="0x26" decibel="-10.55" />
+        <Capbility value="0x27" decibel="-10.32" />
+        <Capbility value="0x28" decibel="-10.1" />
+        <Capbility value="0x29" decibel="-9.89" />
+        <Capbility value="0x2A" decibel="-9.68" />
+        <Capbility value="0x2B" decibel="-9.47" />
+        <Capbility value="0x2C" decibel="-9.28" />
+        <Capbility value="0x2D" decibel="-9.08" />
+        <Capbility value="0x2E" decibel="-8.89" />
+        <Capbility value="0x2F" decibel="-8.7" />
+        <Capbility value="0x30" decibel="-8.52" />
+        <Capbility value="0x31" decibel="-8.34" />
+        <Capbility value="0x32" decibel="-8.16" />
+        <Capbility value="0x33" decibel="-7.99" />
+        <Capbility value="0x34" decibel="-7.82" />
+        <Capbility value="0x35" decibel="-7.66" />
+        <Capbility value="0x36" decibel="-7.5" />
+        <Capbility value="0x37" decibel="-7.34" />
+        <Capbility value="0x38" decibel="-7.18" />
+        <Capbility value="0x39" decibel="-7.03" />
+        <Capbility value="0x3A" decibel="-6.88" />
+        <Capbility value="0x3B" decibel="-6.73" />
+        <Capbility value="0x3C" decibel="-6.58" />
+        <Capbility value="0x3D" decibel="-6.44" />
+        <Capbility value="0x3E" decibel="-6.3" />
+        <Capbility value="0x3F" decibel="-6.16" />
+        <Capbility value="0x40" decibel="-6.02" />
+        <Capbility value="0x41" decibel="-5.89" />
+        <Capbility value="0x42" decibel="-5.75" />
+        <Capbility value="0x43" decibel="-5.62" />
+        <Capbility value="0x44" decibel="-5.49" />
+        <Capbility value="0x45" decibel="-5.37" />
+        <Capbility value="0x46" decibel="-5.24" />
+        <Capbility value="0x47" decibel="-5.12" />
+        <Capbility value="0x48" decibel="-5" />
+        <Capbility value="0x49" decibel="-4.88" />
+        <Capbility value="0x4A" decibel="-4.76" />
+        <Capbility value="0x4B" decibel="-4.64" />
+        <Capbility value="0x4C" decibel="-4.53" />
+        <Capbility value="0x4D" decibel="-4.41" />
+        <Capbility value="0x4E" decibel="-4.3" />
+        <Capbility value="0x4F" decibel="-4.19" />
+        <Capbility value="0x50" decibel="-4.08" />
+        <Capbility value="0x51" decibel="-3.97" />
+        <Capbility value="0x52" decibel="-3.87" />
+        <Capbility value="0x53" decibel="-3.76" />
+        <Capbility value="0x54" decibel="-3.66" />
+        <Capbility value="0x55" decibel="-3.56" />
+        <Capbility value="0x56" decibel="-3.45" />
+        <Capbility value="0x57" decibel="-3.35" />
+        <Capbility value="0x58" decibel="-3.25" />
+        <Capbility value="0x59" decibel="-3.16" />
+        <Capbility value="0x5A" decibel="-3.06" />
+        <Capbility value="0x5B" decibel="-2.96" />
+        <Capbility value="0x5C" decibel="-2.87" />
+        <Capbility value="0x5D" decibel="-2.77" />
+        <Capbility value="0x5E" decibel="-2.68" />
+        <Capbility value="0x5F" decibel="-2.59" />
+        <Capbility value="0x60" decibel="-2.5" />
+        <Capbility value="0x61" decibel="-2.41" />
+        <Capbility value="0x62" decibel="-2.32" />
+        <Capbility value="0x63" decibel="-2.23" />
+        <Capbility value="0x64" decibel="-2.14" />
+        <Capbility value="0x65" decibel="-2.06" />
+        <Capbility value="0x66" decibel="-1.97" />
+        <Capbility value="0x67" decibel="-1.89" />
+        <Capbility value="0x68" decibel="-1.8" />
+        <Capbility value="0x69" decibel="-1.72" />
+        <Capbility value="0x6A" decibel="-1.64" />
+        <Capbility value="0x6B" decibel="-1.56" />
+        <Capbility value="0x6C" decibel="-1.48" />
+        <Capbility value="0x6D" decibel="-1.4" />
+        <Capbility value="0x6E" decibel="-1.32" />
+        <Capbility value="0x6F" decibel="-1.24" />
+        <Capbility value="0x70" decibel="-1.16" />
+        <Capbility value="0x71" decibel="-1.08" />
+        <Capbility value="0x72" decibel="-1.01" />
+        <Capbility value="0x73" decibel="-0.93" />
+        <Capbility value="0x74" decibel="-0.86" />
+        <Capbility value="0x75" decibel="-0.78" />
+        <Capbility value="0x76" decibel="-0.71" />
+        <Capbility value="0x77" decibel="-0.63" />
+        <Capbility value="0x78" decibel="-0.56" />
+        <Capbility value="0x79" decibel="-0.49" />
+        <Capbility value="0x7A" decibel="-0.42" />
+        <Capbility value="0x7B" decibel="-0.35" />
+        <Capbility value="0x7C" decibel="-0.28" />
+        <Capbility value="0x7D" decibel="-0.21" />
+        <Capbility value="0x7E" decibel="-0.14" />
+        <Capbility value="0x7F" decibel="-0.07" />
+        <Capbility value="0x80" decibel="0" />
+      </Bits>
+    </RegisterInfo>
+    <RegisterInfo index="0x198" name="DSP1 3D sound register1">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP1_3D_HEADRADIUS[7:0]" default="1010" desc="Head radius parameter for 3D sound" />
+      <Bits range="7:0" field="DSP1_3D_CONTROL[7:0]" default="0" desc="3D control register" />
+    </RegisterInfo>
+    <RegisterInfo index="0x19c" name="DSP1 3D sound register2">
+      <Bits range="31:24" field="DSP1_3D_SS2_ANGLE[7:0]" default="0" desc="3D sound sound source 2 angle " />
+      <Bits range="23:16" field="DSP1_3D_SS2_DISTANCE[7:0]" default="0" desc="3D sound sound source 2 distance" />
+      <Bits range="15:8" field="DSP1_3D_SS1_ANGLE[7:0]" default="0" desc="3D sound sound source 1 angle " />
+      <Bits range="7:0" field="DSP1_3D_SS1_DISTANCE[7:0]" default="0" desc="3D sound sound source 1 distance " />
+    </RegisterInfo>
+    <RegisterInfo index="0x1a0" name="Dummy register for DSP1 RAML">
+      <Bits range="31:24" field="DSP1_L_DUMMY1[7:0]" default="0" desc="Dummy register for DSP1 RAML" />
+      <Bits range="23:16" field="DSP1_L_DUMMY2[7:0]" default="0" desc="Dummy register for DSP1 RAML" />
+      <Bits range="15:8" field="DSP1_L_DUMMY3[7:0]" default="0" desc="Dummy register for DSP1 RAML" />
+      <Bits range="7:0" field="DSP1_L_DUMMY4[7:0]" default="0" desc="Dummy register for DSP1 RAML" />
+    </RegisterInfo>
+    <RegisterInfo index="0x1a4" name="Dummy register for DSP1 RAMR">
+      <Bits range="31:24" field="DSP1_R_DUMMY1[7:0]" default="0" desc="Dummy register for DSP1 RAMR" />
+      <Bits range="23:16" field="DSP1_R_DUMMY2[7:0]" default="0" desc="Dummy register for DSP1 RAMR" />
+      <Bits range="15:8" field="DSP1_R_DUMMY3[7:0]" default="0" desc="Dummy register for DSP1 RAMR" />
+      <Bits range="7:0" field="DSP1_R_DUMMY4[7:0]" default="0" desc="Dummy register for DSP1 RAMR" />
+    </RegisterInfo>
+    <RegisterInfo index="0x1a8" name="Dummy register for DSP1 RAML, RAMR, RAMC1 and RAMC2">
+      <Bits range="31:24" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="23:16" field="DSP1_C2_DUMMY5[7:0]" default="0" desc="Dummy register for DSP1 RAMC2" />
+      <Bits range="15:8" field="DSP1_R_DUMMY5[7:0]" default="0" desc="Dummy register for DSP1 RAMR" />
+      <Bits range="7:0" field="DSP1_L_DUMMY5[7:0]" default="0" desc="Dummy register for DSP1 RAML" />
+    </RegisterInfo>
+    <RegisterInfo index="0x1ac" name="Dummy register for DSP1 RAMC1">
+      <Bits range="31:24" field="DSP1_C1_DUMMY1[7:0]" default="0" desc="Dummy register for DSP1 RAMC1" />
+      <Bits range="23:16" field="DSP1_C1_DUMMY2[7:0]" default="0" desc="Dummy register for DSP1 RAMC1" />
+      <Bits range="15:8" field="DSP1_C1_DUMMY3[7:0]" default="0" desc="Dummy register for DSP1 RAMC1" />
+      <Bits range="7:0" field="DSP1_C1_DUMMY4[7:0]" default="0" desc="Dummy register for DSP1 RAMC1" />
+    </RegisterInfo>
+    <RegisterInfo index="0x1b0" name="Dummy register for DSP1 RAMC2">
+      <Bits range="31:24" field="DSP1_C2_DUMMY1[7:0]" default="0" desc="Dummy register for DSP1 RAMC2" />
+      <Bits range="23:16" field="DSP1_C2_DUMMY2[7:0]" default="0" desc="Dummy register for DSP1 RAMC2" />
+      <Bits range="15:8" field="DSP1_C2_DUMMY3[7:0]" default="0" desc="Dummy register for DSP1 RAMC2" />
+      <Bits range="7:0" field="DSP1_C2_DUMMY4[7:0]" default="0" desc="Dummy register for DSP1 RAMC2" />
+    </RegisterInfo>
+    <RegisterInfo index="0x1b4" name="Scaling coefficient for both left and right channel DAC DSM">
+      <Bits range="31:8" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="7:0" field="DSP1_DSM_SCALE[7:0]" default="10000000" desc="scaling coefficient for left and right channel DAC DSM" />
+    </RegisterInfo>
+    <RegisterInfo index="0x200" name="DAC path DSP1 audio processing register. AudioReg1 is [7:0] and AudioReg2 is [15:8]">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15" field="DSP2_DAC_DUMMY2_EN" default="0" desc="" />
+      <Bits range="14" field="DSP2_DAC_3D_ENABLE" default="0" desc="Write 1 to enable 3D sound" />
+      <Bits range="13" field="DSP2_DAC_TXRX_MIX_ENABLE" default="0" desc="Write 1 to enable mixing of D1AO1" />
+      <Bits range="12" field="DSP2_DAC_D1IN4_MIX_ENABLE" default="0" desc="Write 1 to enable mixing of D1IN4" />
+      <Bits range="11" field="DSP2_DAC_D1IN3_MIX_ENABLE" default="0" desc="Write 1 to enable mixing of D1IN3" />
+      <Bits range="10" field="DSP2_DAC_D1IN2_MIX_ENABLE" default="0" desc="Write 1 to enable mixing of D1IN2" />
+      <Bits range="9" field="DSP2_DAC_D1IN1_MIX_ENABLE" default="0" desc="Write 1 to enable mixing of D1IN1" />
+      <Bits range="8" field="DSP2_DAC_OUT_MIX_ENABLE" default="0" desc="Write 1 to enable DAC path data mixing at output" />
+      <Bits range="7" field="DSP2_DAC_DUMMY1_EN" default="0" desc="" />
+      <Bits range="6" field="DSP2_DAC_AMUTE_ENABLE" default="0" desc="Write 1 to enable auto mute" />
+      <Bits range="5" field="DSP2_DAC_MUTE_UNMUTE" default="0" desc="Write 0 to mute and 1 to unmute the DAC side" />
+      <Bits range="4" field="DSP2_DAC_VOLUME_UPDATE" default="0" type="Force" desc="After updating dac_vol_left and dac_vol_right, write 1 to send the volume command" />
+      <Bits range="3" field="DSP2_DAC_DRC_ENABLE" default="0" desc="Write 1 to enable DRC. Look at register 0x52~0x5C for DRC parameters" />
+      <Bits range="2" field="DSP2_DAC_EQ_UPDATE" default="0" desc="After updating EQ coefs, write 1 to send the eq update command" />
+      <Bits range="1" field="DSP2_DAC_EQ_ENABLE" default="0" desc="Write 1 to enable EQ. Look at registers 0x2E~0x51 for EQ parameters" />
+      <Bits range="0" field="DSP2_DAC_ANC_ENABLE" default="0" desc="Write 1 to enable ambient noise cancellation. Look at registers 0x26~0x2D for ANC parameters" />
+    </RegisterInfo>
+    <RegisterInfo index="0x204" name="DSP2 Control Register">
+      <Bits range="31:6" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="5" field="DSP2_DAC_SOFT_RAMP_ENABLE" default="0" desc="Write 1 to enable soft volume ramp and soft mute/unmute ramp. Soft ramp uses zero-crossing detection." />
+      <Bits range="4" field="DSP2_DAC_MONOMODE_EN" default="0" desc="Write 1 to enable DAC mode mode. Left channel = (L+R)/2. Right channel is disabled" />
+      <Bits range="3:2" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="1" field="DSP2_EN_DAC_RIGHT" default="0" desc="Write 1 to enable right channel in DAC path" />
+      <Bits range="0" field="DSP2_EN_DAC_LEFT" default="0" desc="Write 1 to enable left channel in DAC path" />
+    </RegisterInfo>
+    <RegisterInfo index="0x208" name="Volume setting for DSP2">
+      <Bits range="31:24" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="23:16" field="DSP2_DAC_LEFT_VOL[7:0]" default="11101011" type="Gain" desc="dB volume setting for left channel in DAC path in 0.5dB step">
+        <Capbility range="0x00~0xff" dbrange="-127.5~0.0" step="0.5" />
+      </Bits>
+      <Bits range="15:8" field="DSP2_DAC_RIGHT_VOL[7:0]" default="11101011" type="Gain" desc="dB volume setting for right channel in DAC path in 0.5dB step">
+        <Capbility range="0x00~0xff" dbrange="-127.5~0.0" step="0.5" />
+      </Bits>
+      <Bits range="7:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:2" field="DSP2_PLAYBACK_GAIN[2:0]" default="0" type="Gain" desc="Digital Gain boost for both Left and Right channel data on playback path">
+        <Capbility value="0x0" decibel="0" />
+        <Capbility value="0x1" decibel="6" />
+        <Capbility value="0x2" decibel="12" />
+        <Capbility value="0x3" decibel="18" />
+        <Capbility value="0x4" decibel="0" />
+        <Capbility value="0x5" decibel="-6" />
+        <Capbility value="0x6" decibel="-12" />
+        <Capbility value="0x7" decibel="-18" />
+      </Bits>
+      <Bits range="1:0" field="DSP2_DAC_VOL_CHG_TIME[1:0]" default="1" desc="During volume soft ramp amount of time allowed for ramp to complete" />
+    </RegisterInfo>
+    <RegisterInfo index="0x20c" name="ANC parameter to control LMS adaptation step size">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="DSP2_ANC_MU[15:0]" default="10000000000" desc="MSB field of parameter u. Smaller values yields lower residual mean square error." />
+    </RegisterInfo>
+    <RegisterInfo index="0x210" name="ANC parameter to control alpha energy filter">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="DSP2_ANC_LAM[15:0]" default="10000000" desc="MSB field of parameter lamba. Smaller values yields smoother energy estimates" />
+    </RegisterInfo>
+    <RegisterInfo index="0x214" name="ANC parameter to control xcorr coef calculation">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="DSP2_ANC_BETA[15:0]" default="11111100000000" desc="MSB field of parameter beta. Larger value yields better results." />
+    </RegisterInfo>
+    <RegisterInfo index="0x218" name="ANC parameter to err_th to control double talk detection">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="DSP2_ANC_ERR_TH[15:0]" default="100001" desc="MSB field of parameter err_th" />
+    </RegisterInfo>
+    <RegisterInfo index="0x21c" name="Gain for EQ Band 1 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP2_K_EQ1[4:0]" default="1100" type="Gain" desc="dB Gain setting for EQ band1 filter. Look at following table.">
+        <Capbility value="0x0" decibel="-12" />
+        <Capbility value="0x1" decibel="-11" />
+        <Capbility value="0x2" decibel="-10" />
+        <Capbility value="0x3" decibel="-9" />
+        <Capbility value="0x4" decibel="-8" />
+        <Capbility value="0x5" decibel="-7" />
+        <Capbility value="0x6" decibel="-6" />
+        <Capbility value="0x7" decibel="-5" />
+        <Capbility value="0x8" decibel="-4" />
+        <Capbility value="0x9" decibel="-3" />
+        <Capbility value="0xA" decibel="-2" />
+        <Capbility value="0xB" decibel="-1" />
+        <Capbility value="0xC" decibel="0" />
+        <Capbility value="0xD" decibel="1" />
+        <Capbility value="0xE" decibel="2" />
+        <Capbility value="0xF" decibel="3" />
+        <Capbility value="0x10" decibel="4" />
+        <Capbility value="0x11" decibel="5" />
+        <Capbility value="0x12" decibel="6" />
+        <Capbility value="0x13" decibel="7" />
+        <Capbility value="0x14" decibel="8" />
+        <Capbility value="0x15" decibel="9" />
+        <Capbility value="0x16" decibel="10" />
+        <Capbility value="0x17" decibel="11" />
+        <Capbility value="0x18" decibel="12" />
+      </Bits>
+    </RegisterInfo>
+    <RegisterInfo index="0x220" name="Normalized center frequency for EQ band1">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_WC_HI_EQ1[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band1" />
+      <Bits range="7:0" field="DSP2_WC_LO_EQ1[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band1" />
+    </RegisterInfo>
+    <RegisterInfo index="0x224" name="Gain for EQ Band 2 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP2_K_EQ2[4:0]" default="1100" desc="dB Gain setting for EQ band2 filter. Look at EQ Band1 Gain table." />
+    </RegisterInfo>
+    <RegisterInfo index="0x228" name="Normalized center frequency for EQ band2">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_WC_HI_EQ2[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band2" />
+      <Bits range="7:0" field="DSP2_WC_LO_EQ2[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band2" />
+    </RegisterInfo>
+    <RegisterInfo index="0x22c" name="Normalized bandwidth deltaf for EQ band2">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_BW_HI_EQ2[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band2" />
+      <Bits range="7:0" field="DSP2_BW_LO_EQ2[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band2" />
+    </RegisterInfo>
+    <RegisterInfo index="0x230" name="Gain for EQ Band 3 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP2_K_EQ3[4:0]" default="1100" desc="dB Gain setting for EQ band3 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x234" name="Normalized center frequency for EQ band3">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_WC_HI_EQ3[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band3" />
+      <Bits range="7:0" field="DSP2_WC_LO_EQ3[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band3" />
+    </RegisterInfo>
+    <RegisterInfo index="0x238" name="Normalized bandwidth deltaf for EQ band3">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_BW_HI_EQ3[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band3" />
+      <Bits range="7:0" field="DSP2_BW_LO_EQ3[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band3" />
+    </RegisterInfo>
+    <RegisterInfo index="0x23c" name="Gain for EQ Band 4 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP2_K_EQ4[4:0]" default="1100" desc="dB Gain setting for EQ band4 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x240" name="Normalized center frequency for EQ band4">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_WC_HI_EQ4[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band4" />
+      <Bits range="7:0" field="DSP2_WC_LO_EQ4[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band4" />
+    </RegisterInfo>
+    <RegisterInfo index="0x244" name="Normalized bandwidth deltaf for EQ band4">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_BW_HI_EQ4[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band4" />
+      <Bits range="7:0" field="DSP2_BW_LO_EQ4[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band4" />
+    </RegisterInfo>
+    <RegisterInfo index="0x248" name="Gain for EQ Band 5 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP2_K_EQ5[4:0]" default="1100" desc="dB Gain setting for EQ band5 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x24c" name="Normalized center frequency for EQ band5">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_WC_HI_EQ5[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band5" />
+      <Bits range="7:0" field="DSP2_WC_LO_EQ5[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band5" />
+    </RegisterInfo>
+    <RegisterInfo index="0x250" name="Normalized bandwidth deltaf for EQ band5">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_BW_HI_EQ5[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band5" />
+      <Bits range="7:0" field="DSP2_BW_LO_EQ5[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band5" />
+    </RegisterInfo>
+    <RegisterInfo index="0x254" name="Gain for EQ Band 6 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP2_K_EQ6[4:0]" default="1100" desc="dB Gain setting for EQ band6 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x258" name="Normalized center frequency for EQ band6">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_WC_HI_EQ6[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band6" />
+      <Bits range="7:0" field="DSP2_WC_LO_EQ6[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band6" />
+    </RegisterInfo>
+    <RegisterInfo index="0x25c" name="Normalized bandwidth deltaf for EQ band6">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_BW_HI_EQ6[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band6" />
+      <Bits range="7:0" field="DSP2_BW_LO_EQ6[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band6" />
+    </RegisterInfo>
+    <RegisterInfo index="0x260" name="Gain for EQ Band 7 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP2_K_EQ7[4:0]" default="1100" desc="dB Gain setting for EQ band7 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x264" name="Normalized center frequency for EQ band7">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_WC_HI_EQ7[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band7" />
+      <Bits range="7:0" field="DSP2_WC_LO_EQ7[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band7" />
+    </RegisterInfo>
+    <RegisterInfo index="0x268" name="Normalized bandwidth deltaf for EQ band7">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_BW_HI_EQ7[7:0]" default="0" desc="MSB field of normalized bandwidth deltaf for EQ band7" />
+      <Bits range="7:0" field="DSP2_BW_LO_EQ7[7:0]" default="0" desc="LSB field of normalized bandwidth deltaf for EQ band7" />
+    </RegisterInfo>
+    <RegisterInfo index="0x26c" name="Gain for EQ Band 8 filter">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4:0" field="DSP2_K_EQ8[4:0]" default="1100" desc="dB Gain setting for EQ band8 filter. Look at EQ Band1 Gain table" />
+    </RegisterInfo>
+    <RegisterInfo index="0x270" name="Normalized center frequency for EQ band8">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_WC_HI_EQ8[7:0]" default="0" desc="MSB field of normalized center frequency for EQ band8" />
+      <Bits range="7:0" field="DSP2_WC_LO_EQ8[7:0]" default="0" desc="LSB field of normalized center frequency for EQ band8" />
+    </RegisterInfo>
+    <RegisterInfo index="0x274" name="Threshold value for DRC compression engine in DAC path">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_T_DRC_HI[7:0]" default="11111000" desc="MSB field of threshold dB value of DRC compression engine" />
+      <Bits range="7:0" field="DSP2_T_DRC_LO[7:0]" default="111" desc="LSB field of threshold dB value of DRC compression engine" />
+    </RegisterInfo>
+    <RegisterInfo index="0x278" name="Offset value for DRC compression engine in DAC path">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_O_DRC_HI[7:0]" default="0" desc="MSB field of offset dB value of DRC compression engine" />
+      <Bits range="7:0" field="DSP2_O_DRC_LO[7:0]" default="0" desc="LSB field of offset dB value of DRC compression engine" />
+    </RegisterInfo>
+    <RegisterInfo index="0x27c" name="compression ratio (K:1) for DRC compression engine in DAC path">
+      <Bits range="31:8" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="7:0" field="DSP2_K_DRC[7:0]" default="10000" desc="compression ratio value of DRC compression engine" />
+    </RegisterInfo>
+    <RegisterInfo index="0x280" name="Time constant for energy filter in DAC DRC">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_DRC_ALPHA_ENG_HI[7:0]" default="1" desc="MSB field of DRC alpha energy filter time constant" />
+      <Bits range="7:0" field="DSP2_DRC_ALPHA_ENG_LO[7:0]" default="1010100" desc="LSB field of DRC alpha energy filter time constant" />
+    </RegisterInfo>
+    <RegisterInfo index="0x284" name="Time constant for attack in DAC DRC">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_DRC_ALPHA_ATK_HI[7:0]" default="10" desc="MSB field of DRC attack time constant" />
+      <Bits range="7:0" field="DSP2_DRC_ALPHA_ATK_LO[7:0]" default="10100100" desc="LSB field of DRC attack time constant" />
+    </RegisterInfo>
+    <RegisterInfo index="0x288" name="Time constant for decay in DAC DRC">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_DRC_ALPHA_DEC_HI[7:0]" default="0" desc="MSB field of DRC decay time constant" />
+      <Bits range="7:0" field="DSP2_DRC_ALPHA_DEC_LO[7:0]" default="10001000" desc="LSB field of DRC decay time constant" />
+    </RegisterInfo>
+    <RegisterInfo index="0x28c" name="Mix coefficient for left contribution to left output mix">
+      <Bits range="31:24" field="DSP2_DAC_LMIXL[7:0]" default="1000000" desc="Mix coefficient for left contribution to left output mix" />
+      <Bits range="23:16" field="DSP2_DAC_RMIXL[7:0]" default="1000000" desc="Mix coefficient for right contribution to left output mix" />
+      <Bits range="15:8" field="DSP2_DAC_LMIXR[7:0]" default="1000000" desc="Mix coefficient for left contribution to right output mix" />
+      <Bits range="7:0" field="DSP2_DAC_RMIXR[7:0]" default="1000000" desc="Mix coefficient for right contribution to right output mix" />
+    </RegisterInfo>
+    <RegisterInfo index="0x290" name="TxRx mix coef Register">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="TX_2TXRX_MIX[7:0]" default="1000000" desc="tx_2txrx_mix" />
+      <Bits range="7:0" field="RX_2TXRX_MIX[7:0]" default="1000000" desc="rx_2txrx_mix" />
+    </RegisterInfo>
+    <RegisterInfo index="0x294" name="DSP2 input mix coefs">
+      <Bits range="31:24" field="D2IN4_2INMIX[7:0]" default="1000000" type="Gain" desc="DSP2 IN4 mix coefficient">
+        <Capbility value="0x0" decibel="Mute" />
+        <Capbility value="0x1" decibel="-42.14" />
+        <Capbility value="0x2" decibel="-36.12" />
+        <Capbility value="0x3" decibel="-32.6" />
+        <Capbility value="0x4" decibel="-30.1" />
+        <Capbility value="0x5" decibel="-28.16" />
+        <Capbility value="0x6" decibel="-26.58" />
+        <Capbility value="0x7" decibel="-25.24" />
+        <Capbility value="0x8" decibel="-24.08" />
+        <Capbility value="0x9" decibel="-23.06" />
+        <Capbility value="0xA" decibel="-22.14" />
+        <Capbility value="0xB" decibel="-21.32" />
+        <Capbility value="0xC" decibel="-20.56" />
+        <Capbility value="0xD" decibel="-19.87" />
+        <Capbility value="0xE" decibel="-19.22" />
+        <Capbility value="0xF" decibel="-18.62" />
+        <Capbility value="0x10" decibel="-18.06" />
+        <Capbility value="0x11" decibel="-17.54" />
+        <Capbility value="0x12" decibel="-17.04" />
+        <Capbility value="0x13" decibel="-16.57" />
+        <Capbility value="0x14" decibel="-16.12" />
+        <Capbility value="0x15" decibel="-15.7" />
+        <Capbility value="0x16" decibel="-15.3" />
+        <Capbility value="0x17" decibel="-14.91" />
+        <Capbility value="0x18" decibel="-14.54" />
+        <Capbility value="0x19" decibel="-14.19" />
+        <Capbility value="0x1A" decibel="-13.84" />
+        <Capbility value="0x1B" decibel="-13.52" />
+        <Capbility value="0x1C" decibel="-13.2" />
+        <Capbility value="0x1D" decibel="-12.9" />
+        <Capbility value="0x1E" decibel="-12.6" />
+        <Capbility value="0x1F" decibel="-12.32" />
+        <Capbility value="0x20" decibel="-12.04" />
+        <Capbility value="0x21" decibel="-11.77" />
+        <Capbility value="0x22" decibel="-11.51" />
+        <Capbility value="0x23" decibel="-11.26" />
+        <Capbility value="0x24" decibel="-11.02" />
+        <Capbility value="0x25" decibel="-10.78" />
+        <Capbility value="0x26" decibel="-10.55" />
+        <Capbility value="0x27" decibel="-10.32" />
+        <Capbility value="0x28" decibel="-10.1" />
+        <Capbility value="0x29" decibel="-9.89" />
+        <Capbility value="0x2A" decibel="-9.68" />
+        <Capbility value="0x2B" decibel="-9.47" />
+        <Capbility value="0x2C" decibel="-9.28" />
+        <Capbility value="0x2D" decibel="-9.08" />
+        <Capbility value="0x2E" decibel="-8.89" />
+        <Capbility value="0x2F" decibel="-8.7" />
+        <Capbility value="0x30" decibel="-8.52" />
+        <Capbility value="0x31" decibel="-8.34" />
+        <Capbility value="0x32" decibel="-8.16" />
+        <Capbility value="0x33" decibel="-7.99" />
+        <Capbility value="0x34" decibel="-7.82" />
+        <Capbility value="0x35" decibel="-7.66" />
+        <Capbility value="0x36" decibel="-7.5" />
+        <Capbility value="0x37" decibel="-7.34" />
+        <Capbility value="0x38" decibel="-7.18" />
+        <Capbility value="0x39" decibel="-7.03" />
+        <Capbility value="0x3A" decibel="-6.88" />
+        <Capbility value="0x3B" decibel="-6.73" />
+        <Capbility value="0x3C" decibel="-6.58" />
+        <Capbility value="0x3D" decibel="-6.44" />
+        <Capbility value="0x3E" decibel="-6.3" />
+        <Capbility value="0x3F" decibel="-6.16" />
+        <Capbility value="0x40" decibel="-6.02" />
+        <Capbility value="0x41" decibel="-5.89" />
+        <Capbility value="0x42" decibel="-5.75" />
+        <Capbility value="0x43" decibel="-5.62" />
+        <Capbility value="0x44" decibel="-5.49" />
+        <Capbility value="0x45" decibel="-5.37" />
+        <Capbility value="0x46" decibel="-5.24" />
+        <Capbility value="0x47" decibel="-5.12" />
+        <Capbility value="0x48" decibel="-5" />
+        <Capbility value="0x49" decibel="-4.88" />
+        <Capbility value="0x4A" decibel="-4.76" />
+        <Capbility value="0x4B" decibel="-4.64" />
+        <Capbility value="0x4C" decibel="-4.53" />
+        <Capbility value="0x4D" decibel="-4.41" />
+        <Capbility value="0x4E" decibel="-4.3" />
+        <Capbility value="0x4F" decibel="-4.19" />
+        <Capbility value="0x50" decibel="-4.08" />
+        <Capbility value="0x51" decibel="-3.97" />
+        <Capbility value="0x52" decibel="-3.87" />
+        <Capbility value="0x53" decibel="-3.76" />
+        <Capbility value="0x54" decibel="-3.66" />
+        <Capbility value="0x55" decibel="-3.56" />
+        <Capbility value="0x56" decibel="-3.45" />
+        <Capbility value="0x57" decibel="-3.35" />
+        <Capbility value="0x58" decibel="-3.25" />
+        <Capbility value="0x59" decibel="-3.16" />
+        <Capbility value="0x5A" decibel="-3.06" />
+        <Capbility value="0x5B" decibel="-2.96" />
+        <Capbility value="0x5C" decibel="-2.87" />
+        <Capbility value="0x5D" decibel="-2.77" />
+        <Capbility value="0x5E" decibel="-2.68" />
+        <Capbility value="0x5F" decibel="-2.59" />
+        <Capbility value="0x60" decibel="-2.5" />
+        <Capbility value="0x61" decibel="-2.41" />
+        <Capbility value="0x62" decibel="-2.32" />
+        <Capbility value="0x63" decibel="-2.23" />
+        <Capbility value="0x64" decibel="-2.14" />
+        <Capbility value="0x65" decibel="-2.06" />
+        <Capbility value="0x66" decibel="-1.97" />
+        <Capbility value="0x67" decibel="-1.89" />
+        <Capbility value="0x68" decibel="-1.8" />
+        <Capbility value="0x69" decibel="-1.72" />
+        <Capbility value="0x6A" decibel="-1.64" />
+        <Capbility value="0x6B" decibel="-1.56" />
+        <Capbility value="0x6C" decibel="-1.48" />
+        <Capbility value="0x6D" decibel="-1.4" />
+        <Capbility value="0x6E" decibel="-1.32" />
+        <Capbility value="0x6F" decibel="-1.24" />
+        <Capbility value="0x70" decibel="-1.16" />
+        <Capbility value="0x71" decibel="-1.08" />
+        <Capbility value="0x72" decibel="-1.01" />
+        <Capbility value="0x73" decibel="-0.93" />
+        <Capbility value="0x74" decibel="-0.86" />
+        <Capbility value="0x75" decibel="-0.78" />
+        <Capbility value="0x76" decibel="-0.71" />
+        <Capbility value="0x77" decibel="-0.63" />
+        <Capbility value="0x78" decibel="-0.56" />
+        <Capbility value="0x79" decibel="-0.49" />
+        <Capbility value="0x7A" decibel="-0.42" />
+        <Capbility value="0x7B" decibel="-0.35" />
+        <Capbility value="0x7C" decibel="-0.28" />
+        <Capbility value="0x7D" decibel="-0.21" />
+        <Capbility value="0x7E" decibel="-0.14" />
+        <Capbility value="0x7F" decibel="-0.07" />
+        <Capbility value="0x80" decibel="0" />
+      </Bits>
+      <Bits range="23:16" field="D2IN3_2INMIX[7:0]" default="1000000" type="Gain" desc="DSP2 IN3 mix coefficient">
+        <Capbility value="0x0" decibel="Mute" />
+        <Capbility value="0x1" decibel="-42.14" />
+        <Capbility value="0x2" decibel="-36.12" />
+        <Capbility value="0x3" decibel="-32.6" />
+        <Capbility value="0x4" decibel="-30.1" />
+        <Capbility value="0x5" decibel="-28.16" />
+        <Capbility value="0x6" decibel="-26.58" />
+        <Capbility value="0x7" decibel="-25.24" />
+        <Capbility value="0x8" decibel="-24.08" />
+        <Capbility value="0x9" decibel="-23.06" />
+        <Capbility value="0xA" decibel="-22.14" />
+        <Capbility value="0xB" decibel="-21.32" />
+        <Capbility value="0xC" decibel="-20.56" />
+        <Capbility value="0xD" decibel="-19.87" />
+        <Capbility value="0xE" decibel="-19.22" />
+        <Capbility value="0xF" decibel="-18.62" />
+        <Capbility value="0x10" decibel="-18.06" />
+        <Capbility value="0x11" decibel="-17.54" />
+        <Capbility value="0x12" decibel="-17.04" />
+        <Capbility value="0x13" decibel="-16.57" />
+        <Capbility value="0x14" decibel="-16.12" />
+        <Capbility value="0x15" decibel="-15.7" />
+        <Capbility value="0x16" decibel="-15.3" />
+        <Capbility value="0x17" decibel="-14.91" />
+        <Capbility value="0x18" decibel="-14.54" />
+        <Capbility value="0x19" decibel="-14.19" />
+        <Capbility value="0x1A" decibel="-13.84" />
+        <Capbility value="0x1B" decibel="-13.52" />
+        <Capbility value="0x1C" decibel="-13.2" />
+        <Capbility value="0x1D" decibel="-12.9" />
+        <Capbility value="0x1E" decibel="-12.6" />
+        <Capbility value="0x1F" decibel="-12.32" />
+        <Capbility value="0x20" decibel="-12.04" />
+        <Capbility value="0x21" decibel="-11.77" />
+        <Capbility value="0x22" decibel="-11.51" />
+        <Capbility value="0x23" decibel="-11.26" />
+        <Capbility value="0x24" decibel="-11.02" />
+        <Capbility value="0x25" decibel="-10.78" />
+        <Capbility value="0x26" decibel="-10.55" />
+        <Capbility value="0x27" decibel="-10.32" />
+        <Capbility value="0x28" decibel="-10.1" />
+        <Capbility value="0x29" decibel="-9.89" />
+        <Capbility value="0x2A" decibel="-9.68" />
+        <Capbility value="0x2B" decibel="-9.47" />
+        <Capbility value="0x2C" decibel="-9.28" />
+        <Capbility value="0x2D" decibel="-9.08" />
+        <Capbility value="0x2E" decibel="-8.89" />
+        <Capbility value="0x2F" decibel="-8.7" />
+        <Capbility value="0x30" decibel="-8.52" />
+        <Capbility value="0x31" decibel="-8.34" />
+        <Capbility value="0x32" decibel="-8.16" />
+        <Capbility value="0x33" decibel="-7.99" />
+        <Capbility value="0x34" decibel="-7.82" />
+        <Capbility value="0x35" decibel="-7.66" />
+        <Capbility value="0x36" decibel="-7.5" />
+        <Capbility value="0x37" decibel="-7.34" />
+        <Capbility value="0x38" decibel="-7.18" />
+        <Capbility value="0x39" decibel="-7.03" />
+        <Capbility value="0x3A" decibel="-6.88" />
+        <Capbility value="0x3B" decibel="-6.73" />
+        <Capbility value="0x3C" decibel="-6.58" />
+        <Capbility value="0x3D" decibel="-6.44" />
+        <Capbility value="0x3E" decibel="-6.3" />
+        <Capbility value="0x3F" decibel="-6.16" />
+        <Capbility value="0x40" decibel="-6.02" />
+        <Capbility value="0x41" decibel="-5.89" />
+        <Capbility value="0x42" decibel="-5.75" />
+        <Capbility value="0x43" decibel="-5.62" />
+        <Capbility value="0x44" decibel="-5.49" />
+        <Capbility value="0x45" decibel="-5.37" />
+        <Capbility value="0x46" decibel="-5.24" />
+        <Capbility value="0x47" decibel="-5.12" />
+        <Capbility value="0x48" decibel="-5" />
+        <Capbility value="0x49" decibel="-4.88" />
+        <Capbility value="0x4A" decibel="-4.76" />
+        <Capbility value="0x4B" decibel="-4.64" />
+        <Capbility value="0x4C" decibel="-4.53" />
+        <Capbility value="0x4D" decibel="-4.41" />
+        <Capbility value="0x4E" decibel="-4.3" />
+        <Capbility value="0x4F" decibel="-4.19" />
+        <Capbility value="0x50" decibel="-4.08" />
+        <Capbility value="0x51" decibel="-3.97" />
+        <Capbility value="0x52" decibel="-3.87" />
+        <Capbility value="0x53" decibel="-3.76" />
+        <Capbility value="0x54" decibel="-3.66" />
+        <Capbility value="0x55" decibel="-3.56" />
+        <Capbility value="0x56" decibel="-3.45" />
+        <Capbility value="0x57" decibel="-3.35" />
+        <Capbility value="0x58" decibel="-3.25" />
+        <Capbility value="0x59" decibel="-3.16" />
+        <Capbility value="0x5A" decibel="-3.06" />
+        <Capbility value="0x5B" decibel="-2.96" />
+        <Capbility value="0x5C" decibel="-2.87" />
+        <Capbility value="0x5D" decibel="-2.77" />
+        <Capbility value="0x5E" decibel="-2.68" />
+        <Capbility value="0x5F" decibel="-2.59" />
+        <Capbility value="0x60" decibel="-2.5" />
+        <Capbility value="0x61" decibel="-2.41" />
+        <Capbility value="0x62" decibel="-2.32" />
+        <Capbility value="0x63" decibel="-2.23" />
+        <Capbility value="0x64" decibel="-2.14" />
+        <Capbility value="0x65" decibel="-2.06" />
+        <Capbility value="0x66" decibel="-1.97" />
+        <Capbility value="0x67" decibel="-1.89" />
+        <Capbility value="0x68" decibel="-1.8" />
+        <Capbility value="0x69" decibel="-1.72" />
+        <Capbility value="0x6A" decibel="-1.64" />
+        <Capbility value="0x6B" decibel="-1.56" />
+        <Capbility value="0x6C" decibel="-1.48" />
+        <Capbility value="0x6D" decibel="-1.4" />
+        <Capbility value="0x6E" decibel="-1.32" />
+        <Capbility value="0x6F" decibel="-1.24" />
+        <Capbility value="0x70" decibel="-1.16" />
+        <Capbility value="0x71" decibel="-1.08" />
+        <Capbility value="0x72" decibel="-1.01" />
+        <Capbility value="0x73" decibel="-0.93" />
+        <Capbility value="0x74" decibel="-0.86" />
+        <Capbility value="0x75" decibel="-0.78" />
+        <Capbility value="0x76" decibel="-0.71" />
+        <Capbility value="0x77" decibel="-0.63" />
+        <Capbility value="0x78" decibel="-0.56" />
+        <Capbility value="0x79" decibel="-0.49" />
+        <Capbility value="0x7A" decibel="-0.42" />
+        <Capbility value="0x7B" decibel="-0.35" />
+        <Capbility value="0x7C" decibel="-0.28" />
+        <Capbility value="0x7D" decibel="-0.21" />
+        <Capbility value="0x7E" decibel="-0.14" />
+        <Capbility value="0x7F" decibel="-0.07" />
+        <Capbility value="0x80" decibel="0" />
+      </Bits>
+      <Bits range="15:8" field="D2IN2_2INMIX[7:0]" default="1000000" type="Gain" desc="DSP2 IN2 mix coefficient">
+        <Capbility value="0x0" decibel="Mute" />
+        <Capbility value="0x1" decibel="-42.14" />
+        <Capbility value="0x2" decibel="-36.12" />
+        <Capbility value="0x3" decibel="-32.6" />
+        <Capbility value="0x4" decibel="-30.1" />
+        <Capbility value="0x5" decibel="-28.16" />
+        <Capbility value="0x6" decibel="-26.58" />
+        <Capbility value="0x7" decibel="-25.24" />
+        <Capbility value="0x8" decibel="-24.08" />
+        <Capbility value="0x9" decibel="-23.06" />
+        <Capbility value="0xA" decibel="-22.14" />
+        <Capbility value="0xB" decibel="-21.32" />
+        <Capbility value="0xC" decibel="-20.56" />
+        <Capbility value="0xD" decibel="-19.87" />
+        <Capbility value="0xE" decibel="-19.22" />
+        <Capbility value="0xF" decibel="-18.62" />
+        <Capbility value="0x10" decibel="-18.06" />
+        <Capbility value="0x11" decibel="-17.54" />
+        <Capbility value="0x12" decibel="-17.04" />
+        <Capbility value="0x13" decibel="-16.57" />
+        <Capbility value="0x14" decibel="-16.12" />
+        <Capbility value="0x15" decibel="-15.7" />
+        <Capbility value="0x16" decibel="-15.3" />
+        <Capbility value="0x17" decibel="-14.91" />
+        <Capbility value="0x18" decibel="-14.54" />
+        <Capbility value="0x19" decibel="-14.19" />
+        <Capbility value="0x1A" decibel="-13.84" />
+        <Capbility value="0x1B" decibel="-13.52" />
+        <Capbility value="0x1C" decibel="-13.2" />
+        <Capbility value="0x1D" decibel="-12.9" />
+        <Capbility value="0x1E" decibel="-12.6" />
+        <Capbility value="0x1F" decibel="-12.32" />
+        <Capbility value="0x20" decibel="-12.04" />
+        <Capbility value="0x21" decibel="-11.77" />
+        <Capbility value="0x22" decibel="-11.51" />
+        <Capbility value="0x23" decibel="-11.26" />
+        <Capbility value="0x24" decibel="-11.02" />
+        <Capbility value="0x25" decibel="-10.78" />
+        <Capbility value="0x26" decibel="-10.55" />
+        <Capbility value="0x27" decibel="-10.32" />
+        <Capbility value="0x28" decibel="-10.1" />
+        <Capbility value="0x29" decibel="-9.89" />
+        <Capbility value="0x2A" decibel="-9.68" />
+        <Capbility value="0x2B" decibel="-9.47" />
+        <Capbility value="0x2C" decibel="-9.28" />
+        <Capbility value="0x2D" decibel="-9.08" />
+        <Capbility value="0x2E" decibel="-8.89" />
+        <Capbility value="0x2F" decibel="-8.7" />
+        <Capbility value="0x30" decibel="-8.52" />
+        <Capbility value="0x31" decibel="-8.34" />
+        <Capbility value="0x32" decibel="-8.16" />
+        <Capbility value="0x33" decibel="-7.99" />
+        <Capbility value="0x34" decibel="-7.82" />
+        <Capbility value="0x35" decibel="-7.66" />
+        <Capbility value="0x36" decibel="-7.5" />
+        <Capbility value="0x37" decibel="-7.34" />
+        <Capbility value="0x38" decibel="-7.18" />
+        <Capbility value="0x39" decibel="-7.03" />
+        <Capbility value="0x3A" decibel="-6.88" />
+        <Capbility value="0x3B" decibel="-6.73" />
+        <Capbility value="0x3C" decibel="-6.58" />
+        <Capbility value="0x3D" decibel="-6.44" />
+        <Capbility value="0x3E" decibel="-6.3" />
+        <Capbility value="0x3F" decibel="-6.16" />
+        <Capbility value="0x40" decibel="-6.02" />
+        <Capbility value="0x41" decibel="-5.89" />
+        <Capbility value="0x42" decibel="-5.75" />
+        <Capbility value="0x43" decibel="-5.62" />
+        <Capbility value="0x44" decibel="-5.49" />
+        <Capbility value="0x45" decibel="-5.37" />
+        <Capbility value="0x46" decibel="-5.24" />
+        <Capbility value="0x47" decibel="-5.12" />
+        <Capbility value="0x48" decibel="-5" />
+        <Capbility value="0x49" decibel="-4.88" />
+        <Capbility value="0x4A" decibel="-4.76" />
+        <Capbility value="0x4B" decibel="-4.64" />
+        <Capbility value="0x4C" decibel="-4.53" />
+        <Capbility value="0x4D" decibel="-4.41" />
+        <Capbility value="0x4E" decibel="-4.3" />
+        <Capbility value="0x4F" decibel="-4.19" />
+        <Capbility value="0x50" decibel="-4.08" />
+        <Capbility value="0x51" decibel="-3.97" />
+        <Capbility value="0x52" decibel="-3.87" />
+        <Capbility value="0x53" decibel="-3.76" />
+        <Capbility value="0x54" decibel="-3.66" />
+        <Capbility value="0x55" decibel="-3.56" />
+        <Capbility value="0x56" decibel="-3.45" />
+        <Capbility value="0x57" decibel="-3.35" />
+        <Capbility value="0x58" decibel="-3.25" />
+        <Capbility value="0x59" decibel="-3.16" />
+        <Capbility value="0x5A" decibel="-3.06" />
+        <Capbility value="0x5B" decibel="-2.96" />
+        <Capbility value="0x5C" decibel="-2.87" />
+        <Capbility value="0x5D" decibel="-2.77" />
+        <Capbility value="0x5E" decibel="-2.68" />
+        <Capbility value="0x5F" decibel="-2.59" />
+        <Capbility value="0x60" decibel="-2.5" />
+        <Capbility value="0x61" decibel="-2.41" />
+        <Capbility value="0x62" decibel="-2.32" />
+        <Capbility value="0x63" decibel="-2.23" />
+        <Capbility value="0x64" decibel="-2.14" />
+        <Capbility value="0x65" decibel="-2.06" />
+        <Capbility value="0x66" decibel="-1.97" />
+        <Capbility value="0x67" decibel="-1.89" />
+        <Capbility value="0x68" decibel="-1.8" />
+        <Capbility value="0x69" decibel="-1.72" />
+        <Capbility value="0x6A" decibel="-1.64" />
+        <Capbility value="0x6B" decibel="-1.56" />
+        <Capbility value="0x6C" decibel="-1.48" />
+        <Capbility value="0x6D" decibel="-1.4" />
+        <Capbility value="0x6E" decibel="-1.32" />
+        <Capbility value="0x6F" decibel="-1.24" />
+        <Capbility value="0x70" decibel="-1.16" />
+        <Capbility value="0x71" decibel="-1.08" />
+        <Capbility value="0x72" decibel="-1.01" />
+        <Capbility value="0x73" decibel="-0.93" />
+        <Capbility value="0x74" decibel="-0.86" />
+        <Capbility value="0x75" decibel="-0.78" />
+        <Capbility value="0x76" decibel="-0.71" />
+        <Capbility value="0x77" decibel="-0.63" />
+        <Capbility value="0x78" decibel="-0.56" />
+        <Capbility value="0x79" decibel="-0.49" />
+        <Capbility value="0x7A" decibel="-0.42" />
+        <Capbility value="0x7B" decibel="-0.35" />
+        <Capbility value="0x7C" decibel="-0.28" />
+        <Capbility value="0x7D" decibel="-0.21" />
+        <Capbility value="0x7E" decibel="-0.14" />
+        <Capbility value="0x7F" decibel="-0.07" />
+        <Capbility value="0x80" decibel="0" />
+      </Bits>
+      <Bits range="7:0" field="D2IN1_2INMIX[7:0]" default="1000000" type="Gain" desc="DSP2 IN1 mix coefficient">
+        <Capbility value="0x0" decibel="Mute" />
+        <Capbility value="0x1" decibel="-42.14" />
+        <Capbility value="0x2" decibel="-36.12" />
+        <Capbility value="0x3" decibel="-32.6" />
+        <Capbility value="0x4" decibel="-30.1" />
+        <Capbility value="0x5" decibel="-28.16" />
+        <Capbility value="0x6" decibel="-26.58" />
+        <Capbility value="0x7" decibel="-25.24" />
+        <Capbility value="0x8" decibel="-24.08" />
+        <Capbility value="0x9" decibel="-23.06" />
+        <Capbility value="0xA" decibel="-22.14" />
+        <Capbility value="0xB" decibel="-21.32" />
+        <Capbility value="0xC" decibel="-20.56" />
+        <Capbility value="0xD" decibel="-19.87" />
+        <Capbility value="0xE" decibel="-19.22" />
+        <Capbility value="0xF" decibel="-18.62" />
+        <Capbility value="0x10" decibel="-18.06" />
+        <Capbility value="0x11" decibel="-17.54" />
+        <Capbility value="0x12" decibel="-17.04" />
+        <Capbility value="0x13" decibel="-16.57" />
+        <Capbility value="0x14" decibel="-16.12" />
+        <Capbility value="0x15" decibel="-15.7" />
+        <Capbility value="0x16" decibel="-15.3" />
+        <Capbility value="0x17" decibel="-14.91" />
+        <Capbility value="0x18" decibel="-14.54" />
+        <Capbility value="0x19" decibel="-14.19" />
+        <Capbility value="0x1A" decibel="-13.84" />
+        <Capbility value="0x1B" decibel="-13.52" />
+        <Capbility value="0x1C" decibel="-13.2" />
+        <Capbility value="0x1D" decibel="-12.9" />
+        <Capbility value="0x1E" decibel="-12.6" />
+        <Capbility value="0x1F" decibel="-12.32" />
+        <Capbility value="0x20" decibel="-12.04" />
+        <Capbility value="0x21" decibel="-11.77" />
+        <Capbility value="0x22" decibel="-11.51" />
+        <Capbility value="0x23" decibel="-11.26" />
+        <Capbility value="0x24" decibel="-11.02" />
+        <Capbility value="0x25" decibel="-10.78" />
+        <Capbility value="0x26" decibel="-10.55" />
+        <Capbility value="0x27" decibel="-10.32" />
+        <Capbility value="0x28" decibel="-10.1" />
+        <Capbility value="0x29" decibel="-9.89" />
+        <Capbility value="0x2A" decibel="-9.68" />
+        <Capbility value="0x2B" decibel="-9.47" />
+        <Capbility value="0x2C" decibel="-9.28" />
+        <Capbility value="0x2D" decibel="-9.08" />
+        <Capbility value="0x2E" decibel="-8.89" />
+        <Capbility value="0x2F" decibel="-8.7" />
+        <Capbility value="0x30" decibel="-8.52" />
+        <Capbility value="0x31" decibel="-8.34" />
+        <Capbility value="0x32" decibel="-8.16" />
+        <Capbility value="0x33" decibel="-7.99" />
+        <Capbility value="0x34" decibel="-7.82" />
+        <Capbility value="0x35" decibel="-7.66" />
+        <Capbility value="0x36" decibel="-7.5" />
+        <Capbility value="0x37" decibel="-7.34" />
+        <Capbility value="0x38" decibel="-7.18" />
+        <Capbility value="0x39" decibel="-7.03" />
+        <Capbility value="0x3A" decibel="-6.88" />
+        <Capbility value="0x3B" decibel="-6.73" />
+        <Capbility value="0x3C" decibel="-6.58" />
+        <Capbility value="0x3D" decibel="-6.44" />
+        <Capbility value="0x3E" decibel="-6.3" />
+        <Capbility value="0x3F" decibel="-6.16" />
+        <Capbility value="0x40" decibel="-6.02" />
+        <Capbility value="0x41" decibel="-5.89" />
+        <Capbility value="0x42" decibel="-5.75" />
+        <Capbility value="0x43" decibel="-5.62" />
+        <Capbility value="0x44" decibel="-5.49" />
+        <Capbility value="0x45" decibel="-5.37" />
+        <Capbility value="0x46" decibel="-5.24" />
+        <Capbility value="0x47" decibel="-5.12" />
+        <Capbility value="0x48" decibel="-5" />
+        <Capbility value="0x49" decibel="-4.88" />
+        <Capbility value="0x4A" decibel="-4.76" />
+        <Capbility value="0x4B" decibel="-4.64" />
+        <Capbility value="0x4C" decibel="-4.53" />
+        <Capbility value="0x4D" decibel="-4.41" />
+        <Capbility value="0x4E" decibel="-4.3" />
+        <Capbility value="0x4F" decibel="-4.19" />
+        <Capbility value="0x50" decibel="-4.08" />
+        <Capbility value="0x51" decibel="-3.97" />
+        <Capbility value="0x52" decibel="-3.87" />
+        <Capbility value="0x53" decibel="-3.76" />
+        <Capbility value="0x54" decibel="-3.66" />
+        <Capbility value="0x55" decibel="-3.56" />
+        <Capbility value="0x56" decibel="-3.45" />
+        <Capbility value="0x57" decibel="-3.35" />
+        <Capbility value="0x58" decibel="-3.25" />
+        <Capbility value="0x59" decibel="-3.16" />
+        <Capbility value="0x5A" decibel="-3.06" />
+        <Capbility value="0x5B" decibel="-2.96" />
+        <Capbility value="0x5C" decibel="-2.87" />
+        <Capbility value="0x5D" decibel="-2.77" />
+        <Capbility value="0x5E" decibel="-2.68" />
+        <Capbility value="0x5F" decibel="-2.59" />
+        <Capbility value="0x60" decibel="-2.5" />
+        <Capbility value="0x61" decibel="-2.41" />
+        <Capbility value="0x62" decibel="-2.32" />
+        <Capbility value="0x63" decibel="-2.23" />
+        <Capbility value="0x64" decibel="-2.14" />
+        <Capbility value="0x65" decibel="-2.06" />
+        <Capbility value="0x66" decibel="-1.97" />
+        <Capbility value="0x67" decibel="-1.89" />
+        <Capbility value="0x68" decibel="-1.8" />
+        <Capbility value="0x69" decibel="-1.72" />
+        <Capbility value="0x6A" decibel="-1.64" />
+        <Capbility value="0x6B" decibel="-1.56" />
+        <Capbility value="0x6C" decibel="-1.48" />
+        <Capbility value="0x6D" decibel="-1.4" />
+        <Capbility value="0x6E" decibel="-1.32" />
+        <Capbility value="0x6F" decibel="-1.24" />
+        <Capbility value="0x70" decibel="-1.16" />
+        <Capbility value="0x71" decibel="-1.08" />
+        <Capbility value="0x72" decibel="-1.01" />
+        <Capbility value="0x73" decibel="-0.93" />
+        <Capbility value="0x74" decibel="-0.86" />
+        <Capbility value="0x75" decibel="-0.78" />
+        <Capbility value="0x76" decibel="-0.71" />
+        <Capbility value="0x77" decibel="-0.63" />
+        <Capbility value="0x78" decibel="-0.56" />
+        <Capbility value="0x79" decibel="-0.49" />
+        <Capbility value="0x7A" decibel="-0.42" />
+        <Capbility value="0x7B" decibel="-0.35" />
+        <Capbility value="0x7C" decibel="-0.28" />
+        <Capbility value="0x7D" decibel="-0.21" />
+        <Capbility value="0x7E" decibel="-0.14" />
+        <Capbility value="0x7F" decibel="-0.07" />
+        <Capbility value="0x80" decibel="0" />
+      </Bits>
+    </RegisterInfo>
+    <RegisterInfo index="0x298" name="DSP2 3D sound register1">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DSP2_3D_HEADRADIUS[7:0]" default="1010" desc="Head radius parameter for 3D sound" />
+      <Bits range="7:0" field="DSP2_3D_CONTROL[7:0]" default="0" desc="3D control register" />
+    </RegisterInfo>
+    <RegisterInfo index="0x29c" name="DSP2 3D sound register2">
+      <Bits range="31:24" field="DSP2_SS2_ANGLE[7:0]" default="0" desc="3D sound sound source 2 angle " />
+      <Bits range="23:16" field="DSP2_SS2_DISTANCE[7:0]" default="0" desc="3D sound sound source 2 distance" />
+      <Bits range="15:8" field="DSP2_SS1_ANGLE[7:0]" default="0" desc="3D sound sound source 1 angle " />
+      <Bits range="7:0" field="DSP2_SS1_DISTANCE[7:0]" default="0" desc="3D sound sound source 1 distance " />
+    </RegisterInfo>
+    <RegisterInfo index="0x2a0" name="Dummy register for DSP2 RAML">
+      <Bits range="31:24" field="DSP2_L_DUMMY1[7:0]" default="0" desc="Dummy register for DSP2 RAML" />
+      <Bits range="23:16" field="DSP2_L_DUMMY2[7:0]" default="0" desc="Dummy register for DSP2 RAML" />
+      <Bits range="15:8" field="DSP2_L_DUMMY3[7:0]" default="0" desc="Dummy register for DSP2 RAML" />
+      <Bits range="7:0" field="DSP2_L_DUMMY4[7:0]" default="0" desc="Dummy register for DSP2 RAML" />
+    </RegisterInfo>
+    <RegisterInfo index="0x2a4" name="Dummy register for DSP2 RAMR">
+      <Bits range="31:24" field="DSP2_R_DUMMY1[7:0]" default="0" desc="Dummy register for DSP2 RAMR" />
+      <Bits range="23:16" field="DSP2_R_DUMMY2[7:0]" default="0" desc="Dummy register for DSP2 RAMR" />
+      <Bits range="15:8" field="DSP2_R_DUMMY3[7:0]" default="0" desc="Dummy register for DSP2 RAMR" />
+      <Bits range="7:0" field="DSP2_R_DUMMY4[7:0]" default="0" desc="Dummy register for DSP2 RAMR" />
+    </RegisterInfo>
+    <RegisterInfo index="0x2a8" name="Dummy register for DSP2 RAML, RAMR, RAMC1 and RAMC2">
+      <Bits range="31:24" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="23:16" field="DSP2_C2_DUMMY5[7:0]" default="0" desc="Dummy register for DSP2 RAMC2" />
+      <Bits range="15:8" field="DSP2_R_DUMMY5[7:0]" default="0" desc="Dummy register for DSP2 RAMR" />
+      <Bits range="7:0" field="DSP2_L_DUMMY5[7:0]" default="0" desc="Dummy register for DSP2 RAML" />
+    </RegisterInfo>
+    <RegisterInfo index="0x2ac" name="Dummy register for DSP2 RAMC1">
+      <Bits range="31:24" field="DSP2_C1_DUMMY1[7:0]" default="0" desc="Dummy register for DSP2 RAMC1" />
+      <Bits range="23:16" field="DSP2_C1_DUMMY2[7:0]" default="0" desc="Dummy register for DSP2 RAMC1" />
+      <Bits range="15:8" field="DSP2_C1_DUMMY3[7:0]" default="0" desc="Dummy register for DSP2 RAMC1" />
+      <Bits range="7:0" field="DSP2_C1_DUMMY4[7:0]" default="0" desc="Dummy register for DSP2 RAMC1" />
+    </RegisterInfo>
+    <RegisterInfo index="0x2b0" name="Dummy register for DSP2 RAMC2">
+      <Bits range="31:24" field="DSP2_C2_DUMMY1[7:0]" default="0" desc="Dummy register for DSP2 RAMC2" />
+      <Bits range="23:16" field="DSP2_C2_DUMMY2[7:0]" default="0" desc="Dummy register for DSP2 RAMC2" />
+      <Bits range="15:8" field="DSP2_C2_DUMMY3[7:0]" default="0" desc="Dummy register for DSP2 RAMC2" />
+      <Bits range="7:0" field="DSP2_C2_DUMMY4[7:0]" default="0" desc="Dummy register for DSP2 RAMC2" />
+    </RegisterInfo>
+    <RegisterInfo index="0x2b4" name="Scaling coefficient for both left and right channel DAC DSM">
+      <Bits range="31:8" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="7:0" field="DSP2_DSM_SCALE[7:0]" default="10000000" desc="scaling coefficient for left and right channel DAC DSM" />
+    </RegisterInfo>
+    <RegisterInfo index="0x300" name="ADC path audio processing register. AudioReg1 = [7:0], AudioReg2 [15:8]">
+      <Bits range="31:15" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15" field="ADC_DUMMY4_EN" default="0" desc="" />
+      <Bits range="14" field="ADC_DUMMY3_EN" default="0" desc="" />
+      <Bits range="13" field="ADC_IN2_MIX_ENABLE" default="0" desc="Write 1 to enable ADC path MIC2 mixing" />
+      <Bits range="12" field="ADC_SSL_ENABLE" default="0" desc="Write 1 to enable Sound Source Localization" />
+      <Bits range="11" field="ADC_MICBF_ENABLE" default="0" desc="Write 1 to enable Microphone beamforming" />
+      <Bits range="10" field="ADC_IN1_MIX_ENABLE" default="0" desc="Write 1 to enable ADC path MIC1 mixing" />
+      <Bits range="9" field="ADC_MIX_ENABLE" default="0" desc="Write 1 to enable ADC path LR output mixing" />
+      <Bits range="8" field="ADC_4MIC_BEAMFORMING" default="0" desc="Write 0 - for 2MIC beamforming. 1- for 4MIC beamforming" />
+      <Bits range="7" field="ADC_DUMMY1_EN" default="0" desc="" />
+      <Bits range="6" field="ADC_NG_ENABLE" default="0" desc="Write 1 to enable Noise Gate on ADC path" />
+      <Bits range="5" field="ADC_MUTE_UNMUTE" default="0" desc="Write 0 to mute and 1 to unmute the ADC(record) path" />
+      <Bits range="4" field="ADC_VOLUME_UPDATE" default="0" type="Force" desc="After updating adc_vol_left and adc_vol_right, write 1 to send the volume command" />
+      <Bits range="3" field="ADC_ALC_ENABLE" default="0" desc="Write 1 to enable ALC. Look at register 0x76~0x84 for ALC parameters" />
+      <Bits range="2" field="ADC_EQ_UPDATE" default="0" desc="Reserved" />
+      <Bits range="1" field="ADC_HPF_ENABLE" default="0" desc="Write 1 to enable HPF for wind noise reduction" />
+      <Bits range="0" field="ADC_AEC_ENABLE" default="0" desc="Write 1 to enable AEC" />
+    </RegisterInfo>
+    <RegisterInfo index="0x304" name="ADC Control Register">
+      <Bits range="31:6" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="5" field="ADC_SOFT_RAMP_ENABLE" default="0" desc="Write 1 to enable ZCD based soft volume ramp and soft mute/unmute ramp" />
+      <Bits range="4" field="ADC_MONO_MODE" default="0" desc="Write 1 to enable ADC path mono mode operation" />
+      <Bits range="3" field="ADC_RIGHT_MUXSEL" default="0" desc="Select source data for ADC right channel" />
+      <Bits range="2" field="ADC_LEFT_MUXSEL" default="0" desc="Select source data for ADC left channel" />
+      <Bits range="1" field="EN_ADC_RIGHT" default="0" desc="Write 1 to enable right channel in ADC path" />
+      <Bits range="0" field="EN_ADC_LEFT" default="0" desc="Write 1 to enable left channel in ADC path" />
+    </RegisterInfo>
+    <RegisterInfo index="0x308" name="Volume setting for ADC">
+      <Bits range="31:24" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="23:16" field="ADC_LEFT_VOL[7:0]" default="11101011" type="Gain" desc="dB volume setting for left channel in ADC path in 0.5dB step">
+        <Capbility range="0x00~0xff" dbrange="-127.5~0.0" step="0.5" />
+      </Bits>
+      <Bits range="15:8" field="ADC_RIGHT_VOL[7:0]" default="11101011" type="Gain" desc="dB volume setting for right channel in ADC path in 0.5dB step">
+        <Capbility range="0x00~0xff" dbrange="-127.5~0.0" step="0.5" />
+      </Bits>
+      <Bits range="7:6" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="5:4" field="DSP1AIN2_BOOST[1:0]" default="0" type="Gain" desc="Digital Gain boost for both Left and Right channel data on IN2 of DSP1A">
+        <Capbility value="0x00" decibel="0" />
+        <Capbility value="0x01" decibel="6" />
+        <Capbility value="0x10" decibel="12" />
+        <Capbility value="0x11" decibel="18" />
+      </Bits>
+      <Bits range="3:2" field="DSP1AIN1_BOOST[1:0]" default="0" type="Gain" desc="Digital Gain boost for both Left and Right channel data on IN1 of DSP1A">
+         <Capbility value="0x00" decibel="0" />
+        <Capbility value="0x01" decibel="6" />
+        <Capbility value="0x10" decibel="12" />
+        <Capbility value="0x11" decibel="18" />
+      </Bits>
+      <Bits range="1:0" field="ADC_VOL_CHG_TIME[1:0]" default="1" desc="During volume soft ramp amount of time allowed for ramp to complete" />
+    </RegisterInfo>
+    <RegisterInfo index="0x30c" name="Upper threshold value for ALC engine in ADC path">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="TU_ALC_HI[7:0]" default="11111000" desc="MSB field of upper threshold dB value in ALC" />
+      <Bits range="7:0" field="TU_ALC_LO[7:0]" default="111" desc="LSB field of upper threshold dB value in ALC" />
+    </RegisterInfo>
+    <RegisterInfo index="0x310" name="Lower threshold value for ALC engine in ADC path">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="TL_ALC_HI[7:0]" default="11110100" desc="MSB field of lower threshold dB value in ALC" />
+      <Bits range="7:0" field="TL_ALC_LO[7:0]" default="1011" desc="LSB field of lower threshold dB value in ALC" />
+    </RegisterInfo>
+    <RegisterInfo index="0x314" name="Offset value for ALC engine in ADC path">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="O_ALC_HI[7:0]" default="0" desc="MSB field of offset dB value of ALC engine" />
+      <Bits range="7:0" field="O_ALC_LO[7:0]" default="0" desc="LSB field of offset dB value of ALC engine" />
+    </RegisterInfo>
+    <RegisterInfo index="0x318" name="compression ratio (K:1) for ALC engine in ADC path">
+      <Bits range="31:8" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="7:0" field="K_ALC[7:0]" default="10000" desc="compression ratio value of ALC engine" />
+    </RegisterInfo>
+    <RegisterInfo index="0x31c" name="Time constant for energy filter in ADC ALC">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="ALC_ALPHA_ENG_HI[7:0]" default="1" desc="MSB field of ALC alpha energy filter time constant" />
+      <Bits range="7:0" field="ALC_ALPHA_ENG_LO[7:0]" default="1010100" desc="LSB field of ALC alpha energy filter time constant" />
+    </RegisterInfo>
+    <RegisterInfo index="0x320" name="Time constant for attack in ADC ALC">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="ALC_ALPHA_ATK_HI[7:0]" default="10" desc="MSB field of ALC attack time constant" />
+      <Bits range="7:0" field="ALC_ALPHA_ATK_LO[7:0]" default="10100100" desc="LSB field of ALC attack time constant" />
+    </RegisterInfo>
+    <RegisterInfo index="0x324" name="Time constant for decay in ADC ALC">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="ALC_ALPHA_DEC_HI[7:0]" default="0" desc="MSB field of ALC decay time constant" />
+      <Bits range="7:0" field="ALC_ALPHA_DEC_LO[7:0]" default="10001000" desc="LSB field of ALC decay time constant" />
+    </RegisterInfo>
+    <RegisterInfo index="0x328" name="Threshold value for Noise Gate in ADC path">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="T_NG_HI[7:0]" default="10110000" desc="MSB field of NGthreshold dB value" />
+      <Bits range="7:0" field="T_NG_LO[7:0]" default="1000110" desc="LSB field of NGthreshold dB value" />
+    </RegisterInfo>
+    <RegisterInfo index="0x32c" name="Mix coefficient for left contribution to left output mix">
+      <Bits range="31:24" field="ADC_LMIXL[7:0]" default="1000000" desc="Mix coefficient for left contribution to left output mix" />
+      <Bits range="23:16" field="ADC_RMIXL[7:0]" default="1000000" desc="Mix coefficient for right contribution to left output mix" />
+      <Bits range="15:8" field="ADC_LMIXR[7:0]" default="1000000" desc="Mix coefficient for left contribution to right output mix" />
+      <Bits range="7:0" field="ADC_RMIXR[7:0]" default="1000000" desc="Mix coefficient for right contribution to right output mix" />
+    </RegisterInfo>
+    <RegisterInfo index="0x330" name="AEC parameter to control LMS adaptation step size">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="AEC_MU[15:0]" default="10000000000" desc="Parameter u. Smaller values yields lower residual mean square error." />
+    </RegisterInfo>
+    <RegisterInfo index="0x334" name="AEC parameter to control alpha energy filter">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="AEC_LAM[15:0]" default="10000000" desc="Parameter lamba. Smaller values yields smoother energy estimates" />
+    </RegisterInfo>
+    <RegisterInfo index="0x338" name="AEC parameter to control xcorr coef calculation">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="AEC_BETA[15:0]" default="11111100000000" desc="Parameter beta. Larger value yields better results." />
+    </RegisterInfo>
+    <RegisterInfo index="0x33c" name="AEC parameter to err_th to control double talk detection">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:0" field="AEC_ERR_TH[15:0]" default="100001" desc="MSB field of parameter err_th" />
+    </RegisterInfo>
+    <RegisterInfo index="0x340" name="Lamda parameter for WNR filter">
+      <Bits range="31:8" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="7:0" field="WNR_LAM[7:0]" default="1110000" desc="Equation: =DEC2HEX(MIN(ROUND((VALUE*2^7),0),2^7-1)) VALUE Range: [0.5 1[" />
+    </RegisterInfo>
+    <RegisterInfo index="0x344" name="Sound Source Localization parameter mu">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="MU_SSL[7:0]" default="100" desc="Sound Source Localization parameter mu" />
+      <Bits range="7:0" field="PHI_SSL[7:0]" default="1111111" desc="Sound Source Localization parameter phi for energy filter" />
+    </RegisterInfo>
+    <RegisterInfo index="0x348" name="AMIC to AMIC_DMIC in-Mix">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="D1AIN1_2INMIX[7:0]" default="1000000" type="Gain" desc="MIC1 Gain for ADC path in-mix">
+        <Capbility value="0x0" decibel="Mute" />
+        <Capbility value="0x1" decibel="-42.14" />
+        <Capbility value="0x2" decibel="-36.12" />
+        <Capbility value="0x3" decibel="-32.6" />
+        <Capbility value="0x4" decibel="-30.1" />
+        <Capbility value="0x5" decibel="-28.16" />
+        <Capbility value="0x6" decibel="-26.58" />
+        <Capbility value="0x7" decibel="-25.24" />
+        <Capbility value="0x8" decibel="-24.08" />
+        <Capbility value="0x9" decibel="-23.06" />
+        <Capbility value="0xA" decibel="-22.14" />
+        <Capbility value="0xB" decibel="-21.32" />
+        <Capbility value="0xC" decibel="-20.56" />
+        <Capbility value="0xD" decibel="-19.87" />
+        <Capbility value="0xE" decibel="-19.22" />
+        <Capbility value="0xF" decibel="-18.62" />
+        <Capbility value="0x10" decibel="-18.06" />
+        <Capbility value="0x11" decibel="-17.54" />
+        <Capbility value="0x12" decibel="-17.04" />
+        <Capbility value="0x13" decibel="-16.57" />
+        <Capbility value="0x14" decibel="-16.12" />
+        <Capbility value="0x15" decibel="-15.7" />
+        <Capbility value="0x16" decibel="-15.3" />
+        <Capbility value="0x17" decibel="-14.91" />
+        <Capbility value="0x18" decibel="-14.54" />
+        <Capbility value="0x19" decibel="-14.19" />
+        <Capbility value="0x1A" decibel="-13.84" />
+        <Capbility value="0x1B" decibel="-13.52" />
+        <Capbility value="0x1C" decibel="-13.2" />
+        <Capbility value="0x1D" decibel="-12.9" />
+        <Capbility value="0x1E" decibel="-12.6" />
+        <Capbility value="0x1F" decibel="-12.32" />
+        <Capbility value="0x20" decibel="-12.04" />
+        <Capbility value="0x21" decibel="-11.77" />
+        <Capbility value="0x22" decibel="-11.51" />
+        <Capbility value="0x23" decibel="-11.26" />
+        <Capbility value="0x24" decibel="-11.02" />
+        <Capbility value="0x25" decibel="-10.78" />
+        <Capbility value="0x26" decibel="-10.55" />
+        <Capbility value="0x27" decibel="-10.32" />
+        <Capbility value="0x28" decibel="-10.1" />
+        <Capbility value="0x29" decibel="-9.89" />
+        <Capbility value="0x2A" decibel="-9.68" />
+        <Capbility value="0x2B" decibel="-9.47" />
+        <Capbility value="0x2C" decibel="-9.28" />
+        <Capbility value="0x2D" decibel="-9.08" />
+        <Capbility value="0x2E" decibel="-8.89" />
+        <Capbility value="0x2F" decibel="-8.7" />
+        <Capbility value="0x30" decibel="-8.52" />
+        <Capbility value="0x31" decibel="-8.34" />
+        <Capbility value="0x32" decibel="-8.16" />
+        <Capbility value="0x33" decibel="-7.99" />
+        <Capbility value="0x34" decibel="-7.82" />
+        <Capbility value="0x35" decibel="-7.66" />
+        <Capbility value="0x36" decibel="-7.5" />
+        <Capbility value="0x37" decibel="-7.34" />
+        <Capbility value="0x38" decibel="-7.18" />
+        <Capbility value="0x39" decibel="-7.03" />
+        <Capbility value="0x3A" decibel="-6.88" />
+        <Capbility value="0x3B" decibel="-6.73" />
+        <Capbility value="0x3C" decibel="-6.58" />
+        <Capbility value="0x3D" decibel="-6.44" />
+        <Capbility value="0x3E" decibel="-6.3" />
+        <Capbility value="0x3F" decibel="-6.16" />
+        <Capbility value="0x40" decibel="-6.02" />
+        <Capbility value="0x41" decibel="-5.89" />
+        <Capbility value="0x42" decibel="-5.75" />
+        <Capbility value="0x43" decibel="-5.62" />
+        <Capbility value="0x44" decibel="-5.49" />
+        <Capbility value="0x45" decibel="-5.37" />
+        <Capbility value="0x46" decibel="-5.24" />
+        <Capbility value="0x47" decibel="-5.12" />
+        <Capbility value="0x48" decibel="-5" />
+        <Capbility value="0x49" decibel="-4.88" />
+        <Capbility value="0x4A" decibel="-4.76" />
+        <Capbility value="0x4B" decibel="-4.64" />
+        <Capbility value="0x4C" decibel="-4.53" />
+        <Capbility value="0x4D" decibel="-4.41" />
+        <Capbility value="0x4E" decibel="-4.3" />
+        <Capbility value="0x4F" decibel="-4.19" />
+        <Capbility value="0x50" decibel="-4.08" />
+        <Capbility value="0x51" decibel="-3.97" />
+        <Capbility value="0x52" decibel="-3.87" />
+        <Capbility value="0x53" decibel="-3.76" />
+        <Capbility value="0x54" decibel="-3.66" />
+        <Capbility value="0x55" decibel="-3.56" />
+        <Capbility value="0x56" decibel="-3.45" />
+        <Capbility value="0x57" decibel="-3.35" />
+        <Capbility value="0x58" decibel="-3.25" />
+        <Capbility value="0x59" decibel="-3.16" />
+        <Capbility value="0x5A" decibel="-3.06" />
+        <Capbility value="0x5B" decibel="-2.96" />
+        <Capbility value="0x5C" decibel="-2.87" />
+        <Capbility value="0x5D" decibel="-2.77" />
+        <Capbility value="0x5E" decibel="-2.68" />
+        <Capbility value="0x5F" decibel="-2.59" />
+        <Capbility value="0x60" decibel="-2.5" />
+        <Capbility value="0x61" decibel="-2.41" />
+        <Capbility value="0x62" decibel="-2.32" />
+        <Capbility value="0x63" decibel="-2.23" />
+        <Capbility value="0x64" decibel="-2.14" />
+        <Capbility value="0x65" decibel="-2.06" />
+        <Capbility value="0x66" decibel="-1.97" />
+        <Capbility value="0x67" decibel="-1.89" />
+        <Capbility value="0x68" decibel="-1.8" />
+        <Capbility value="0x69" decibel="-1.72" />
+        <Capbility value="0x6A" decibel="-1.64" />
+        <Capbility value="0x6B" decibel="-1.56" />
+        <Capbility value="0x6C" decibel="-1.48" />
+        <Capbility value="0x6D" decibel="-1.4" />
+        <Capbility value="0x6E" decibel="-1.32" />
+        <Capbility value="0x6F" decibel="-1.24" />
+        <Capbility value="0x70" decibel="-1.16" />
+        <Capbility value="0x71" decibel="-1.08" />
+        <Capbility value="0x72" decibel="-1.01" />
+        <Capbility value="0x73" decibel="-0.93" />
+        <Capbility value="0x74" decibel="-0.86" />
+        <Capbility value="0x75" decibel="-0.78" />
+        <Capbility value="0x76" decibel="-0.71" />
+        <Capbility value="0x77" decibel="-0.63" />
+        <Capbility value="0x78" decibel="-0.56" />
+        <Capbility value="0x79" decibel="-0.49" />
+        <Capbility value="0x7A" decibel="-0.42" />
+        <Capbility value="0x7B" decibel="-0.35" />
+        <Capbility value="0x7C" decibel="-0.28" />
+        <Capbility value="0x7D" decibel="-0.21" />
+        <Capbility value="0x7E" decibel="-0.14" />
+        <Capbility value="0x7F" decibel="-0.07" />
+        <Capbility value="0x80" decibel="0" />
+      </Bits>
+      <Bits range="7:0" field="D1AIN2_2INMIX[7:0]" default="1000000" type="Gain" desc="MIC2 Gain for ADC path in-mix">
+        <Capbility value="0x0" decibel="Mute" />
+        <Capbility value="0x1" decibel="-42.14" />
+        <Capbility value="0x2" decibel="-36.12" />
+        <Capbility value="0x3" decibel="-32.6" />
+        <Capbility value="0x4" decibel="-30.1" />
+        <Capbility value="0x5" decibel="-28.16" />
+        <Capbility value="0x6" decibel="-26.58" />
+        <Capbility value="0x7" decibel="-25.24" />
+        <Capbility value="0x8" decibel="-24.08" />
+        <Capbility value="0x9" decibel="-23.06" />
+        <Capbility value="0xA" decibel="-22.14" />
+        <Capbility value="0xB" decibel="-21.32" />
+        <Capbility value="0xC" decibel="-20.56" />
+        <Capbility value="0xD" decibel="-19.87" />
+        <Capbility value="0xE" decibel="-19.22" />
+        <Capbility value="0xF" decibel="-18.62" />
+        <Capbility value="0x10" decibel="-18.06" />
+        <Capbility value="0x11" decibel="-17.54" />
+        <Capbility value="0x12" decibel="-17.04" />
+        <Capbility value="0x13" decibel="-16.57" />
+        <Capbility value="0x14" decibel="-16.12" />
+        <Capbility value="0x15" decibel="-15.7" />
+        <Capbility value="0x16" decibel="-15.3" />
+        <Capbility value="0x17" decibel="-14.91" />
+        <Capbility value="0x18" decibel="-14.54" />
+        <Capbility value="0x19" decibel="-14.19" />
+        <Capbility value="0x1A" decibel="-13.84" />
+        <Capbility value="0x1B" decibel="-13.52" />
+        <Capbility value="0x1C" decibel="-13.2" />
+        <Capbility value="0x1D" decibel="-12.9" />
+        <Capbility value="0x1E" decibel="-12.6" />
+        <Capbility value="0x1F" decibel="-12.32" />
+        <Capbility value="0x20" decibel="-12.04" />
+        <Capbility value="0x21" decibel="-11.77" />
+        <Capbility value="0x22" decibel="-11.51" />
+        <Capbility value="0x23" decibel="-11.26" />
+        <Capbility value="0x24" decibel="-11.02" />
+        <Capbility value="0x25" decibel="-10.78" />
+        <Capbility value="0x26" decibel="-10.55" />
+        <Capbility value="0x27" decibel="-10.32" />
+        <Capbility value="0x28" decibel="-10.1" />
+        <Capbility value="0x29" decibel="-9.89" />
+        <Capbility value="0x2A" decibel="-9.68" />
+        <Capbility value="0x2B" decibel="-9.47" />
+        <Capbility value="0x2C" decibel="-9.28" />
+        <Capbility value="0x2D" decibel="-9.08" />
+        <Capbility value="0x2E" decibel="-8.89" />
+        <Capbility value="0x2F" decibel="-8.7" />
+        <Capbility value="0x30" decibel="-8.52" />
+        <Capbility value="0x31" decibel="-8.34" />
+        <Capbility value="0x32" decibel="-8.16" />
+        <Capbility value="0x33" decibel="-7.99" />
+        <Capbility value="0x34" decibel="-7.82" />
+        <Capbility value="0x35" decibel="-7.66" />
+        <Capbility value="0x36" decibel="-7.5" />
+        <Capbility value="0x37" decibel="-7.34" />
+        <Capbility value="0x38" decibel="-7.18" />
+        <Capbility value="0x39" decibel="-7.03" />
+        <Capbility value="0x3A" decibel="-6.88" />
+        <Capbility value="0x3B" decibel="-6.73" />
+        <Capbility value="0x3C" decibel="-6.58" />
+        <Capbility value="0x3D" decibel="-6.44" />
+        <Capbility value="0x3E" decibel="-6.3" />
+        <Capbility value="0x3F" decibel="-6.16" />
+        <Capbility value="0x40" decibel="-6.02" />
+        <Capbility value="0x41" decibel="-5.89" />
+        <Capbility value="0x42" decibel="-5.75" />
+        <Capbility value="0x43" decibel="-5.62" />
+        <Capbility value="0x44" decibel="-5.49" />
+        <Capbility value="0x45" decibel="-5.37" />
+        <Capbility value="0x46" decibel="-5.24" />
+        <Capbility value="0x47" decibel="-5.12" />
+        <Capbility value="0x48" decibel="-5" />
+        <Capbility value="0x49" decibel="-4.88" />
+        <Capbility value="0x4A" decibel="-4.76" />
+        <Capbility value="0x4B" decibel="-4.64" />
+        <Capbility value="0x4C" decibel="-4.53" />
+        <Capbility value="0x4D" decibel="-4.41" />
+        <Capbility value="0x4E" decibel="-4.3" />
+        <Capbility value="0x4F" decibel="-4.19" />
+        <Capbility value="0x50" decibel="-4.08" />
+        <Capbility value="0x51" decibel="-3.97" />
+        <Capbility value="0x52" decibel="-3.87" />
+        <Capbility value="0x53" decibel="-3.76" />
+        <Capbility value="0x54" decibel="-3.66" />
+        <Capbility value="0x55" decibel="-3.56" />
+        <Capbility value="0x56" decibel="-3.45" />
+        <Capbility value="0x57" decibel="-3.35" />
+        <Capbility value="0x58" decibel="-3.25" />
+        <Capbility value="0x59" decibel="-3.16" />
+        <Capbility value="0x5A" decibel="-3.06" />
+        <Capbility value="0x5B" decibel="-2.96" />
+        <Capbility value="0x5C" decibel="-2.87" />
+        <Capbility value="0x5D" decibel="-2.77" />
+        <Capbility value="0x5E" decibel="-2.68" />
+        <Capbility value="0x5F" decibel="-2.59" />
+        <Capbility value="0x60" decibel="-2.5" />
+        <Capbility value="0x61" decibel="-2.41" />
+        <Capbility value="0x62" decibel="-2.32" />
+        <Capbility value="0x63" decibel="-2.23" />
+        <Capbility value="0x64" decibel="-2.14" />
+        <Capbility value="0x65" decibel="-2.06" />
+        <Capbility value="0x66" decibel="-1.97" />
+        <Capbility value="0x67" decibel="-1.89" />
+        <Capbility value="0x68" decibel="-1.8" />
+        <Capbility value="0x69" decibel="-1.72" />
+        <Capbility value="0x6A" decibel="-1.64" />
+        <Capbility value="0x6B" decibel="-1.56" />
+        <Capbility value="0x6C" decibel="-1.48" />
+        <Capbility value="0x6D" decibel="-1.4" />
+        <Capbility value="0x6E" decibel="-1.32" />
+        <Capbility value="0x6F" decibel="-1.24" />
+        <Capbility value="0x70" decibel="-1.16" />
+        <Capbility value="0x71" decibel="-1.08" />
+        <Capbility value="0x72" decibel="-1.01" />
+        <Capbility value="0x73" decibel="-0.93" />
+        <Capbility value="0x74" decibel="-0.86" />
+        <Capbility value="0x75" decibel="-0.78" />
+        <Capbility value="0x76" decibel="-0.71" />
+        <Capbility value="0x77" decibel="-0.63" />
+        <Capbility value="0x78" decibel="-0.56" />
+        <Capbility value="0x79" decibel="-0.49" />
+        <Capbility value="0x7A" decibel="-0.42" />
+        <Capbility value="0x7B" decibel="-0.35" />
+        <Capbility value="0x7C" decibel="-0.28" />
+        <Capbility value="0x7D" decibel="-0.21" />
+        <Capbility value="0x7E" decibel="-0.14" />
+        <Capbility value="0x7F" decibel="-0.07" />
+        <Capbility value="0x80" decibel="0" />
+      </Bits>
+    </RegisterInfo>
+    <RegisterInfo index="0x34c" name="BF parameters">
+      <Bits range="31:24" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="23:16" field="BF_SHIFTBOUND[7:0]" default="101010" desc="bf_shiftbound" />
+      <Bits range="15:8" field="BF_LOOPGAIN[7:0]" default="1000" desc="bf_loopgain" />
+      <Bits range="7:0" field="BF_CONTROL[7:0]" default="0" desc="bf_control" />
+    </RegisterInfo>
+    <RegisterInfo index="0x350" name="BF parameters">
+      <Bits range="31:24" field="BF_NCAF_GAIN[7:0]" default="100000" desc="bf_ncaf_gain" />
+      <Bits range="23:16" field="BF_NETA[7:0]" default="1111110" desc="bf_neta" />
+      <Bits range="15:8" field="BF_K[7:0]" default="10100" desc="bf_K" />
+      <Bits range="7:0" field="BF_ACCUM_ADJUST[7:0]" default="0" desc="bf_accum_adjust" />
+    </RegisterInfo>
+    <RegisterInfo index="0x354" name="Dummy register for DSP1A RAML and RAMR">
+      <Bits range="31:24" field="DSP1A_L_DUMMY1[7:0]" default="0" desc="Dummy register for DSP1A RAML" />
+      <Bits range="23:16" field="DSP1A_L_DUMMY2[7:0]" default="0" desc="Dummy register for DSP1A RAML" />
+      <Bits range="15:8" field="DSP1A_R_DUMMY1[7:0]" default="0" desc="Dummy register for DSP1A RAMR" />
+      <Bits range="7:0" field="DSP1A_R_DUMMY2[7:0]" default="0" desc="Dummy register for DSP1A RAMR" />
+    </RegisterInfo>
+    <RegisterInfo index="0x358" name="Dummy register for DSP1A RAMC1">
+      <Bits range="31:24" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="23:16" field="DSP1A_C1_DUMMY1[7:0]" default="0" desc="Dummy register for DSP1A RAMC1" />
+      <Bits range="15:8" field="DSP1A_C1_DUMMY2[7:0]" default="0" desc="Dummy register for DSP1A RAMC1" />
+      <Bits range="7:0" field="DSP1A_C1_DUMMY3[7:0]" default="0" desc="Dummy register for DSP1A RAMC1" />
+    </RegisterInfo>
+    <RegisterInfo index="0x35c" name="Dummy register for DSP1A RAMC2">
+      <Bits range="31:24" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="23:16" field="DSP1A_C2_DUMMY1[7:0]" default="0" desc="Dummy register for DSP1A RAMC2" />
+      <Bits range="15:8" field="DSP1A_C2_DUMMY2[7:0]" default="0" desc="Dummy register for DSP1A RAMC2" />
+      <Bits range="7:0" field="DSP1A_C2_DUMMY3[7:0]" default="0" desc="Dummy register for DSP1A RAMC2" />
+    </RegisterInfo>
+    <RegisterInfo index="0x400" name="Select data test point to observe on test ports">
+      <Bits range="31:8" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="7" field="DIG_TEST_MUX_EN" default="0" desc="Write 1 to enable digital test mux operation" />
+      <Bits range="6" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="5:0" field="TEST_MUX_DATA_SELECT[5:0]" default="0" desc="select data point to observe" />
+    </RegisterInfo>
+    <RegisterInfo index="0x404" name="Select loopback mode">
+      <Bits range="31:5" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="4" field="LOOPBACK_A2D" default="0" desc="loopback_a2d" />
+      <Bits range="3" field="LOOPBACK_I2S" default="0" desc="loopback_i2s" />
+      <Bits range="2" field="I2S_INT_LOOPBACK" default="0" desc="i2s_int_loopback" />
+      <Bits range="1" field="DIG_INT_LOOPBACK" default="0" desc="dig_int_loopback" />
+      <Bits range="0" field="I2S_EXT_LOOPBACK" default="0" desc="i2s_ext_loopback" />
+    </RegisterInfo>
+    <RegisterInfo index="0x408" name="Delay number in number of samples">
+      <Bits range="31:16" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="15:8" field="DELAY_BUFFER_LEN[7:0]" default="0" desc="delay buffer length" />
+      <Bits range="7:4" field="LDELAY_BUF_SEL[3:0]" default="0" desc="Source signal for left delay buffer" />
+      <Bits range="3:0" field="RDELAY_BUF_SEL[3:0]" default="0" desc="Source signal for right delay buffer" />
+    </RegisterInfo>
+    <RegisterInfo index="0x40c" name="DAC speakerphone/earphone controls and miscellaneous ">
+      <Bits range="31:3" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="2" field="APPLY_CHANGES" default="0" type="Force" desc="apply_changes" />
+      <Bits range="1:0" field="RSVD" default="0" desc="Reserved" />
+    </RegisterInfo>
+    <RegisterInfo index="0x410" name="DSP1 information">
+      <Bits range="31:28" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="27:24" field="D1_PLATFORM_ID" default="0" desc="user platform information, eden/helan2" />
+      <Bits range="23:20" field="D1_MAP_HW_ID" default="0" desc="MAP hw revision" />
+      <Bits range="19:16" field="D1_DSP_ID" default="0" desc="which DSP inside MAP we are pointing to" />
+      <Bits range="15:8" field="D1_FW_MAJOR_REV" default="0" desc="major revision is when new features are added" />
+      <Bits range="7:0" field="D1_FW_MINOR_REV" default="0" desc="minor revision is when we resolve bugs and issues with existing features" />
+    </RegisterInfo>
+    <RegisterInfo index="0x414" name="DSP2 information">
+      <Bits range="31:28" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="27:24" field="D2_PLATFORM_ID" default="0" desc="user platform information, eden/helan2" />
+      <Bits range="23:20" field="D2_MAP_HW_ID" default="0" desc="MAP hw revision" />
+      <Bits range="19:16" field="D2_DSP_ID" default="0" desc="which DSP inside MAP we are pointing to" />
+      <Bits range="15:8" field="D2_FW_MAJOR_REV" default="0" desc="major revision is when new features are added" />
+      <Bits range="7:0" field="D2_FW_MINOR_REV" default="0" desc="minor revision is when we resolve bugs and issues with existing features" />
+    </RegisterInfo>
+    <RegisterInfo index="0x418" name="DSP1A information">
+      <Bits range="31:28" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="27:24" field="D1A_PLATFORM_ID" default="0" desc="user platform information, eden/helan2" />
+      <Bits range="23:20" field="D1A_MAP_HW_ID" default="0" desc="MAP hw revision" />
+      <Bits range="19:16" field="D1A_DSP_ID" default="0" desc="which DSP inside MAP we are pointing to" />
+      <Bits range="15:8" field="D1A_FW_MAJOR_REV" default="0" desc="major revision is when new features are added" />
+      <Bits range="7:0" field="D1A_FW_MINOR_REV" default="0" desc="minor revision is when we resolve bugs and issues with existing features" />
+    </RegisterInfo>
+    <RegisterInfo index="0x41c" name="MAP BT mode(WB/NB)">
+      <Bits range="31:8" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="7:0" field="MAP_BT_WORK_MODE" default="0" desc="1 to enable WB mode, 0 to use NB mode" />
+    </RegisterInfo>
+    <RegisterInfo index="0x420" name="DSP output devices(SPKR/HS/EP) switch">
+      <Bits range="31:2" field="RSVD" default="0" desc="Reserved" />
+      <Bits range="1" field="DOUT_HS_EP_EN" default="0" desc="1 to enable headset/earphone, 0 to disable headset/earphone" />
+      <Bits range="0" field="DOUT_SPKR_EN" default="0" desc="1 to enable speaker, 0 to disable speaker" />
+    </RegisterInfo>
+  </Component>
+  <Component identifier="MODEM">
+    <!-- Digital gain in modem for nb -->
+    <RegisterInfo index="0x00" name="Digital Gain for NB in Modem">
+      <Bits range="7:0" field="DIGITAL_GAIN_NB" default="00101110" type="Gain" desc="Increase/Decrease voice stream volume">
+        <Capbility value="0x01" decibel="-36" />
+        <Capbility value="0x02" decibel="-35" />
+        <Capbility value="0x03" decibel="-34" />
+        <Capbility value="0x04" decibel="-33" />
+        <Capbility value="0x05" decibel="-32" />
+        <Capbility value="0x06" decibel="-31" />
+        <Capbility value="0x07" decibel="-30" />
+        <Capbility value="0x08" decibel="-29" />
+        <Capbility value="0x09" decibel="-28" />
+        <Capbility value="0x0A" decibel="-27" />
+        <Capbility value="0x0B" decibel="-26" />
+        <Capbility value="0x0C" decibel="-25" />
+        <Capbility value="0x0D" decibel="-24" />
+        <Capbility value="0x0E" decibel="-23" />
+        <Capbility value="0x0F" decibel="-22" />
+        <Capbility value="0x10" decibel="-21" />
+        <Capbility value="0x11" decibel="-20" />
+        <Capbility value="0x12" decibel="-19" />
+        <Capbility value="0x13" decibel="-18" />
+        <Capbility value="0x14" decibel="-17" />
+        <Capbility value="0x15" decibel="-16" />
+        <Capbility value="0x16" decibel="-15" />
+        <Capbility value="0x17" decibel="-14" />
+        <Capbility value="0x18" decibel="-13" />
+        <Capbility value="0x19" decibel="-12" />
+        <Capbility value="0x1A" decibel="-11" />
+        <Capbility value="0x1B" decibel="-10" />
+        <Capbility value="0x1C" decibel="-9" />
+        <Capbility value="0x1D" decibel="-8" />
+        <Capbility value="0x1E" decibel="-7" />
+        <Capbility value="0x1F" decibel="-6" />
+        <Capbility value="0x20" decibel="-5" />
+        <Capbility value="0x21" decibel="-4" />
+        <Capbility value="0x22" decibel="-3" />
+        <Capbility value="0x23" decibel="-2" />
+        <Capbility value="0x24" decibel="-1" />
+        <Capbility value="0x25" decibel="0" />
+        <Capbility value="0x26" decibel="1" />
+        <Capbility value="0x27" decibel="2" />
+        <Capbility value="0x28" decibel="3" />
+        <Capbility value="0x29" decibel="4" />
+        <Capbility value="0x2A" decibel="5" />
+        <Capbility value="0x2B" decibel="6" />
+        <Capbility value="0x2C" decibel="7" />
+        <Capbility value="0x2D" decibel="8" />
+        <Capbility value="0x2E" decibel="9" />
+        <Capbility value="0x2F" decibel="10" />
+        <Capbility value="0x30" decibel="11" />
+        <Capbility value="0x31" decibel="12" />
+      </Bits>
+    </RegisterInfo>
+    <!-- Digital gain in modem for wb -->
+    <RegisterInfo index="0x00" name="Digital Gain WB in Modem">
+      <Bits range="7:0" field="DIGITAL_GAIN_WB" default="00101110" type="Gain" desc="Increase/Decrease voice stream volume">
+        <Capbility value="0x01" decibel="-36" />
+        <Capbility value="0x02" decibel="-35" />
+        <Capbility value="0x03" decibel="-34" />
+        <Capbility value="0x04" decibel="-33" />
+        <Capbility value="0x05" decibel="-32" />
+        <Capbility value="0x06" decibel="-31" />
+        <Capbility value="0x07" decibel="-30" />
+        <Capbility value="0x08" decibel="-29" />
+        <Capbility value="0x09" decibel="-28" />
+        <Capbility value="0x0A" decibel="-27" />
+        <Capbility value="0x0B" decibel="-26" />
+        <Capbility value="0x0C" decibel="-25" />
+        <Capbility value="0x0D" decibel="-24" />
+        <Capbility value="0x0E" decibel="-23" />
+        <Capbility value="0x0F" decibel="-22" />
+        <Capbility value="0x10" decibel="-21" />
+        <Capbility value="0x11" decibel="-20" />
+        <Capbility value="0x12" decibel="-19" />
+        <Capbility value="0x13" decibel="-18" />
+        <Capbility value="0x14" decibel="-17" />
+        <Capbility value="0x15" decibel="-16" />
+        <Capbility value="0x16" decibel="-15" />
+        <Capbility value="0x17" decibel="-14" />
+        <Capbility value="0x18" decibel="-13" />
+        <Capbility value="0x19" decibel="-12" />
+        <Capbility value="0x1A" decibel="-11" />
+        <Capbility value="0x1B" decibel="-10" />
+        <Capbility value="0x1C" decibel="-9" />
+        <Capbility value="0x1D" decibel="-8" />
+        <Capbility value="0x1E" decibel="-7" />
+        <Capbility value="0x1F" decibel="-6" />
+        <Capbility value="0x20" decibel="-5" />
+        <Capbility value="0x21" decibel="-4" />
+        <Capbility value="0x22" decibel="-3" />
+        <Capbility value="0x23" decibel="-2" />
+        <Capbility value="0x24" decibel="-1" />
+        <Capbility value="0x25" decibel="0" />
+        <Capbility value="0x26" decibel="1" />
+        <Capbility value="0x27" decibel="2" />
+        <Capbility value="0x28" decibel="3" />
+        <Capbility value="0x29" decibel="4" />
+        <Capbility value="0x2A" decibel="5" />
+        <Capbility value="0x2B" decibel="6" />
+        <Capbility value="0x2C" decibel="7" />
+        <Capbility value="0x2D" decibel="8" />
+        <Capbility value="0x2E" decibel="9" />
+        <Capbility value="0x2F" decibel="10" />
+        <Capbility value="0x30" decibel="11" />
+        <Capbility value="0x31" decibel="12" />
+      </Bits>
+    </RegisterInfo>
+    <!-- Digital gain in modem for extra nb -->
+    <RegisterInfo index="0x00" name="Digital Gain for extra NB in Modem">
+      <Bits range="7:0" field="DIGITAL_GAIN_EXTRA" default="00101110" type="Gain" desc="Increase/Decrease voice stream volume">
+        <Capbility value="0x01" decibel="-36" />
+        <Capbility value="0x02" decibel="-35" />
+        <Capbility value="0x03" decibel="-34" />
+        <Capbility value="0x04" decibel="-33" />
+        <Capbility value="0x05" decibel="-32" />
+        <Capbility value="0x06" decibel="-31" />
+        <Capbility value="0x07" decibel="-30" />
+        <Capbility value="0x08" decibel="-29" />
+        <Capbility value="0x09" decibel="-28" />
+        <Capbility value="0x0A" decibel="-27" />
+        <Capbility value="0x0B" decibel="-26" />
+        <Capbility value="0x0C" decibel="-25" />
+        <Capbility value="0x0D" decibel="-24" />
+        <Capbility value="0x0E" decibel="-23" />
+        <Capbility value="0x0F" decibel="-22" />
+        <Capbility value="0x10" decibel="-21" />
+        <Capbility value="0x11" decibel="-20" />
+        <Capbility value="0x12" decibel="-19" />
+        <Capbility value="0x13" decibel="-18" />
+        <Capbility value="0x14" decibel="-17" />
+        <Capbility value="0x15" decibel="-16" />
+        <Capbility value="0x16" decibel="-15" />
+        <Capbility value="0x17" decibel="-14" />
+        <Capbility value="0x18" decibel="-13" />
+        <Capbility value="0x19" decibel="-12" />
+        <Capbility value="0x1A" decibel="-11" />
+        <Capbility value="0x1B" decibel="-10" />
+        <Capbility value="0x1C" decibel="-9" />
+        <Capbility value="0x1D" decibel="-8" />
+        <Capbility value="0x1E" decibel="-7" />
+        <Capbility value="0x1F" decibel="-6" />
+        <Capbility value="0x20" decibel="-5" />
+        <Capbility value="0x21" decibel="-4" />
+        <Capbility value="0x22" decibel="-3" />
+        <Capbility value="0x23" decibel="-2" />
+        <Capbility value="0x24" decibel="-1" />
+        <Capbility value="0x25" decibel="0" />
+        <Capbility value="0x26" decibel="1" />
+        <Capbility value="0x27" decibel="2" />
+        <Capbility value="0x28" decibel="3" />
+        <Capbility value="0x29" decibel="4" />
+        <Capbility value="0x2A" decibel="5" />
+        <Capbility value="0x2B" decibel="6" />
+        <Capbility value="0x2C" decibel="7" />
+        <Capbility value="0x2D" decibel="8" />
+        <Capbility value="0x2E" decibel="9" />
+        <Capbility value="0x2F" decibel="10" />
+        <Capbility value="0x30" decibel="11" />
+        <Capbility value="0x31" decibel="12" />
+      </Bits>
+    </RegisterInfo>
+    <!-- Digital gain in modem for extra Wb -->
+    <RegisterInfo index="0x00" name="Digital Gain for extra WB in Modem">
+      <Bits range="7:0" field="DIGITAL_GAIN_EXTRA_WB" default="00101110" type="Gain" desc="Increase/Decrease voice stream volume">
+        <Capbility value="0x01" decibel="-36" />
+        <Capbility value="0x02" decibel="-35" />
+        <Capbility value="0x03" decibel="-34" />
+        <Capbility value="0x04" decibel="-33" />
+        <Capbility value="0x05" decibel="-32" />
+        <Capbility value="0x06" decibel="-31" />
+        <Capbility value="0x07" decibel="-30" />
+        <Capbility value="0x08" decibel="-29" />
+        <Capbility value="0x09" decibel="-28" />
+        <Capbility value="0x0A" decibel="-27" />
+        <Capbility value="0x0B" decibel="-26" />
+        <Capbility value="0x0C" decibel="-25" />
+        <Capbility value="0x0D" decibel="-24" />
+        <Capbility value="0x0E" decibel="-23" />
+        <Capbility value="0x0F" decibel="-22" />
+        <Capbility value="0x10" decibel="-21" />
+        <Capbility value="0x11" decibel="-20" />
+        <Capbility value="0x12" decibel="-19" />
+        <Capbility value="0x13" decibel="-18" />
+        <Capbility value="0x14" decibel="-17" />
+        <Capbility value="0x15" decibel="-16" />
+        <Capbility value="0x16" decibel="-15" />
+        <Capbility value="0x17" decibel="-14" />
+        <Capbility value="0x18" decibel="-13" />
+        <Capbility value="0x19" decibel="-12" />
+        <Capbility value="0x1A" decibel="-11" />
+        <Capbility value="0x1B" decibel="-10" />
+        <Capbility value="0x1C" decibel="-9" />
+        <Capbility value="0x1D" decibel="-8" />
+        <Capbility value="0x1E" decibel="-7" />
+        <Capbility value="0x1F" decibel="-6" />
+        <Capbility value="0x20" decibel="-5" />
+        <Capbility value="0x21" decibel="-4" />
+        <Capbility value="0x22" decibel="-3" />
+        <Capbility value="0x23" decibel="-2" />
+        <Capbility value="0x24" decibel="-1" />
+        <Capbility value="0x25" decibel="0" />
+        <Capbility value="0x26" decibel="1" />
+        <Capbility value="0x27" decibel="2" />
+        <Capbility value="0x28" decibel="3" />
+        <Capbility value="0x29" decibel="4" />
+        <Capbility value="0x2A" decibel="5" />
+        <Capbility value="0x2B" decibel="6" />
+        <Capbility value="0x2C" decibel="7" />
+        <Capbility value="0x2D" decibel="8" />
+        <Capbility value="0x2E" decibel="9" />
+        <Capbility value="0x2F" decibel="10" />
+        <Capbility value="0x30" decibel="11" />
+        <Capbility value="0x31" decibel="12" />
+      </Bits>
+    </RegisterInfo>
+  </Component>
+</MarvellAudioBasicElements>

@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+<AudioEffectConfiguration>
+    <AudioEffect name="EQ" on="true" device="AUDIO_DEVICE_IN_BUILTIN_MIC" sampleRate="44100">
+        <band desc="band1" on="true">
+            <Parameter>16153</Parameter>
+            <Parameter>-32306</Parameter>
+            <Parameter>16153</Parameter>
+            <Parameter>14</Parameter>
+            <Parameter>-32304</Parameter>
+            <Parameter>15924</Parameter>
+        </band>
+    </AudioEffect>
+    <AudioEffect name="DRC" device="AUDIO_DEVICE_IN_BACK_MIC" on="true">
+        <Gain offset="0" threshold="-6553600" compress="1" ratio="65536" />
+        <Gain offset="0" threshold="-4587520" compress="1" ratio="65536" />
+        <Gain offset="0" threshold="-3932160" compress="1" ratio="65536" />
+        <Gain offset="0" threshold="-2097152" compress="0" ratio="458752" />
+        <AttackTime>2</AttackTime>
+        <ReleaseTime>400</ReleaseTime>
+    </AudioEffect>
+    <AudioEffect name="DRC" device="AUDIO_DEVICE_IN_WIRED_HEADSET" on="true">
+        <Gain offset="-2293760" threshold="-6553600" compress="1" ratio="163840" />
+        <Gain offset="655360" threshold="-4587520" compress="1" ratio="65536" />
+        <Gain offset="655360" threshold="-2621440" compress="1" ratio="65536" />
+        <Gain offset="655360" threshold="-1310720" compress="0" ratio="327680" />
+        <AttackTime>2</AttackTime>
+        <ReleaseTime>400</ReleaseTime>
+    </AudioEffect>
+    <AudioEffect name="EQ" on="true" device="AUDIO_DEVICE_OUT_SPEAKER" sampleRate="48000">
+        <band desc="band1" on="true">
+            <Parameter>11085</Parameter>
+            <Parameter>-1021</Parameter>
+            <Parameter>23</Parameter>
+            <Parameter>14</Parameter>
+            <Parameter>-7056</Parameter>
+            <Parameter>760</Parameter>
+        </band>
+        <band desc="band2" on="true">
+            <Parameter>15550</Parameter>
+            <Parameter>-9680</Parameter>
+            <Parameter>1873</Parameter>
+            <Parameter>14</Parameter>
+            <Parameter>-9680</Parameter>
+            <Parameter>1039</Parameter>
+        </band>
+    </AudioEffect>
+    <AudioEffect name="DRC" device="AUDIO_DEVICE_OUT_SPEAKER" on="true">
+        <Gain offset="0" threshold="-6553600" compress="1" ratio="65536" />
+        <Gain offset="0" threshold="-3932160" compress="1" ratio="65536" />
+        <Gain offset="0" threshold="-2621440" compress="1" ratio="65536" />
+        <Gain offset="0" threshold="-1310720" compress="0" ratio="91750" />
+        <AttackTime>2</AttackTime>
+        <ReleaseTime>400</ReleaseTime>
+    </AudioEffect>
+    <AudioEffect name="EQ" on="true" device="AUDIO_DEVICE_IN_BUILTIN_MIC" sampleRate="48000">
+        <band desc="band1" on="true">
+            <Parameter>15759</Parameter>
+            <Parameter>-31518</Parameter>
+            <Parameter>15759</Parameter>
+            <Parameter>14</Parameter>
+            <Parameter>-31506</Parameter>
+            <Parameter>15146</Parameter>
+        </band>
+        <band desc="band2" on="true">
+            <Parameter>14709</Parameter>
+            <Parameter>-18795</Parameter>
+            <Parameter>8981</Parameter>
+            <Parameter>14</Parameter>
+            <Parameter>-18795</Parameter>
+            <Parameter>7306</Parameter>
+        </band>
+    </AudioEffect>
+    <AudioEffect name="DRC" device="AUDIO_DEVICE_IN_BUILTIN_MIC" on="true">
+        <Gain offset="-327680" threshold="-6553600" compress="1" ratio="98304" />
+        <Gain offset="655360" threshold="-4587520" compress="1" ratio="65536" />
+        <Gain offset="655360" threshold="-2621440" compress="1" ratio="65536" />
+        <Gain offset="655360" threshold="-1310720" compress="1" ratio="65536" />
+        <AttackTime>2</AttackTime>
+        <ReleaseTime>400</ReleaseTime>
+    </AudioEffect>
+</AudioEffectConfiguration>
