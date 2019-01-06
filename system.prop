@@ -13,9 +13,6 @@ ro.sf.lcd_density=240
 # Multimedia property for Camcorder Recording
 media.sfrec.adj_frames=2
 
-# System property for low memory
-ro.config.low_ram=true
-
 # SAMP_SPCM
 sys.config.samp_spcm_enable=true
 sys.config.spcm_db_enable=true
@@ -45,7 +42,6 @@ ro.cmd.WORLD_PHONE=true
 
 ro.config.oomminfree=73728,92160,110592,129024,147456,184320
 ro.wifi.active_roaming.enable=true
-keyguard.no_require_sim=1
 ro.config.max_starting_bg=10
 persist.service.camera.isptype=1
 #ro.kernel.qemu=0
