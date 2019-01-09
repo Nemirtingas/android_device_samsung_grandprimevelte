@@ -40,10 +40,13 @@ TARGET_KERNEL_CONFIG := lineage_grandprimevelte_defconfig
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin
+
+#TARGET_GCC_VERSION_EXP := 4.9-linaro
+#TARGET_TOOLS_PREFIX := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9-linaro/bin/arm-linux-androideabi-
 
 BOARD_KERNEL_BASE         := 0x10000000
-BOARD_KERNEL_CMDLINE      := android.mavaleur=test
+BOARD_KERNEL_CMDLINE      := 
 BOARD_KERNEL_PAGESIZE     := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_IMAGE_NAME   := Image.gz
@@ -79,13 +82,4 @@ RECOVERY_SDCARD_ON_DATA := true
 TW_HAS_DOWNLOAD_MODE := true
 TW_NO_REBOOT_BOOTLOADER := true
 TW_MTP_DEVICE := /dev/mtp_usb
-
-#TW_EXCLUDE_SUPERSU := true
-#TW_EXCLUDE_MTP := true
-#TW_EXCLUDE_DEFAULT_USB_INIT := true
-#TW_HAS_DOWNLOAD_MODE := true
-#TW_INCLUDE_CRYPTO := true
-#TW_BRIGHTNESS_PATH := "/sys/devices/platform/ktd3102-bl.24/backlight/panel/brightness"
-#TW_MAX_BRIGHTNESS := 255
-#TW_DEFAULT_BRIGHTNESS := 137
-#TW_EXTRA_LANGUAGES := true
+TW_EXCLUDE_SUPERSU := true
