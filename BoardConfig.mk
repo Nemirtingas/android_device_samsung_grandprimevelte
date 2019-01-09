@@ -23,7 +23,7 @@ DEVICE_PATH := device/samsung/grandprimevelte
 TARGET_OTA_ASSERT_DEVICE := grandprimevelte
 
 # Init
-TARGET_PROVIDES_INIT_TARGET_RC := true
+#TARGET_PROVIDES_INIT_TARGET_RC := true
 TARGET_LIBINIT_PXA1908_DEFINES_FILE := $(DEVICE_PATH)/init/init_grandprimevelte.cpp
 
 # Properties

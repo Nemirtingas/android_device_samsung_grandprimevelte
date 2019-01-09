@@ -2,26 +2,11 @@
 # system.prop
 #
 
-ro.product.model=SM-G531F
-
-# System property for storage_preload
-persist.sys.storage_preload=1
-
-# set lcd density
-ro.sf.lcd_density=240
-
-# Multimedia property for Camcorder Recording
-media.sfrec.adj_frames=2
-
-# System property for low memory
-ro.config.low_ram=true
-
 # SAMP_SPCM
 sys.config.samp_spcm_enable=true
 sys.config.spcm_db_enable=true
 sys.config.spcm_db_launcher=true
 sys.config.spcm_preload_enable=true
-
 
 dalvik.vm.heapstartsize=8m
 dalvik.vm.heapgrowthlimit=96m
@@ -29,14 +14,6 @@ dalvik.vm.heapsize=256m
 dalvik.vm.heaptargetutilization=0.75
 dalvik.vm.heapminfree=2m
 dalvik.vm.heapmaxfree=8m
-
-# Samsung Specific Properties
-ro.build.PDA=G531FXXU1APG2
-ro.build.hidden_ver=G531FXXU1APG2
-ro.config.rm_preload_enabled=0
-ro.build.changelist=1070395
-ro.product_ship=true
-ro.chipname=PXA19xx
 
 ro.tel.config.path=/system/etc/tel/
 ro.cmd.DUAL_SIMCARD=true
@@ -47,5 +24,3 @@ ro.config.oomminfree=73728,92160,110592,129024,147456,184320
 ro.wifi.active_roaming.enable=true
 ro.config.max_starting_bg=10
 persist.service.camera.isptype=1
-#ro.kernel.qemu=0
-#ro.security.mode=tz
