@@ -1,11 +1,13 @@
-/efs                    emmc    /dev/block/platform/soc.2/by-name/EFS       flags=display="EFS";backup=1
-/boot                   emmc    /dev/block/platform/soc.2/by-name/KERNEL
-/recovery               emmc    /dev/block/platform/soc.2/by-name/RECOVERY
-/cache                  ext4    /dev/block/platform/soc.2/by-name/CACHE
-/system                 ext4    /dev/block/platform/soc.2/by-name/SYSTEM
-/data                   ext4    /dev/block/platform/soc.2/by-name/USER      length=-16384
-/preload                ext4    /dev/block/platform/soc.2/by-name/HIDDEN
-/nvm                    ext4    /dev/block/platform/soc.2/by-name/NVM
-/radio                  emmc    /dev/block/platform/soc.2/by-name/MODEM 
+/boot                   emmc    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/KERNEL
+/recovery               emmc    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/RECOVERY  flags=display="Recovery";backup=1
+/cache                  ext4    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/CACHE
+/system                 ext4    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/SYSTEM
+/data                   ext4    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/USER      length=-16384
+/preload                ext4    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/HIDDEN
+/nvm                    ext4    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/NVM
+/efs                    emmc    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/EFS       flags=display="EFS";backup=1
+/sstd                   emmc    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/SSTD      flags=display="SSTD";backup=1
+/radio                  emmc    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/MODEM     flags=display="Modem";backup=1
+/misc                   emmc    /dev/block/platform/soc.2/d4200000.axi/d4281000.sdh/by-name/OTA   
 /external_sd            vfat    /dev/block/mmcblk1p1   /dev/block/mmcblk1   flags=display="Micro SDcard";storage;wipeingui;removable
 /usb-otg                vfat    /dev/block/sda1        /dev/block/sda       flags=display="USB-OTG";storage;wipeingui;removable
