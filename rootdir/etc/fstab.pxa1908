@@ -7,7 +7,7 @@
 /dev/block/platform/soc.2/by-name/RECOVERY   /recovery     emmc      defaults                                                                        defaults
 /dev/block/platform/soc.2/by-name/NVM        /NVM          ext4      defaults                                                                        defaults
 /dev/block/platform/soc.2/by-name/MODEM      /radio        emmc      defaults                                                                        defaults
-
+/dev/block/platform/soc.2/by-name/OTA        /misc         emmc      defaults                                                                        defaults
 
 # VOLD
 /devices/platform/soc.2/d4200000.axi/d4280000.sdh/mmc_host/mmc1/mmc1* auto auto defaults voldmanaged=sdcard1:auto,encryptable=userdata

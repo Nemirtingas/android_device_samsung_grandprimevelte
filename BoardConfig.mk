@@ -29,21 +29,20 @@ TARGET_LIBINIT_PXA1908_DEFINES_FILE := $(DEVICE_PATH)/init/init_grandprimevelte.
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
-# RIL
-BOARD_PROVIDES_LIBRIL := true
-ANDROID_MULTI_SIM := true
-ANDROID_SIM_COUNT_2 := true
-
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/grandprimevelte
 TARGET_KERNEL_CONFIG := lineage_grandprimevelte_defconfig
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin/
+#KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9/bin
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-7.2-linaro/bin
+
+#TARGET_GCC_VERSION_EXP := 4.9-linaro
+#TARGET_TOOLS_PREFIX := $(ANDROID_BUILD_TOP)/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9-linaro/bin/arm-linux-androideabi-
 
 BOARD_KERNEL_BASE         := 0x10000000
-BOARD_KERNEL_CMDLINE      := android.mavaleur=test
+BOARD_KERNEL_CMDLINE      := 
 BOARD_KERNEL_PAGESIZE     := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_IMAGE_NAME   := Image.gz
@@ -70,7 +69,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
 
 # TWRP Recovery
 RECOVERY_VARIANT := twrp
-TW_THEME := portrait_hdpi
+TW_THEME := portrait_mdpi
 PRODUCT_COPY_FILES += $(DEVICE_PATH)/rootdir/etc/twrp.fstab:recovery/root/etc/twrp.fstab
 RECOVERY_FSTAB_VERSION := 2
 HAVE_SELINUX := true
@@ -78,14 +77,6 @@ RECOVERY_GRAPHICS_USE_LINELENGTH := true
 RECOVERY_SDCARD_ON_DATA := true
 TW_HAS_DOWNLOAD_MODE := true
 TW_NO_REBOOT_BOOTLOADER := true
+TW_EXCLUDE_MTP := true
 TW_MTP_DEVICE := /dev/mtp_usb
-
-#TW_EXCLUDE_SUPERSU := true
-#TW_EXCLUDE_MTP := true
-#TW_EXCLUDE_DEFAULT_USB_INIT := true
-#TW_HAS_DOWNLOAD_MODE := true
-#TW_INCLUDE_CRYPTO := true
-#TW_BRIGHTNESS_PATH := "/sys/devices/platform/ktd3102-bl.24/backlight/panel/brightness"
-#TW_MAX_BRIGHTNESS := 255
-#TW_DEFAULT_BRIGHTNESS := 137
-#TW_EXTRA_LANGUAGES := true
+TW_EXCLUDE_SUPERSU := true
