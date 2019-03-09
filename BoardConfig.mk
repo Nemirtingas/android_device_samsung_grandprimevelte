@@ -29,11 +29,6 @@ TARGET_LIBINIT_PXA1908_DEFINES_FILE := $(DEVICE_PATH)/init/init_grandprimevelte.
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
-# RIL
-BOARD_PROVIDES_LIBRIL := true
-ANDROID_MULTI_SIM := true
-ANDROID_SIM_COUNT_2 := true
-
 # Kernel
 TARGET_KERNEL_SOURCE := kernel/samsung/grandprimevelte
 TARGET_KERNEL_CONFIG := lineage_grandprimevelte_defconfig
