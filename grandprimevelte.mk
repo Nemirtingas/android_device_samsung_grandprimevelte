@@ -58,3 +58,4 @@ endif
 
 # Inherit from 
 $(call inherit-product, device/samsung/pxa1908-common/pxa1908-common.mk)
+$(call inherit-product, vendor/nemirtingas/common_board.mk)
