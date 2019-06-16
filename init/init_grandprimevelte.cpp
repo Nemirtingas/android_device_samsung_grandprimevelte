@@ -109,7 +109,7 @@ void init_target_properties()
             if( cmdline.find("androidboot.simslotcount=1") != std::string::npos ) // It's a dual-sim ?
             {
                 ERROR("'androidboot.simslotcount=1' found, enabling dual-sim/dual-standby\n");
-                property_override("persist.radio.multisim.config", "dsds"); // This should trigger the on property in init.pxa1908.tel.rc
+                __system_property_set("persist.radio.multisim.config", "dsds"); // This should trigger the on property in init.pxa1908.tel.rc
             }
         }
     }
