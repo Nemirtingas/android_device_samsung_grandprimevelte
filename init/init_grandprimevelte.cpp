@@ -39,6 +39,8 @@
 
 #include "init_pxa1908.h"
 
+#include <fstream>
+
 void set_rild_libpath(char const *variant)
 {
     char libpath[512];
@@ -93,12 +95,20 @@ void init_target_properties()
     property_get("ro.bootloader", bootloader);
     if( strstr(bootloader, "G531F") != NULL )
     {
-            property_override("ro.build.fingerprint", "samsung/grandprimeveltexx/grandprimevelte:5.1.1/LMY48B/G531FXXU1APG2:user/release-keys");
-            property_override("ro.build.description", "grandprimeveltexx-user 5.1.1 LMY48B G531FXXU1APG2 release-keys");
-            property_override("ro.product.model", "SM-G531F");
-            property_override("ro.product.device", "grandprimevelte");
-            property_override("ro.telephony.ril_class", "SamsungPXA1908RIL");
-            lte_properties("");
+        property_override("ro.build.fingerprint", "samsung/grandprimeveltexx/grandprimevelte:5.1.1/LMY48B/G531FXXU1APG2:user/release-keys");
+        property_override("ro.build.description", "grandprimeveltexx-user 5.1.1 LMY48B G531FXXU1APG2 release-keys");
+        property_override("ro.product.model", "SM-G531F");
+        property_override("ro.product.device", "grandprimevelte");
+        property_override("ro.telephony.ril_class", "SamsungPXA1908RIL");
+        lte_properties("");
+        // TODO: Detect multisim phone
+        {
+            std::fstream fcmdline("/proc/cmdline");
+            std::string cmdline;
+            std::getline(fcmdline, cmdline);
+            if( cmdline.find("androidboot.simslotcount=1") != std::string::npos ) // It's a dual-sim ?
+                property_override("persist.radio.multisim.config", "dsds"); // This should trigger the on property in init.pxa1908.tel.rc
+        }
     }
     
     char device[PROPERTY_VALUE_MAX];
