@@ -1,0 +1,15 @@
+--- frameworks/native/include/ui/GraphicBuffer.h	2020-01-27 19:38:26.828916044 +0100
++++ frameworks/native/include/ui/GraphicBuffer.h.new	2019-05-24 18:17:26.493534310 +0200
+@@ -72,9 +72,11 @@
+ 
+     GraphicBuffer();
+ 
++    GraphicBuffer(uint32_t inWidth, uint32_t inHeight, PixelFormat inFormat,
++            uint32_t inUsage);
+     // creates w * h buffer
+     GraphicBuffer(uint32_t inWidth, uint32_t inHeight, PixelFormat inFormat,
+-            uint32_t inUsage, std::string requestorName = "<Unknown>");
++            uint32_t inUsage, std::string requestorName);
+ 
+     // create a buffer from an existing handle
+     GraphicBuffer(uint32_t inWidth, uint32_t inHeight, PixelFormat inFormat,

@@ -1,0 +1,13 @@
+--- system/core/mkbootimg/Android.mk	2020-01-27 19:41:28.498921531 +0100
++++ system/core/mkbootimg/Android.mk.new	2019-01-23 10:45:30.827013057 +0100
+@@ -1,4 +1,4 @@
+-
++ifneq ($(BOARD_PROVIDES_MKBOOTIMG),true)
+ LOCAL_PATH:= $(call my-dir)
+ include $(CLEAR_VARS)
+ 
+@@ -20,3 +20,4 @@
+ LOCAL_MODULE := unpackbootimg
+ 
+ include $(BUILD_PREBUILT)
++endif

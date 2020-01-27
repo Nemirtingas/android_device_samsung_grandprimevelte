@@ -1,0 +1,11 @@
+--- packages/apps/FMRadio/jni/fmr/Android.mk	2020-01-27 19:58:49.775610753 +0100
++++ packages/apps/FMRadio/jni/fmr/Android.mk.new	2019-05-23 11:14:05.915107776 +0200
+@@ -32,6 +32,8 @@
+ 
+ LOCAL_MODULE := libfmjni
+ 
++ifneq ($(BOARD_USES_MRVL_HARDWARE),true)
+ ifneq ($(BOARD_USES_QCOM_HARDWARE),true)
+ include $(BUILD_SHARED_LIBRARY)
+ endif
++endif

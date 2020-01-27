@@ -1,0 +1,21 @@
+frameworks/base/core/jni/com_android_internal_os_Zygote.cpp 
+  static FileDescriptorTable* gOpenFdTable = nullptr;
+  if (gOpenFdTable == nullptr) {
+    gOpenFdTable = FileDescriptorTable::Create(fds_to_ignore, fail_fn);
+  } else {
+    gOpenFdTable->Restat(fds_to_ignore, fail_fn);
+  }
+  gOpenFdTable->ReopenOrDetach(fail_fn);
+
+
+system/extras/mkimage/Android.mk
+  ifneq ($(BOARD_PROVIDES_MKIMAGE),true)
+
+system/core/mkbootimg/Android.mk
+  ifneq ($(BOARD_PROVIDES_MKBOOTIMG),true)
+
+packages/apps/FMRadio/jni/fmr/Android.mk
+  ifneq ($(BOARD_USES_MRVL_HARDWARE),true)
+
+external/busybox/Makefile
+  CROSS_COMPILE :=

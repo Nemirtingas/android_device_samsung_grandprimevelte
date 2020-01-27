@@ -1,0 +1,24 @@
+--- frameworks/native/libs/ui/GraphicBuffer.cpp	2020-01-27 19:33:33.640166907 +0100
++++ frameworks/native/libs/ui/GraphicBuffer.cpp.new	2019-05-24 18:17:45.421359817 +0200
+@@ -53,6 +53,21 @@
+     handle = NULL;
+ }
+ 
++GraphicBuffer::GraphicBuffer(uint32_t inWidth, uint32_t inHeight, PixelFormat inFormat, uint32_t inUsage)
++	: BASE(), mOwner(ownData), mBufferMapper(GraphicBufferMapper::get()),
++	mInitCheck(NO_ERROR), mId(getUniqueId()), mGenerationNumber(0)
++{
++    width  =
++    height =
++    stride =
++    format =
++    usage  = 0;
++    handle = NULL;
++    std::string requestorName = "<Unknown>";
++    mInitCheck = initSize(inWidth, inHeight, inFormat, inUsage,
++            std::move(requestorName));
++}
++
+ GraphicBuffer::GraphicBuffer(uint32_t inWidth, uint32_t inHeight,
+         PixelFormat inFormat, uint32_t inUsage, std::string requestorName)
+     : BASE(), mOwner(ownData), mBufferMapper(GraphicBufferMapper::get()),
